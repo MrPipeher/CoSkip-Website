@@ -21,86 +21,6 @@
 
     <div class="container">
         <div class="container">
-            
-            <!-- Add this after the features grid and before the requirements section -->
-            <div class="tutorial-section">
-                <h2 class="section-title">Video Tutorial</h2>
-                <div class="video-container">
-                    <video controls poster="/api/placeholder/800/450">
-                        <source src="tutorial.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-                <div class="tutorial-steps">
-                    <div class="step">
-                        <div class="step-number">1</div>
-                        <div class="step-content">
-                            <h3>Purchase Your Key</h3>
-                            <p>Select your plan and complete checkout with Stripe</p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-number">2</div>
-                        <div class="step-content">
-                            <h3>Download & Install</h3>
-                            <p>Get the latest version of our loader</p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-number">3</div>
-                        <div class="step-content">
-                            <h3>Enter Your Key</h3>
-                            <p>Activate your purchase and start using</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="features-grid">
-                <div class="feature-card">
-                    <h3 class="feature-title">LockDown Brownser Bypass</h3>
-                    <ul class="feature-list">
-                        <li>100% Undetectable</li>
-                        <li>Enables Screenshotting and Dual Screen</li>
-                        <li>Enables Copying and Pasting</li>
-                        <li>Enables Dual Screen</li>
-                        <li>Works for Cam and Mic setups</li>
-                    </ul>
-                </div>
-                <div class="feature-card">
-                    <h3 class="feature-title">Recommended AI Assistants</h3>
-                    <ul class="feature-list">
-                        <li>ChatGpt</li>
-                        <li>Claude</li>
-                        <li>DeepSeek</li>
-                        <li>Gemini - (Sometimes Slow)</li>
-                    </ul>
-                </div>
-                <div class="feature-card">
-                    <h3 class="feature-title">2 Available Modes</h3>
-                    <ul class="feature-list">
-                        <li>With Camera and Microphone Access</li>
-                        <li>Without Camera and Microphone Access</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Add this payment info section before the FAQ -->
-            <div class="payment-info">
-                <h2 class="section-title">Secure Payment Methods</h2>
-                <div class="payment-methods">
-                    <div class="payment-method">
-                        <i class="fab fa-stripe"></i>
-                        <span>Powered by Stripe</span>
-                    </div>
-                    <div class="payment-cards">
-                        <i class="fab fa-cc-visa"></i>
-                        <i class="fab fa-cc-mastercard"></i>
-                        <i class="fab fa-cc-amex"></i>
-                        <i class="fab fa-cc-discover"></i>
-                    </div>
-                </div>
-            </div>
 
             <div class="product-grid">
                 <div class="product-card" data-product="Key-1Day" data-price="3.50">
@@ -135,7 +55,68 @@
                 </div>
             </div>
 
-            <!-- Add this after the PayPal notice and before the product grid -->
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3 class="feature-title">LockDown Brownser Bypass</h3>
+                    <ul class="feature-list">
+                        <li>100% Undetectable</li>
+                        <li>Enables Screenshotting and Dual Screen</li>
+                        <li>Enables Copying and Pasting</li>
+                        <li>Enables Dual Screen</li>
+                        <li>Works for Cam and Mic setups</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h3 class="feature-title">Recommended AI Assistants</h3>
+                    <ul class="feature-list">
+                        <li>ChatGpt</li>
+                        <li>Claude</li>
+                        <li>DeepSeek</li>
+                        <li>Gemini - (Sometimes Slow)</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h3 class="feature-title">2 Available Modes</h3>
+                    <ul class="feature-list">
+                        <li>With Camera and Microphone Access</li>
+                        <li>Without Camera and Microphone Access</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="tutorial-section">
+                <h2 class="section-title">Video Tutorial</h2>
+                <div class="video-container">
+                    <video controls poster="/api/placeholder/800/450">
+                        <source src="tutorial.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="tutorial-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Purchase Your Key</h3>
+                            <p>Select your plan and complete checkout with Stripe</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Download & Install</h3>
+                            <p>Get the latest version of our loader</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Enter Your Key</h3>
+                            <p>Activate your purchase and start using</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="highlights-section">
                 <div class="highlight-card">
                     <i class="fas fa-bolt"></i>
@@ -288,10 +269,8 @@
                 const answer = question.nextElementSibling;
                 const icon = question.querySelector('i');
                 
-                // Toggle answer visibility
                 answer.style.maxHeight = answer.style.maxHeight ? null : answer.scrollHeight + "px";
                 
-                // Toggle icon rotation
                 icon.style.transform = icon.style.transform === 'rotate(180deg)' ? '' : 'rotate(180deg)';
             });
         });
@@ -300,15 +279,15 @@
     <script>
         function updateOnlineCount() {
             const onlineSpan = document.querySelector('.online-count');
-            let baseCount = 61; // Your starting number
+            let baseCount = 61;
 
             function fluctuate() {
-                let variation = Math.floor(Math.random() * 10) - 5; // Varies between -5 and +4
+                let variation = Math.floor(Math.random() * 10) - 5;
                 let newCount = baseCount + variation;
                 onlineSpan.textContent = `${newCount} ONLINE`;
             }
 
-            setInterval(fluctuate, 5000); // Updates every 5 seconds
+            setInterval(fluctuate, 5000);
         }
 
         document.addEventListener("DOMContentLoaded", updateOnlineCount);
