@@ -572,3 +572,73 @@ p {
     font-size: 18px;
     line-height: 1.6;
 }
+
+@media (max-width: 768px) {
+    .navbar {
+      flex-direction: column;
+      padding: 1rem;
+    }
+    
+    .nav-links {
+      margin-top: 1rem;
+      width: 100%;
+      justify-content: space-between;
+    }
+    
+    .logo {
+      font-size: 36px; /* Smaller on mobile */
+    }
+  }
+
+  @media (max-width: 768px) {
+    .product-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .features-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .highlights-section {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      padding: 1rem;
+    }
+    
+    .product-title {
+      font-size: 1.25rem;
+    }
+    
+    .price {
+      font-size: 1.5rem;
+    }
+    
+    .section-title {
+      font-size: 1.25rem;
+    }
+    
+    .paypal-notice {
+      flex-direction: column;
+      text-align: center;
+      gap: 0.5rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .btn {
+      padding: 0.85rem 1.5rem; /* Slightly larger touch target */
+    }
+    
+    .nav-links a {
+      padding: 0.5rem;
+      font-size: 1rem;
+    }
+    
+    .faq-question {
+      padding: 1.25rem;
+    }
+  }
