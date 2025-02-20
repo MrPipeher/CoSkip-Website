@@ -433,12 +433,11 @@ body {
 }
 
 .video-container {
-    position: relative;
-    padding-bottom: 56.25%; /* 16:9 aspect ratio */
-    height: 0;
-    overflow: hidden;
-    border-radius: 8px;
-    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 20px 0;
 }
 
 .video-container video {
