@@ -205,9 +205,9 @@
         const stripe = Stripe('pk_live_51NyaJIErsDMwjHJbY7JHPMqfZvkSMv3kOIo775RlVkojW77iW7RYZTmJ6ueDEDTsW2b90AJW9IWLneW4goUJ6ZqI00Vsxy0vpz');
         const serverURL = 'https://server5000.acserver.org';
 
-        document.querySelectorAll('.purchase-btn').forEach(button => {
+        document.querySelectorAll('.purchase-btn2').forEach(button => {
             button.addEventListener('click', async (event) => {
-                const productCard = event.target.closest('.product-card');
+                const productCard = event.target.closest('.product-card2');
                 const productTitle = productCard.getAttribute('data-product');
                 const quantity = 1;
 
