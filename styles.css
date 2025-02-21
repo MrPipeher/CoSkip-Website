@@ -605,6 +605,73 @@ p {
     line-height: 1.6;
 }
 
+.product-info2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btn.purchase-btn2 {
+    display: block; /* Ensures the button takes the full width */
+    text-align: center; /* Centers text inside the button */
+    justify-items: center;
+    width: 50%; /* Optional: Makes it full width of the container */
+    padding: 10px 20px; /* Adjust padding as needed */
+    margin-top: 10px; /* Adds spacing between button and text */
+    background-color: var(--primary);
+    color: var(--text);
+    text-decoration: none; /* Removes underline from the link */
+    font-weight: bold;
+    border-radius: 5px; /* Optional: Rounds the corners */
+    margin-bottom: 25px;
+}
+
+.btn.purchase-btn2:hover {
+    background-color: var(--primary-dark); /* Darker blue on hover */
+}
+
+.secure-payments {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--secondary);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+    text-align: center;
+    flex-direction: column;
+}
+
+.secure-icon img {
+    width: 150px;
+    margin-bottom: 10px;
+}
+
+.secure-text h3 {
+    color: #ffffff;
+    font-size: 1.5em;
+    margin-bottom: 5px;
+}
+
+.secure-text p {
+    color: #ffffff;
+    font-size: 1em;
+    margin-bottom: 10px;
+}
+
+.security-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    font-size: 1em;
+    color: #007bff;
+}
+
+.security-icons i {
+    margin-right: 5px;
+}
+
 @media (max-width: 768px) {
     .navbar {
       flex-direction: column;
@@ -644,9 +711,17 @@ p {
     .product-title {
       font-size: 1.25rem;
     }
+
+    .product-title2 {
+        font-size: 1.25rem;
+    }
     
     .price {
       font-size: 1.5rem;
+    }
+
+    .price2 {
+        font-size: 1.5rem;
     }
     
     .section-title {
@@ -664,7 +739,7 @@ p {
     .btn {
       padding: 0.85rem 1.5rem; /* Slightly larger touch target */
     }
-    
+
     .nav-links a {
       padding: 0.5rem;
       font-size: 1rem;
@@ -674,28 +749,3 @@ p {
       padding: 1.25rem;
     }
   }
-
-  .product-info2 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-  .btn.purchase-btn2 {
-    display: block; /* Ensures the button takes the full width */
-    text-align: center; /* Centers text inside the button */
-    justify-items: center;
-    width: 50%; /* Optional: Makes it full width of the container */
-    padding: 10px 20px; /* Adjust padding as needed */
-    margin-top: 10px; /* Adds spacing between button and text */
-    background-color: #007bff; /* Example blue button color */
-    color: white; /* White text */
-    text-decoration: none; /* Removes underline from the link */
-    font-weight: bold;
-    border-radius: 5px; /* Optional: Rounds the corners */
-    margin-bottom: 25px;
-}
-
-.btn.purchase-btn2:hover {
-    background-color: #0056b3; /* Darker blue on hover */
-}
