@@ -644,8 +644,9 @@ p {
 }
 
 .secure-icon img {
-    width: 150px;
-    margin-bottom: 10px;
+    width: 100%;
+    max-width: 300px;
+    height: auto;
 }
 
 .secure-text h3 {
