@@ -173,6 +173,21 @@ body {
     color: var(--text);
 }
 
+.price3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    width: fit-content;  /* Adjusts width to content */
+    margin-left: auto;   /* Centers the div */
+    margin-right: auto;  
+}
+
+
 .btn {
     background-color: var(--primary);
     color: var(--text);
@@ -722,6 +737,10 @@ p {
     }
 
     .price2 {
+        font-size: 1.5rem;
+    }
+
+    .price3 {
         font-size: 1.5rem;
     }
     
