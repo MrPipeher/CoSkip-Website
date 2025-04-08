@@ -25,7 +25,7 @@
             <a href="#tutorial">Tutorial</a>
             <a href="#download">Download</a>
             <a href="#keys">Get Key</a> <!-- Renamed -->
-            <span class="online-count">61 ONLINE</span>
+            <span class="online-count">200+ ONLINE</span>
         </div>
     </nav>
 
@@ -417,30 +417,6 @@
                 // });
             });
         });
-    </script>
-
-    <!-- Online Count Script -->
-    <script>
-        function updateOnlineCount() {
-            const onlineSpan = document.querySelector('.online-count');
-            let baseCount = 61; // Or fetch dynamically if possible
-
-            function fluctuate() {
-                if (onlineSpan) { // Check if element exists
-                    let variation = Math.floor(Math.random() * 10) - 5; // Fluctuate between -5 and +4
-                    let newCount = Math.max(20, baseCount + variation); // Ensure count doesn't go too low
-                    onlineSpan.textContent = `${newCount} ONLINE`;
-                }
-            }
-            fluctuate(); // Initial call
-            setInterval(fluctuate, 5000); // Update every 5 seconds
-        }
-        // Run after DOM is loaded
-        if (document.readyState === 'loading') { // Handle cases where script runs before DOM ready
-             document.addEventListener('DOMContentLoaded', updateOnlineCount);
-        } else { // DOM already ready
-            updateOnlineCount();
-        }
     </script>
 
 </body>
