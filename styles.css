@@ -235,6 +235,36 @@ body {
     margin-top: auto; /* Push button to bottom */
 }
 
+/* --- Product Grid Additions --- */
+.product-limit { /* Style for Limit Text */
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+}
+
+.limit-explanation {
+    grid-column: 1 / -1; /* Span all columns in the grid */
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 1rem; /* Space below cards */
+    padding: 0 1rem; /* Prevent text touching edges on mobile */
+}
+
+.limit-explanation kbd { /* Reuse kbd style if needed */
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+    padding: 1px 4px;
+    font-family: 'Consolas', monospace;
+    font-size: 0.85em;
+    box-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+    margin: 0 2px;
+    display: inline-block;
+    color: var(--text);
+    vertical-align: baseline;
+}
+
 /* --- Testimonials Section --- */
 .testimonials-section {
     margin: 4rem 0;
@@ -542,4 +572,11 @@ body {
      .disclaimer h2, .important-tip h2 { font-size: 1.3rem;}
      .disclaimer p, .important-tip p, .important-tip ul li { font-size: 0.9rem;}
 
+}
+
+/* Adjust grid gap if explanation looks too far */
+@media (min-width: 600px) { /* Apply only when grid likely has multiple columns */
+    .product-grid {
+        margin-bottom: 2.5rem; /* Reduce bottom margin slightly if explanation adds space */
+    }
 }
