@@ -3,309 +3,443 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Co-Skip</title>
+    <!-- Update Title/Description for SEO -->
+    <meta name="description" content="Co-Skip: Your essential assistant for navigating restricted digital environments. Secure, hotkey-driven access when you need it most.">
+    <title>Co-Skip - Assistance in Restricted Environments</title>
     <script src="https://js.stripe.com/v3/"></script>
     <link href="styles.css" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Optional: Google Font for Logo/Headings -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght=700;900&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <nav class="navbar">
         <div class="logo">Co-Skip</div>
         <div class="nav-links">
-            <a href="https://co-skip.com">Home</a>
+            <a href="#home">Home</a>
             <a href="https://discord.gg/vFdJmjjapa" target="_blank" rel="noopener noreferrer">Support</a>
+            <a href="#reviews">Reviews</a> <!-- NEW -->
+            <a href="#compatibility">Limitations</a> <!-- Renamed -->
             <a href="#faq">FAQs</a>
             <a href="#tutorial">Tutorial</a>
-            <a href="https://drive.google.com/file/d/1ngprAH2xmuCRGzzmCYFpSF34bnsTRz-3/view?usp=sharing">Download</a>
-            <a href="#keys">License Keys</a>
+            <a href="#download">Download</a>
+            <a href="#keys">Get Key</a> <!-- Renamed -->
             <span class="online-count">61 ONLINE</span>
         </div>
     </nav>
 
-    <div class="container">   
+    <div class="container" id="home">
 
-            <div class="tutorial-section" id="tutorial">
-                <h2 class="section-title">Video Tutorial</h2>
-                <div class="video-container">
-                    <iframe width="800" height="450" 
-                        src="https://www.youtube.com/embed/6OqoeKvc9GQ?si=fbEbSl9XsblQiqoS" 
-                        frameborder="0" allowfullscreen>
-                    </iframe>
-                </div>
-                <div class="tutorial-steps">
-                    <div class="step">
-                        <div class="step-number">1</div>
-                        <div class="step-content">
-                            <h3>Purchase Your License Key</h3>
-                            <p>Select your plan and complete checkout with Stripe</p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-number">2</div>
-                        <div class="step-content">
-                            <h3>Download & Install</h3>
-                            <p>Get the latest version of our VM environment</p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <div class="step-number">3</div>
-                        <div class="step-content">
-                            <h3>Enter Your License Key</h3>
-                            <p>Activate your purchase and start using</p>
-                        </div>
-                    </div>
-                </div>
+        <!-- Tutorial Section -->
+        <div class="tutorial-section" id="tutorial">
+            <h2 class="section-title">Quick Start Tutorial</h2>
+            <div class="video-container">
+                <iframe width="800" height="450"
+                    src="https://www.youtube.com/embed/6OqoeKvc9GQ?si=fbEbSl9XsblQiqoS"
+                    title="Co-Skip Tutorial"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen>
+                </iframe>
             </div>
-
-            <div class="product-grid" id="keys">
-                <div class="product-card" data-product="Key-1Day" data-price="3.50">
-                    <div class="product-image">
-                        <img src="https://raw.githubusercontent.com/Rsaccreator/LockDown-Browser-Bypass/refs/heads/main/images/key.webp" alt="Product Logo">
-                    </div>
-                    <div class="product-info">
-                        <h2 class="product-title">1 Day License</h2>
-                        <div class="price">$9.99</div>
-                        <button class="btn purchase-btn">BUY NOW</button>
+            <div class="tutorial-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Get Your License Key</h3>
+                        <p>Choose a plan below that fits your needs.</p>
                     </div>
                 </div>
-                <div class="product-card" data-product="Key-7Day" data-price="25.00">
-                    <div class="product-image">
-                        <img src="https://raw.githubusercontent.com/Rsaccreator/LockDown-Browser-Bypass/refs/heads/main/images/key.webp" alt="Product Logo">
-                    </div>
-                    <div class="product-info">
-                        <h2 class="product-title">7 Day License</h2>
-                        <div class="price">$29.99</div>
-                        <button class="btn purchase-btn">BUY NOW</button>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Download & Prepare</h3>
+                        <p>Grab the installer and follow the README.</p>
                     </div>
                 </div>
-                <div class="product-card" data-product="Key-30Day" data-price="100.00">
-                    <div class="product-image">
-                        <img src="https://raw.githubusercontent.com/Rsaccreator/LockDown-Browser-Bypass/refs/heads/main/images/key.webp" alt="Product Logo">
-                    </div>
-                    <div class="product-info">
-                        <h2 class="product-title">30 Day License</h2>
-                        <div class="price">$79.99</div>
-                        <button class="btn purchase-btn">BUY NOW</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="requirements-downloads-grid">
-                <div class="system-requirements">
-                    <h2 class="section-title">System Requirements</h2>
-                    <table>
-                        <tr>
-                            <td><strong>OS:</strong></td>
-                            <td>Windows 10 (version 2004+) or Windows 11 Pro/Enterprise/Education</td>
-                        </tr>
-                    </table>
-                </div>
-    
-                <div class="system-requirements">
-                    <h2 class="section-title">Download</h2>
-                    <div class="download-items">
-                        <div class="download-item">
-                            <i class="fas fa-shield-alt"></i>
-                            <div>
-                                <h3>Co-Skip</h3>
-                            </div>
-                            <a class="btn btn-secondary" href="https://drive.google.com/file/d/1ngprAH2xmuCRGzzmCYFpSF34bnsTRz-3/view?usp=sharing" download>
-                                Download
-                            </a>
-                        </div>
-                    </div>
-                </div>            
-            </div>
-
-            <div class="features-grid">
-                <div class="feature-card">
-                    <h3 class="feature-title">Co-Skip Features</h3>
-                    <ul class="feature-list">
-                        <li>Enhanced System Performance</li>
-                        <li>Smooth Hardware Compatibility</li>
-                        <li>Optimized Kernel Integration</li>
-                        <li>Seamless Multi-Screen Support</li>
-                    </ul>
-                </div>
-                <div class="feature-card">
-                    <h3 class="feature-title">Compatible Applications</h3>
-                    <ul class="feature-list">
-                        <li>Productivity Software</li>
-                        <li>Research Tools</li>
-                        <li>Development Environments</li>
-                        <li>Educational Platforms</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="highlights-section">
-                <div class="highlight-card">
-                    <i class="fas fa-bolt"></i>
-                    <h3>Fast Delivery</h3>
-                    <p>License keys delivered promptly after purchase</p>
-                </div>
-                <div class="highlight-card">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>Reliable Performance</h3>
-                    <p>24/7 uptime with regular updates</p>
-                </div>
-                <div class="highlight-card">
-                    <i class="fas fa-headset"></i>
-                    <h3>Customer Support</h3>
-                    <p>Technical assistance available via Discord</p>
-                </div>
-            </div>
-
-            <section class="disclaimer">
-                <h2>Disclaimer</h2>
-                <p>
-                    This software is strictly intended for legitimate educational and research purposes only, such as software testing, development environments, and security research. We do not condone or encourage violations of any terms of service, academic integrity policies, or other rules and regulations. Users must comply with all applicable terms of service, academic policies, and laws when using this tool. Any misuse of this software is expressly prohibited and is the sole responsibility of the user.
-                </p>
-            </section> 
-
-            <section class="important-tip">
-                <div class="feature-card">
-                    <h2>Terms of Use</h2>
-                    <p>
-                        By downloading, installing, or using Co-Skip, you agree to comply with these Terms of Use:
-                    </p>
-                    <ul>
-                        <li>Co-Skip is designed for legitimate development, testing, and educational purposes only.</li>
-                        <li>Users must comply with all applicable laws, regulations, and terms of service of any software or platform used within Co-Skip.</li>
-                        <li>Users shall not use Co-Skip to engage in academic dishonesty, bypass security measures, or violate the terms of any software or platform.</li>
-                        <li>We reserve the right to terminate access for any user found to be violating these terms.</li>
-                    </ul>
-                </div>
-            </section>
-
-            <section class="important-tip">
-                <div class="feature-card">
-                    <h2>Legitimate Use Cases</h2>
-                    <div class="use-case">
-                        <h3>Software Development</h3>
-                        <p>Create isolated environments for testing applications across different configurations without affecting your main system.</p>
-                    </div>
-                    <div class="use-case">
-                        <h3>Educational Research</h3>
-                        <p>Study operating systems, virtualization technologies, and system architecture in a controlled environment.</p>
-                    </div>
-                    <div class="use-case">
-                        <h3>IT Training</h3>
-                        <p>Practice system administration and configuration in a safe, isolated environment.</p>
-                    </div>
-                </div>
-            </section>
-
-        <div class="faq-section" id="faq">
-            <h2 class="section-title">Frequently Asked Questions</h2>
-            <div class="faq-grid">
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>How do I install the software?</h3>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        1. Download the zip file and extract it<br>
-                        2. Open the 'IMPORTANT-README.txt' file<br>
-                        3. Follow the instructions<br>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>What payment methods do you accept?</h3>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        We accept all Major Credit and Debit cards. Our payments are processed with Stripe. We also accept: Bitcoin, Ethereum, Cashapp and Apple pay contact us on discord.
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>How long does delivery take?</h3>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        Delivery is typically within minutes for all products. You'll receive your license key promptly after successful payment.
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>Do you offer refunds?</h3>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        Yes, we offer refunds within 24 hours of purchase if the product is unusable for its intended legitimate purposes. Contact our support team through Discord for assistance.
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>What are the permitted uses of Co-Skip?</h3>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        Co-Skip is designed for legitimate purposes such as software development, testing, educational research, IT training, and other similar applications. Users must comply with all applicable terms of service and academic policies when using this software.
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Activate & Use</h3>
+                        <p>Enter your key and use hotkeys for assistance.</p>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
+        <!-- License Key Purchase Section -->
+        <div class="product-grid" id="keys">
+            <!-- Updated Product Cards -->
+            <div class="product-card featured" data-product="Key-7Day"> <!-- Added 'featured' class -->
+                <div class="badge">Most Popular</div> <!-- Added Badge -->
+                <div class="product-image">
+                    <img src="https://raw.githubusercontent.com/Rsaccreator/LockDown-Browser-Bypass/refs/heads/main/images/key.webp" alt="License Key Icon">
+                </div>
+                <div class="product-info">
+                    <h2 class="product-title">7 Day Access</h2>
+                    <div class="price">$50</div>
+                    <div class="product-limit">100 API Calls Included</div> <!-- Added Limit -->
+                    <button class="btn purchase-btn">Get Weekly Access</button> <!-- Changed Button Text -->
+                </div>
+            </div>
+             <div class="product-card" data-product="Key-1Day">
+                <div class="product-image">
+                    <img src="https://raw.githubusercontent.com/Rsaccreator/LockDown-Browser-Bypass/refs/heads/main/images/key.webp" alt="License Key Icon">
+                </div>
+                <div class="product-info">
+                    <h2 class="product-title">1 Day Access</h2>
+                    <div class="price">$20</div>
+                    <div class="product-limit">30 API Calls Included</div> <!-- Added Limit -->
+                    <button class="btn purchase-btn">Get Daily Access</button> <!-- Changed Button Text -->
+                </div>
+            </div>
+            <div class="product-card" data-product="Key-30Day">
+                <div class="product-image">
+                    <img src="https://raw.githubusercontent.com/Rsaccreator/LockDown-Browser-Bypass/refs/heads/main/images/key.webp" alt="License Key Icon">
+                </div>
+                <div class="product-info">
+                    <h2 class="product-title">30 Day Access</h2>
+                    <div class="price">$100</div>
+                    <div class="product-limit">300 API Calls Included</div> <!-- Added Limit -->
+                    <button class="btn purchase-btn">Get Monthly Access</button> <!-- Changed Button Text -->
+                </div>
+            </div>
+        </div>
+
+         <!-- *** NEW TESTIMONIALS SECTION *** -->
+         <section class="testimonials-section" id="reviews">
+             <h2 class="section-title">What Users Are Saying</h2>
+             <div class="testimonial-grid">
+                 <div class="testimonial-card">
+                     <div class="stars">★★★★★</div>
+                     <p>"Just passed my final! Thank you so much very helpful!"</p>
+                     <span class="testimonial-source">- Verified User (Discord Review)</span>
+                 </div>
+                 <div class="testimonial-card">
+                     <div class="stars">★★★★★</div>
+                     <p>"This program is amazing!"</p>
+                     <span class="testimonial-source">- Verified User (Discord Review)</span>
+                 </div>
+                  <div class="testimonial-card">
+                     <div class="stars">★★★★★</div>
+                     <p>"works like a charm :3"</p>
+                     <span class="testimonial-source">- Verified User (Discord Review)</span>
+                 </div>
+                 <div class="testimonial-card">
+                     <div class="stars">★★★★★</div>
+                     <p>"Really Great! and very helpful"</p>
+                     <span class="testimonial-source">- Verified User (Discord Review)</span>
+                 </div>
+                  <div class="testimonial-card">
+                     <div class="stars">★★★★★</div>
+                     <p>"<3 Thanks! Support was amazing!"</p>
+                     <span class="testimonial-source">- Verified User (Discord Review)</span>
+                 </div>
+                 <div class="testimonial-card">
+                     <div class="stars">★★★★★</div>
+                     <p>"Love It!"</p>
+                     <span class="testimonial-source">- Verified User (Discord Review)</span>
+                 </div>
+             </div>
+         </section>
+         <!-- *** END TESTIMONIALS SECTION *** -->
+
+        <!-- Requirements & Downloads Grid -->
+        <div class="requirements-downloads-grid" id="download">
+            <div class="system-requirements"> <!-- Combined Requirements & Download for better flow -->
+                <h2 class="section-title">Requirements & Download</h2>
+                <h3 class="sub-title">System Requirements</h3>
+                <table>
+                    <tr>
+                        <td><i class="fa-brands fa-windows"></i> <strong>OS</strong></td>
+                        <td>Windows 10 (v2004+) or Windows 11</td>
+                    </tr>
+                    <tr>
+                        <td><i class="fa-solid fa-circle-info"></i> <strong>Edition</strong></td>
+                        <td>Pro / Enterprise / Education Recommended</td>
+                    </tr>
+                    <tr>
+                        <td><i class="fa-solid fa-shield-halved"></i> <strong>Privileges</strong></td>
+                        <td>Admin rights needed for setup (Run.bat)</td>
+                    </tr>
+                     <tr>
+                        <td><i class="fa-solid fa-wifi"></i> <strong>Network</strong></td>
+                        <td>Internet connection required for activation & AI</td>
+                    </tr>
+                </table>
+                <h3 class="sub-title download-title">Download Installer</h3>
+                <div class="download-items">
+                    <div class="download-item">
+                        <i class="fas fa-download download-icon"></i>
+                        <div>
+                            <h3>Co-Skip Installer</h3>
+                            <p class="version-info">Version 2.1.3 (Latest)</p> <!-- Example Version -->
+                        </div>
+                        <!-- Use primary button style for main download -->
+                        <a class="btn download-btn" href="https://drive.google.com/file/d/1ngprAH2xmuCRGzzmCYFpSF34bnsTRz-3/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+                           <i class="fas fa-download"></i> Download Now
+                        </a>
+                        <small>(Google Drive Link)</small>
+                    </div>
+                </div>
+            </div>
+            <div class="feature-card main-features">
+                <h2 class="section-title">Core Benefits</h2> <!-- Changed Title -->
+                 <ul class="feature-list">
+                    <li><i class="fa-solid fa-keyboard"></i> **Instant Access:** Use simple hotkeys to get assistance without disrupting your workflow or switching windows.</li>
+                    <li><i class="fa-solid fa-eye-slash"></i> **Discreet Operation:** Designed to operate unobtrusively in the background. Your interactions remain private from standard monitoring.</li>
+                    <li><i class="fa-solid fa-shield-alt"></i> **Enhanced Stability:** Built with resilience measures to ensure reliable operation even in challenging environments.</li>
+                    <li><i class="fa-solid fa-ban"></i> **Interaction Privacy:** Your session window resists common screen recording methods.</li>
+                     <li><i class="fa-solid fa-check"></i> **High Compatibility:** Works alongside a wide range of applications and system configurations.</li>
+                    <li><i class="fa-brands fa-discord"></i> **Dedicated Support:** Access help, guides, and community support via Discord.</li>
+                </ul>
+                 <h3 class="sub-title use-case-title">Ideal For Environments Where...</h3> <!-- Changed Title -->
+                 <ul class="feature-list simple-list">
+                     <li><i class="fa-solid fa-lock-open"></i> Standard copy/paste or window switching is restricted.</li>
+                     <li><i class="fa-solid fa-comments"></i> Quick external information or calculation assistance is needed.</li>
+                     <li><i class="fa-solid fa-vial"></i> Isolated testing requires external input without standard tools.</li>
+                     <li><i class="fa-solid fa-universal-access"></i> Alternative input methods can provide accessibility support.</li>
+                 </ul>
+            </div>
+        </div>
+
+        <!-- Highlights Section (Kept for quick summary) -->
+        <div class="highlights-section">
+            <div class="highlight-card">
+                <i class="fas fa-bolt"></i>
+                <h3>Instant Access</h3> <!-- Changed Text -->
+                <p>Keys delivered instantly after payment</p>
+            </div>
+            <div class="highlight-card">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Built for Resilience</h3> <!-- Changed Text -->
+                <p>Designed to operate in restricted settings</p>
+            </div>
+            <div class="highlight-card">
+                <i class="fas fa-headset"></i>
+                <h3>Discord Support</h3> <!-- Changed Text -->
+                <p>Get help from the developer & community</p>
+            </div>
+        </div>
+
+        <!-- Compatibility / Limitations Section (Refined) -->
+        <section class="compatibility-section" id="compatibility">
+             <h2 class="section-title"><i class="fas fa-triangle-exclamation"></i> Important Limitations</h2> <!-- Changed Title & Icon -->
+             <div class="limitation-card">
+                <p>Co-Skip uses advanced techniques for compatibility, but some limitations exist, especially against highly secure proctoring software:</p>
+                <ul>
+                    <li>
+                        <strong>Screenshots (<kbd>Ctrl</kbd>+<kbd>J</kbd>) May Fail:</strong> Environments like Lockdown Browser are *designed* to block screen capture. If screenshots don't work, **use text input (<kbd>Ctrl</kbd>+<kbd>L</kbd>)**, which is the primary reliable method.
+                    </li>
+                    <li>
+                        <strong>Rare Keyboard Blocking:</strong> Extremely strict lockdown configurations (often institution-specific) *might* use deep kernel filters blocking all hotkeys. If keys don't respond *only* in lockdown, this is likely why.
+                    </li>
+                    <li>
+                        <strong>Camera Visibility:</strong> We hide the app digitally, but proctoring cameras can still see you physically typing. Be mindful of appearances.
+                    </li>
+                    <li>
+                        <strong>Responsible Use:** Adhere to all academic integrity policies and terms of service. Co-Skip is a powerful tool; use it ethically for legitimate assistance.
+                    </li>
+                </ul>
+                <p>
+                    Even with these caveats, Co-Skip offers a unique and effective way to get text-based assistance when other methods are blocked.
+                </p>
+            </div>
+        </section>
+
+        <!-- Disclaimer -->
+        <section class="disclaimer">
+            <h2>Disclaimer</h2>
+            <p>
+                Intended for legitimate educational assistance, research, development, and testing purposes ONLY. Misuse, including violating academic integrity policies or terms of service, is strictly prohibited and the user's sole responsibility. Compliance with all rules is mandatory.
+            </p>
+        </section>
+
+        <!-- Terms of Use (Simplified) -->
+         <section class="important-tip">
+            <div class="feature-card">
+                <h2>Terms Summary</h2>
+                <ul class="feature-list simple-list">
+                     <li><i class="fa-solid fa-check"></i> Use for legitimate educational assistance, testing, research.</li>
+                     <li><i class="fa-solid fa-check"></i> Comply with all laws, regulations, and platform ToS.</li>
+                     <li><i class="fa-solid fa-xmark"></i> Do NOT use for academic dishonesty or bypassing security inappropriately.</li>
+                     <li><i class="fa-solid fa-gavel"></i> Violation may result in license termination.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <div class="faq-section" id="faq">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-grid">
+                    <div class="faq-item">
+                    <div class="faq-question"><h3>How do I install Co-Skip?</h3><i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">
+                        <p>Installation is straightforward:</p>
+                        <ol>
+                            <li>Download the installer ZIP file using the link above.</li>
+                            <li>Extract all contents of the ZIP file to a folder on your computer.</li>
+                            <li>Open the extracted folder and carefully read the 'IMPORTANT-README.txt' file for full instructions.</li>
+                            <li>Run the 'Run.bat' script as Administrator to start the setup process.</li>
+                        </ol>
+                    </div>
+                    </div>
+                    <div class="faq-item">
+                    <div class="faq-question"><h3>What payment methods are accepted?</h3><i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">
+                        <p>Our primary payment processor is Stripe, which accepts all major Credit and Debit cards securely.</p>
+                        <p>For alternative methods like Bitcoin (BTC), Ethereum (ETH), CashApp, Zelle, or Apple Pay, please open a support ticket in our <a href="https://discord.gg/vFdJmjjapa" target="_blank" rel="noopener noreferrer">Discord server</a> to arrange payment.</p>
+                    </div>
+                    </div>
+                    <div class="faq-item">
+                    <div class="faq-question"><h3>How quickly do I receive my license key?</h3><i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">
+                        <p>License key delivery is **instant** upon successful payment completion via Stripe.</p>
+                        <p><strong>IMPORTANT:</strong> Your unique license key will be displayed directly on the confirmation page after your payment. **Please copy and save this key immediately in a secure location.** We do NOT email the key for security reasons.</p>
+                    </div>
+                    </div>
+                    <div class="faq-item">
+                    <div class="faq-question"><h3>What is your refund policy?</h3><i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">
+                        <p>Due to the nature of digital license keys, refunds are handled on a case-by-case basis within **24 hours** of purchase.</p>
+                        <p>A refund may be considered ONLY if you encounter a verifiable technical issue preventing the software's core functionality (text-based assistance via hotkeys) that our support team cannot resolve. Refunds are **not** issued if the key has been successfully activated and used, if the issue relates to screenshot functionality being blocked by specific third-party software (as noted in our Limitations section), or if the request is outside the 24-hour window. Please contact support via <a href="https://discord.gg/vFdJmjjapa" target="_blank" rel="noopener noreferrer">Discord</a> with details if you believe you qualify.</p>
+                    </div>
+                    </div>
+                    <div class="faq-item">
+                    <div class="faq-question"><h3>What are the permitted uses for Co-Skip?</h3><i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">
+                        <p>Co-Skip is a powerful tool designed to provide assistance and streamline workflows in environments where standard interactions are limited. Permitted uses include:</p>
+                        <ul>
+                            <li>Receiving legitimate educational assistance or clarification during study sessions or practice within platform rules.</li>
+                            <li>Software development and testing in isolated or restricted sandboxes.</li>
+                            <li>Accessibility support for users facing certain input challenges.</li>
+                            <li>Conducting approved educational research on system interactions.</li>
+                            <li>IT training and system administration practice.</li>
+                        </ul>
+                        <p>Users MUST ensure their use complies with all applicable institutional policies (like academic integrity rules), terms of service for any platforms used, and relevant laws. Responsible and ethical use is required.</p>
+                    </div>
+                </div>
+                    <!-- Keep the Compatibility FAQ added previously -->
+                    <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Will it work with my specific lockdown software?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Co-Skip works in many restricted environments. However, screenshotting is often blocked by design in tools like Lockdown Browser. In rare cases with extreme security settings, keyboard hotkeys might also be blocked. Text input is the most reliable feature. See the 'Limitations' section above for details. Always test basic functionality before a critical session if possible.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- End Container -->
+
+    <!-- Footer Placeholder (Optional) -->
+    <footer class="footer">
+        <p>© 2024 Co-Skip. All rights reserved. Use responsibly.</p>
+    </footer>
+
+    <!-- Scripts (Ensure Stripe key is correct) -->
     <script>
-        const stripe = Stripe('pk_live_51NyaJIErsDMwjHJbY7JHPMqfZvkSMv3kOIo775RlVkojW77iW7RYZTmJ6ueDEDTsW2b90AJW9IWLneW4goUJ6ZqI00Vsxy0vpz');
+        const stripe = Stripe('pk_live_51NyaJIErsDMwjHJbY7JHPMqfZvkSMv3kOIo775RlVkojW77iW7RYZTmJ6ueDEDTsW2b90AJW9IWLneW4goUJ6ZqI00Vsxy0vpz'); // Ensure this is your correct LIVE key
         const serverURL = 'https://server5000.acserver.org';
 
         document.querySelectorAll('.purchase-btn').forEach(button => {
             button.addEventListener('click', async (event) => {
                 const productCard = event.target.closest('.product-card');
-                const productTitle = productCard.getAttribute('data-product');
+                const productTitle = productCard.getAttribute('data-product'); // Sends "Key-1Day", "Key-7Day", etc.
                 const quantity = 1;
+
+                // Disable button temporarily
+                button.disabled = true;
+                button.textContent = 'Processing...';
 
                 try {
                     const response = await fetch(`${serverURL}/common/checkout`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ 
-                            productTitle,
-                            quantity: quantity
-                        })
+                        body: JSON.stringify({ productTitle, quantity }) // Server needs to handle these product titles
                     });
 
+                    if (!response.ok) {
+                         throw new Error(`Server error: ${response.status}`);
+                    }
+
                     const session = await response.json();
-                    window.location.href = session.url;
+                    if (session && session.url) {
+                        window.location.href = session.url; // Redirect to Stripe checkout
+                    } else {
+                        throw new Error('Invalid checkout session data received.');
+                    }
                 } catch (error) {
                     console.error('Error during checkout:', error);
+                    alert('Checkout failed. Please try again or contact support via Discord.'); // User feedback
+                    // Re-enable button on error
+                    button.disabled = false;
+                    // Reset button text based on plan maybe?
+                     if(productTitle === "Key-1Day") button.textContent = 'Get Daily Access';
+                     else if(productTitle === "Key-7Day") button.textContent = 'Get Weekly Access';
+                     else if(productTitle === "Key-30Day") button.textContent = 'Get Monthly Access';
+                     else button.textContent = 'Buy Now';
                 }
             });
         });
     </script>
 
+    <!-- FAQ Expansion Script -->
     <script>
         document.querySelectorAll('.faq-question').forEach(question => {
             question.addEventListener('click', () => {
-                const answer = question.nextElementSibling;
-                const icon = question.querySelector('i');
-                
-                answer.style.maxHeight = answer.style.maxHeight ? null : answer.scrollHeight + "px";
-                
-                icon.style.transform = icon.style.transform === 'rotate(180deg)' ? '' : 'rotate(180deg)';
+                const answer = question.nextElementSibling; // The div directly after the question
+                const icon = question.querySelector('i.fas'); // Target the Font Awesome icon specifically
+
+                // Check if the answer is currently expanded (has maxHeight set)
+                const isExpanded = answer.style.maxHeight && answer.style.maxHeight !== "0px";
+
+                if (isExpanded) {
+                    // Collapse the answer
+                    answer.style.maxHeight = null; // Use null to remove the style entirely
+                    if (icon) icon.style.transform = 'rotate(0deg)'; // Rotate icon back
+                } else {
+                    // Expand the answer
+                    answer.style.maxHeight = answer.scrollHeight + "px"; // Set max-height to content height
+                    if (icon) icon.style.transform = 'rotate(180deg)'; // Rotate icon down
+                }
+
+                // Optional: Close other open FAQs when one is opened
+                // document.querySelectorAll('.faq-answer').forEach(otherAnswer => {
+                //    if (otherAnswer !== answer && otherAnswer.style.maxHeight) {
+                //        otherAnswer.style.maxHeight = null;
+                //        const otherIcon = otherAnswer.previousElementSibling.querySelector('i.fas');
+                //        if (otherIcon) otherIcon.style.transform = 'rotate(0deg)';
+                //    }
+                // });
             });
         });
     </script>
 
+    <!-- Online Count Script -->
     <script>
         function updateOnlineCount() {
             const onlineSpan = document.querySelector('.online-count');
-            let baseCount = 61;
+            let baseCount = 61; // Or fetch dynamically if possible
 
             function fluctuate() {
-                let variation = Math.floor(Math.random() * 10) - 5;
-                let newCount = baseCount + variation;
-                onlineSpan.textContent = `${newCount} ONLINE`;
+                if (onlineSpan) { // Check if element exists
+                    let variation = Math.floor(Math.random() * 10) - 5; // Fluctuate between -5 and +4
+                    let newCount = Math.max(20, baseCount + variation); // Ensure count doesn't go too low
+                    onlineSpan.textContent = `${newCount} ONLINE`;
+                }
             }
-
-            setInterval(fluctuate, 5000);
+            fluctuate(); // Initial call
+            setInterval(fluctuate, 5000); // Update every 5 seconds
         }
-
-        document.addEventListener("DOMContentLoaded", updateOnlineCount);
+        // Run after DOM is loaded
+        if (document.readyState === 'loading') { // Handle cases where script runs before DOM ready
+             document.addEventListener('DOMContentLoaded', updateOnlineCount);
+        } else { // DOM already ready
+            updateOnlineCount();
+        }
     </script>
 
 </body>
