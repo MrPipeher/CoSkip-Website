@@ -628,3 +628,163 @@ body {
         margin-bottom: 2.5rem; /* Reduce bottom margin slightly if explanation adds space */
     }
 }
+
+/* --- START: Features Showcase Section Styles --- */
+.features-showcase-section {
+    margin: 4rem 0; /* Consistent spacing */
+    padding: 2rem 0;
+    border-top: 1px solid var(--card-border);
+    border-bottom: 1px solid var(--card-border);
+}
+
+.feature-comparison-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two columns side-by-side */
+    gap: 2rem;
+    margin-bottom: 3rem; /* Space before the next grid */
+}
+
+.feature-other-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
+    gap: 2rem;
+}
+
+.feature-video-card {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    border: 1px solid var(--card-border);
+    display: flex;
+    flex-direction: column; /* Stack elements inside card */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-video-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.feature-video-card h3, /* For comparison titles */
+.feature-video-card h4 { /* For other feature titles */
+    font-size: 1.3rem;
+    color: var(--text);
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+.feature-video-card h4 {
+     font-size: 1.1rem; /* Slightly smaller for individual features */
+     color: var(--primary); /* Use accent color for these */
+}
+.feature-video-card h4 kbd { /* Style kbd within h4 */
+    font-size: 0.8em; /* Make keys slightly smaller than title */
+    vertical-align: middle;
+}
+
+.video-wrapper {
+    width: 100%;
+    margin-bottom: 1rem; /* Space below video before text */
+    background-color: #000; /* Black background while loading */
+    border-radius: 8px; /* Match card style */
+    overflow: hidden; /* Ensure video stays within bounds */
+    line-height: 0; /* Prevent extra space below video */
+}
+
+.feature-video-card video {
+    display: block; /* Remove extra space below */
+    width: 100%;
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 8px; /* Rounded corners for the video */
+}
+
+/* Emphasis for the "My View" card */
+.comparison-card.emphasized {
+    border: 2px solid var(--primary);
+    box-shadow: 0 0 15px rgba(var(--primary-rgb, 192, 38, 211), 0.4); /* Use RGB for glow */
+    transform: scale(1.02); /* Slightly larger */
+}
+.comparison-card.emphasized:hover {
+     transform: scale(1.02) translateY(-5px); /* Maintain scale on hover */
+     box-shadow: 0 0 20px rgba(var(--primary-rgb, 192, 38, 211), 0.5);
+}
+
+/* Small text under "My View" */
+.phone-recording-label {
+    display: block;
+    margin-top: -0.5rem; /* Pull up closer to video */
+    margin-bottom: 1rem; /* Space before description */
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.video-description {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-top: auto; /* Push description to bottom if card heights vary */
+    padding-top: 0.5rem; /* Ensure some space if pulled up by margin-top: auto */
+}
+
+
+/* Responsive adjustments for video showcase */
+@media (max-width: 992px) {
+    .comparison-card.emphasized {
+        transform: scale(1); /* Reset scale on medium screens if needed */
+    }
+     .comparison-card.emphasized:hover {
+         transform: translateY(-5px); /* Keep hover lift */
+     }
+}
+
+@media (max-width: 768px) {
+    /* Stack the comparison videos on mobile */
+    .feature-comparison-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem; /* Reduce gap */
+        margin-bottom: 2rem;
+    }
+
+    .feature-other-grid {
+        gap: 1.5rem; /* Reduce gap */
+    }
+
+    .feature-video-card {
+        padding: 1rem;
+    }
+
+    .feature-video-card h3 { font-size: 1.2rem; }
+    .feature-video-card h4 { font-size: 1rem; }
+
+    .comparison-card.emphasized {
+        /* Remove transform if it causes issues on mobile */
+        transform: none;
+    }
+     .comparison-card.emphasized:hover {
+        transform: translateY(-5px); /* Keep lift is usually fine */
+     }
+}
+/* --- END: Features Showcase Section Styles --- */
+
+/* Add primary color RGB variable if not already present */
+/* Add this near the top in :root if it's missing */
+:root {
+    /* ... other variables ... */
+    --primary-rgb: 192, 38, 211; /* Add this line */
+}
+
+/* Fix for kbd tag styling if needed (Ensure it exists and looks good) */
+kbd {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+    padding: 2px 6px;
+    font-family: 'Consolas', monospace;
+    font-size: 0.9em;
+    box-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+    margin: 0 2px;
+    display: inline-block;
+    color: var(--text);
+    vertical-align: baseline;
+}
