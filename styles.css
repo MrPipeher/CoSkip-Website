@@ -646,8 +646,9 @@ body {
 
 .feature-other-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
-    gap: 2rem;
+    /* Increased minimum width - try 350px or 400px if still too small */
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5rem; /* Slightly reduced gap */
 }
 
 .feature-video-card {
