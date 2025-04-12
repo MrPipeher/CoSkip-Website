@@ -166,11 +166,12 @@ body {
 /* --- Product Grid (Pricing) --- */
 .product-grid {
     display: grid;
-    /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); */
-    grid-template-columns: repeat(3, 1fr); /* Force 3 columns on desktop */
+    /* Change from 3 to 2 columns for a balanced 2x2 layout on desktop */
+    grid-template-columns: repeat(2, 1fr); /* Force 2 columns for 4 items */
     gap: 2rem;
     margin-top: 3rem;
-    margin-bottom: 4rem; /* Space after pricing */
+    /* You might adjust bottom margin depending on what follows the grid */
+    margin-bottom: 4rem;
 }
 .product-card {
     background-color: var(--card-bg);
@@ -578,16 +579,18 @@ body {
 }
 
 /* --- Mobile Responsiveness --- */
-@media (max-width: 992px) { /* Adjust breakpoint for 3-col product grid */
-     .product-grid {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+@media (max-width: 992px) { /* Adjust breakpoint for tablet/smaller layouts */
+    .product-grid {
+       /* Let it adapt: Will likely be 2 columns if space allows, else 1 */
+       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+   }
+    /* Keep featured card adjustments */
+    .product-card.featured {
+       transform: scale(1.0);
     }
-     .product-card.featured {
-        transform: scale(1.0); /* Disable scaling on smaller screens if it causes layout issues */
-     }
-     .product-card.featured:hover {
-        transform: translateY(-6px); /* Keep hover effect */
-     }
+    .product-card.featured:hover {
+       transform: translateY(-6px);
+    }
 }
 
 @media (max-width: 768px) {
@@ -623,9 +626,10 @@ body {
 }
 
 /* Adjust grid gap if explanation looks too far */
-@media (min-width: 600px) { /* Apply only when grid likely has multiple columns */
+@media (min-width: 769px) { /* Apply only when grid is likely NOT single column */
     .product-grid {
-        margin-bottom: 2.5rem; /* Reduce bottom margin slightly if explanation adds space */
+        /* Example: Reduce bottom margin slightly if needed */
+         margin-bottom: 3rem;
     }
 }
 

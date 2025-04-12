@@ -66,6 +66,7 @@
 
         <!-- License Key Purchase Section -->
         <div class="product-grid" id="keys">
+            <p class="limit-explanation">*Each 'question' corresponds to one interaction (<kbd>Ctrl</kbd>+<kbd>M</kbd>) with the AI assistant.</p>
             <!-- Updated Product Cards -->
             <div class="product-card featured" data-product="Key-7Day">
                 <div class="badge">Most Popular</div>
@@ -101,7 +102,17 @@
                     <button class="btn purchase-btn">Buy 30-Day Key</button>
                 </div>
             </div>
-            <p class="limit-explanation">*Each 'question' corresponds to one interaction (<kbd>Ctrl</kbd>+<kbd>M</kbd>) with the AI assistant.</p>
+            <div class="product-card" data-product="Key-1Year">
+                <div class="product-image">
+                    <img src="https://raw.githubusercontent.com/Rsaccreator/LockDown-Browser-Bypass/refs/heads/main/images/key.webp" alt="License Key Icon">
+                </div>
+                <div class="product-info">
+                    <h2 class="product-title">1 Year Access</h2>
+                    <div class="price">$1000</div>
+                    <div class="product-limit">UNLIMITED*</div>
+                    <button class="btn purchase-btn">Buy Yearly Key</button>
+                </div>
+            </div>
         </div>
 
         <!-- Tutorial Section -->
@@ -457,6 +468,7 @@
                      if(productTitle === "Key-1Day") button.textContent = 'Buy 1-Day Key';
                      else if(productTitle === "Key-7Day") button.textContent = 'Buy 7-Day Key';
                      else if(productTitle === "Key-30Day") button.textContent = 'Buy 30-Day Key';
+                     else if(productTitle === "Key-1Year") button.textContent = 'Buy 1 Year Key';
                      else button.textContent = 'Buy Now';
                 }
             });
