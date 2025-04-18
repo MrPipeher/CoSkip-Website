@@ -301,19 +301,39 @@ body.nav-open .mobile-nav-toggle .icon-close {
 }
 
 .hero-feature-comparison {
+    max-width: 1140px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
-    max-width: 1000px;
     margin: 3rem auto 0;
     text-align: left;
 }
 
+/* Highlight the ENTIRE "What They See" card */
+.comparison-card.their-view { /* REMOVED .video-wrapper from selector */
+    border: 2px solid var(--accent-yellow); /* Gold border on the card */
+    /* Keep the existing card styles like padding, border-radius, etc. */
+    background-color: var(--bg-card);
+    padding: 1.5rem;
+    border-radius: 8px;
+    /* Removed the border-color from the default card style if you had one */
+    /* border: 1px solid var(--border-color); */ /* Remove this line if it exists for .comparison-card */
+
+    box-shadow: 0 0 20px 3px rgba(250, 204, 21, 0.35); /* Gold glow (blur, spread, color) */
+    transform: scale(1.02); /* Optional: Slightly scale up the highlighted card */
+}
+
+/* Ensure the default card border doesn't conflict */
 .comparison-card {
     background-color: var(--bg-card);
     padding: 1.5rem;
     border-radius: 8px;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--border-color); /* Keep default border for others */
+     transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add transition for scaling */
+}
+.comparison-card.my-view:hover { /* Optional hover for the non-highlighted one */
+      transform: translateY(-3px);
+      box-shadow: 0 8px 15px rgba(0,0,0,0.2);
 }
 .comparison-card h4 {
     margin-bottom: 1rem;
@@ -424,6 +444,15 @@ body.nav-open .mobile-nav-toggle .icon-close {
 }
 .step-btn {
     margin-top: 1.5rem;
+}
+
+/* Style the specific step item */
+.step-item.step-highlight {
+    border: 2px solid var(--accent-yellow); /* Gold border */
+    /* Optional: Subtle background tint */
+    /* background-color: rgba(250, 204, 21, 0.03); */
+    box-shadow: 0 0 20px rgba(250, 204, 21, 0.2); /* Add a gold glow */
+    transform: scale(1.03); /* Optional: Slightly scale up */
 }
 
 .tutorial-video {
@@ -912,6 +941,16 @@ kbd {
     grid-template-columns: 1fr 1fr;
     gap: 3rem; /* Adjust gap between media and text */
     align-items: center; /* Vertically align content */
+}
+
+/* Highlight the "Completely Undetectable" section using the new class */
+.highlight-feature-section.featured-highlight .highlight-grid {
+    /* Apply highlight to the grid containing text and media */
+    border: 2px solid var(--accent-yellow);
+    border-radius: 8px; /* Match other card radii */
+    padding: 2rem; /* Add padding inside the border */
+    background-color: rgba(250, 204, 21, 0.03); /* Optional subtle background tint */
+    box-shadow: 0 0 25px rgba(250, 204, 21, 0.25); /* Gold glow */
 }
 
 /* Order for media-left (default) */
