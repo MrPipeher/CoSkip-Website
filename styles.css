@@ -1,795 +1,1031 @@
-/* --- Root Variables --- */
+/* --- Base & Variables --- */
 :root {
-    --primary: #c026d3; /* Magenta */
-    --primary-dark: #a21caf;
-    --secondary: #1e1b2e; /* Dark Purple/Blue */
-    --background: #13111c; /* Very Dark Purple/Blue */
-    --text: #e2e8f0; /* Light Gray/Off-white */
-    --text-muted: #94a3b8; /* Muted Gray */
-    --accent-yellow: #facc15; /* Yellow for warnings */
-    --accent-yellow-light: #fde047;
-    --accent-green: #22c55e; /* Green for success/icons */
-    --accent-blue: #3b82f6; /* Blue for download button */
-    --accent-blue-dark: #2563eb;
-    --card-bg: #1e1b2e; /* Same as secondary for consistency */
-    --card-border: rgba(255, 255, 255, 0.1);
-    --gradient-start: #ff4dc4;
-    --gradient-mid: #8a2be2;
-    --gradient-end: #5b86e5;
+    --bg-dark: #121212;
+    --bg-card: #1a1a1a; /* Slightly lighter for cards */
+    --border-color: #333333;
+    --text-light: #e5e5e5;
+    --text-muted: #a3a3a3;
+    --accent-yellow: #facc15; /* Tailwind yellow-400 */
+    --accent-yellow-darker: #eab308; /* Tailwind yellow-500 for hover */
+    --primary-font: 'Inter', sans-serif;
+    --heading-font: 'Poppins', sans-serif;
+    --error-red: #ef4444;
+    --success-green: #22c55e;
 }
 
-/* --- Global Reset & Font --- */
-* {
+*, *::before, *::after {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    /* Use Roboto as base, fallback to system sans-serif */
-    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px; /* Base font size */
 }
 
 body {
-    background-color: var(--background);
-    color: var(--text);
-    line-height: 1.6; /* Improve readability */
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    font-family: var(--primary-font);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* --- Typography & Links --- */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--heading-font);
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+    color: var(--text-light);
+}
+
+h1 { font-size: 3rem; font-weight: 900; margin-bottom: 1.5rem; }
+h2 { font-size: 2.25rem; margin-bottom: 2.5rem; text-align: center; } /* Section titles */
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.15rem; font-weight: 600;}
+
+p {
+    margin-bottom: 1rem;
+    color: var(--text-muted);
+}
+
+a {
+    color: var(--accent-yellow);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: var(--accent-yellow-darker);
+}
+
+ul, ol {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem; /* Indent lists */
+}
+
+li {
+    margin-bottom: 0.5rem;
+    color: var(--text-muted);
+}
+
+ul li i.fas, ul li i.fab { /* Icons in lists */
+    color: var(--accent-yellow);
+    margin-right: 0.75rem;
+    width: 20px; /* Align icons */
+    text-align: center;
+}
+
+/* --- Layout & Containers --- */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem; /* Padding on mobile */
+}
+
+section {
+    padding: 5rem 0; /* Vertical spacing between sections */
+    overflow: hidden; /* Prevent horizontal scrollbars */
+}
+
+.section-title {
+    position: relative;
+    margin-bottom: 3rem;
+}
+/* Optional: Underline effect for titles */
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background-color: var(--accent-yellow);
+    margin: 1rem auto 0;
+    box-shadow: 0 0 10px rgba(250, 204, 21, 0.4);
+}
+
+.section-subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    max-width: 700px;
+    margin: -2rem auto 3rem; /* Adjust spacing relative to title */
+    font-size: 1.1rem;
+}
+
+/* --- Buttons --- */
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.75rem;
+    border: none;
+    border-radius: 6px;
+    font-family: var(--heading-font);
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    line-height: 1.5; /* Ensure text vertical alignment */
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn-primary {
+    background-color: var(--accent-yellow);
+    color: var(--bg-dark);
+}
+.btn-primary:hover {
+    background-color: var(--accent-yellow-darker);
+    color: var(--bg-dark);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--accent-yellow);
+    border: 2px solid var(--accent-yellow);
+}
+.btn-secondary:hover {
+    background-color: rgba(250, 204, 21, 0.1); /* Slight yellow bg on hover */
+    color: var(--accent-yellow-darker);
+    border-color: var(--accent-yellow-darker);
+}
+
+.btn-large {
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+}
+
+.btn i { /* Icon spacing in buttons */
+    margin-right: 0.5rem;
 }
 
 /* --- Navbar --- */
 .navbar {
-    background-color: var(--secondary);
-    padding: 1rem 2rem;
+    background-color: rgba(18, 18, 18, 0.8); /* Slightly transparent dark */
+    backdrop-filter: blur(10px);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.nav-container {
+    max-width: 1300px; /* Slightly wider for nav */
+    margin: 0 auto;
+    padding: 0 1.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid var(--card-border);
-    position: sticky; /* Make navbar sticky */
-    top: 0;
-    z-index: 1000; /* Ensure it stays on top */
 }
 
 .logo {
-    font-size: 36px; /* Slightly smaller */
+    font-family: var(--heading-font);
+    font-size: 1.75rem;
     font-weight: 900;
-    font-family: 'Poppins', sans-serif; /* Use Poppins for logo */
-    letter-spacing: 1px;
-    background: linear-gradient(90deg, var(--gradient-start), var(--gradient-mid), var(--gradient-end));
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    display: inline-block;
+    color: var(--text-light);
+}
+.logo:hover {
+    color: var(--text-light); /* Prevent color change */
 }
 
 .nav-links {
     display: flex;
-    gap: 1.5rem; /* Slightly reduced gap */
-    align-items: center;
+    gap: 1.5rem;
 }
 
 .nav-links a {
-    color: var(--text);
-    text-decoration: none;
-    opacity: 0.8;
-    transition: opacity 0.2s, color 0.2s;
-    font-size: 0.95rem; /* Slightly larger */
-    font-weight: 500; /* Medium weight */
-}
-
-.nav-links a:hover {
-    opacity: 1;
-    color: var(--primary); /* Highlight on hover */
-}
-
-.online-count {
-    background-color: rgba(34, 197, 94, 0.15); /* Slightly less intense green */
-    color: #4ade80; /* Brighter green text */
-    padding: 0.3rem 0.8rem;
-    border-radius: 9999px;
-    font-size: 0.8rem; /* Smaller font */
-    font-weight: 600;
-}
-
-/* --- Main Container --- */
-.container {
-    padding: 3rem 2rem; /* Increased padding */
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-/* --- Section Titles --- */
-.section-title {
-    font-size: 2rem; /* Larger section titles */
-    color: var(--primary);
-    margin-bottom: 2rem; /* Increased margin */
-    text-align: center; /* Center titles */
-    font-family: 'Poppins', sans-serif; /* Poppins for headings */
-    font-weight: 700;
-    padding-top: 1rem; /* Consistent spacing */
-}
-.sub-title {
-    font-size: 1.3rem;
-    color: var(--text);
-    margin-top: 1.5rem;
-    margin-bottom: 1rem;
-    font-weight: 700;
-    border-bottom: 1px solid var(--card-border);
-    padding-bottom: 0.5rem;
-}
-
-/* --- Tutorial Section --- */
-.tutorial-section {
-    margin: 4rem 0;
-    background-color: var(--card-bg);
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-.video-container {
+    color: var(--text-muted);
+    font-weight: 500;
+    padding: 0.5rem 0;
     position: relative;
-    padding-bottom: 56.25%; /* 16:9 aspect ratio */
-    height: 0;
-    overflow: hidden;
-    max-width: 100%;
-    background: #000;
-    margin-bottom: 2rem;
-    border-radius: 8px; /* Rounded corners for video */
 }
-.video-container iframe {
+.nav-links a::after { /* Underline hover effect */
+    content: '';
     position: absolute;
-    top: 0;
+    bottom: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent-yellow);
+    transition: width 0.3s ease;
 }
-.tutorial-steps {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adjusted minmax */
-    gap: 2rem;
-    margin-top: 3rem;
-}
-.step { display: flex; align-items: flex-start; gap: 1rem; }
-.step-number {
-    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-    color: var(--text);
-    width: 40px; /* Larger number circle */
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 1.1rem;
-    flex-shrink: 0;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-}
-.step-content h3 { margin-bottom: 0.5rem; color: var(--text); font-size: 1.1rem;}
-.step-content p { color: var(--text-muted); font-size: 0.95rem; }
-
-/* --- Product Grid (Pricing) --- */
-.product-grid {
-    display: grid;
-    /* Change from 3 to 2 columns for a balanced 2x2 layout on desktop */
-    grid-template-columns: repeat(2, 1fr); /* Force 2 columns for 4 items */
-    gap: 2rem;
-    margin-top: 3rem;
-    /* You might adjust bottom margin depending on what follows the grid */
-    margin-bottom: 4rem;
-}
-.product-card {
-    background-color: var(--card-bg);
-    border-radius: 12px;
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex;
-    flex-direction: column; /* Stack elements vertically */
-    border: 1px solid transparent; /* Prepare for hover border */
-    position: relative; /* For badge positioning */
-     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-.product-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 10px 25px rgba(var(--primary-rgb, 192, 38, 211), 0.3); /* Use RGB for opacity */
-    border-color: var(--primary);
-}
-/* Featured Card Styling */
-.product-card.featured {
-    border-color: var(--primary);
-    transform: scale(1.03); /* Slightly larger */
-    z-index: 10; /* Bring it forward */
-}
-.product-card.featured:hover {
-     transform: scale(1.05) translateY(-8px); /* Enhance hover effect */
-}
-/* Ensure Badge is above button */
-.badge {
-    position: absolute;
-    top: -1px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: linear-gradient(90deg, var(--gradient-start), var(--gradient-mid));
-    color: var(--text);
-    padding: 0.3rem 1.5rem;
-    font-size: 0.8rem;
-    font-weight: bold;
-    border-radius: 0 0 8px 8px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    z-index: 5; /* Ensure above card content but below hover effects maybe */
+.nav-links a:hover::after,
+.nav-links a.active::after { /* Add 'active' class via JS if needed */
+     width: 100%;
 }
 
-/* --- Ensure .btn looks like a primary action button --- */
-.btn {
-    background: linear-gradient(90deg, var(--gradient-start), var(--gradient-mid)); /* Use gradient */
-    color: var(--text);
-    border: none;
-    padding: 0.85rem 1.5rem; /* Adjusted padding */
-    border-radius: 6px; /* Slightly more rounded */
-    cursor: pointer;
-    width: 100%;
-    font-size: 1rem;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, background-size 0.3s ease; /* Added background-size */
-    text-transform: uppercase;
-    font-weight: 700; /* Bolder */
-    letter-spacing: 0.5px;
-    margin-top: auto; /* Keep pushing to bottom */
-    background-size: 100% 100%; /* For hover effect */
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2); /* Add shadow */
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--text-light);
 }
 
-.btn:hover:not(:disabled) { /* Exclude disabled state from hover */
-    /* background-color: var(--primary-dark); // Remove solid color hover */
-    transform: translateY(-2px); /* Lift effect */
-    box-shadow: 0 6px 15px rgba(var(--primary-rgb, 192, 38, 211), 0.4);
-    background-size: 110% 110%; /* Subtle zoom/shift effect on gradient */
+.nav-link-discord {
+    color: #7289da; /* Discord color */
+}
+.nav-link-discord:hover {
+    color: #5f73bc;
+}
+.nav-link-discord i {
+    margin-right: 0.4rem;
 }
 
-.btn:active:not(:disabled) {
-    transform: translateY(0px); /* Press down effect */
-     box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+.nav-cta { /* Call to action button in nav */
+    margin-left: 1rem;
 }
 
-/* Style for disabled button during checkout */
-.btn:disabled {
-    background: #555; /* Keep disabled style */
-    cursor: not-allowed;
-    opacity: 0.7;
-    transform: none;
-    box-shadow: none;
-}
-
-.product-image { width: 100%; height: 180px; display: flex; align-items: center; justify-content: center; padding: 1rem;}
-.product-image img { width: 120px; height: 120px; object-fit: contain; }
-/* --- Product Card Adjustments --- */
-.product-info {
-    padding: 1.5rem;
+/* --- Hero Section --- */
+.hero-section {
+    padding: 6rem 0 4rem; /* More top padding */
     text-align: center;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    /* justify-content: space-between; // Handled by margin-top: auto on button */
-}
-.product-title { font-size: 1.4rem; margin-bottom: 0.5rem; color: var(--text); }
-.price { font-size: 2.2rem; font-weight: bold; margin-bottom: 0.5rem; color: var(--text); }
-.product-limit {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    margin-bottom: 1.5rem; /* Keep space above button */
-}
-/* Featured Card Styling - Ensure button stands out if needed */
-.product-card.featured .btn {
-    /* Optionally add a slightly different gradient or subtle effect */
-     background: linear-gradient(90deg, var(--gradient-start), var(--gradient-mid), var(--gradient-end)); /* Ensure featured uses main gradient too */
-     /* You could add a subtle pulse animation here if desired */
+    background: linear-gradient(rgba(18, 18, 18, 0.9), rgba(18, 18, 18, 1)), url('path/to/your/background-image.jpg') no-repeat center center/cover; /* Optional: Add a subtle background image */
 }
 
-.btn.purchase-btn {
-    margin-top: auto; /* Push button to bottom */
+.hero-title {
+    color: var(--text-light);
 }
 
-/* --- Product Grid Additions --- */
-.product-limit { /* Style for Limit Text */
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    margin-bottom: 1.5rem;
-}
-
-.limit-explanation {
-    grid-column: 1 / -1; /* Span all columns in the grid */
-    text-align: center;
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    margin-top: 1rem; /* Space below cards */
-    padding: 0 1rem; /* Prevent text touching edges on mobile */
-}
-
-.limit-explanation kbd { /* Reuse kbd style if needed */
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 3px;
-    padding: 1px 4px;
-    font-family: 'Consolas', monospace;
-    font-size: 0.85em;
-    box-shadow: 1px 1px 1px rgba(0,0,0,0.2);
-    margin: 0 2px;
-    display: inline-block;
-    color: var(--text);
-    vertical-align: baseline;
-}
-
-/* --- Testimonials Section --- */
-.testimonials-section {
-    margin: 4rem 0;
-    padding: 2rem 0;
-    border-top: 1px solid var(--card-border);
-     border-bottom: 1px solid var(--card-border);
-}
-.testimonial-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-}
-.testimonial-card {
-    background-color: var(--card-bg);
-    padding: 1.8rem;
-    border-radius: 12px;
-    border-left: 4px solid var(--primary);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* Pushes source to bottom */
-    min-height: 150px; /* Ensure cards have some height */
-}
-.testimonial-card .stars {
-    color: #facc15; /* Yellow stars */
+.hero-subtitle {
     font-size: 1.2rem;
-    margin-bottom: 0.75rem;
-}
-.testimonial-card p {
-    font-size: 1.05rem;
-    font-style: italic;
-    color: var(--text);
-    margin-bottom: 1rem;
-    flex-grow: 1; /* Allows paragraph to take space */
-}
-.testimonial-source {
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    text-align: right;
-    margin-top: auto; /* Pushes to bottom */
+    max-width: 750px;
+    margin: 0 auto 2.5rem;
+    color: var(--text-light); /* Make subtitle brighter */
 }
 
-
-/* --- Requirements & Download Grid (Combined Card Style) --- */
-.requirements-downloads-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Adjust min width */
-    gap: 2rem;
-    margin-top: 4rem; /* Increased spacing */
+.hero-cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
     margin-bottom: 4rem;
 }
-/* Style for the combined requirements/download card */
-.system-requirements, .feature-card.main-features {
-    background-color: var(--card-bg);
-    padding: 2rem; /* Increased padding */
-    border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    border: 1px solid var(--card-border);
-}
-/* System Requirements Table */
-.system-requirements table { width: 100%; margin-bottom: 1.5rem; border-collapse: collapse;}
-.system-requirements td { padding: 0.6rem 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
-.system-requirements tr:last-child td { border-bottom: none; }
-.system-requirements td i { margin-right: 0.75rem; color: var(--primary); width: 20px; text-align: center;} /* Icon styling */
-.system-requirements strong { color: var(--text); }
 
-/* Download Section Specifics */
-.download-title { margin-top: 2rem; } /* Space above download */
-.download-items { display: flex; flex-direction: column; gap: 1rem; }
-.download-item {
-    display: flex;
-    align-items: center; /* Align items horizontally */
-    gap: 1rem; /* Space between icon, text, button */
-    padding: 1rem;
-    background-color: rgba(255, 255, 255, 0.05);
-    border-radius: 8px;
-    text-align: left; /* Align text left */
-}
-.download-icon { font-size: 2rem; color: var(--accent-blue); }
-.download-item h3 { margin-bottom: 0.2rem; color: var(--text); }
-.version-info { font-size: 0.85rem; color: var(--text-muted); }
-.download-btn {
-    margin-left: auto; /* Push button to the right */
-    background-color: var(--accent-blue);
-    width: auto; /* Don't force full width */
-    padding: 0.6rem 1.2rem; /* Adjust padding */
-}
-.download-btn i { margin-right: 0.5rem;}
-.download-btn:hover { background-color: var(--accent-blue-dark); }
-.download-item small { width: 100%; text-align: right; color: var(--text-muted); font-size: 0.75rem; margin-top:-5px; padding-right: 5px; } /* GDrive Link text */
-
-/* --- Features Card (Combined) --- */
-.main-features .section-title { text-align: left; margin-bottom: 1.5rem; } /* Left align title */
-.feature-list { list-style: none; padding-left: 0; margin-bottom: 1.5rem;}
-.feature-list li {
-    margin-bottom: 0.75rem; /* Increased spacing */
-    color: var(--text-muted);
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    font-size: 0.95rem;
-}
-.feature-list li i {
-    color: var(--accent-green);
-    width: 18px; /* Slightly larger icon */
-    text-align: center;
-}
-.feature-list li::before { content: none; } /* Remove old pseudo-element */
-/* Simpler list for use cases */
-.simple-list li { margin-bottom: 0.5rem; }
-.simple-list i { color: var(--primary); width: 16px; }
-
-.use-case-title { margin-top: 2rem; }
-
-
-/* --- Highlights Section --- */
-.highlights-section {
+.hero-feature-comparison {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: 1fr 1fr;
     gap: 2rem;
-    margin: 4rem 0;
-}
-.highlight-card {
-    background-color: var(--card-bg);
-    padding: 2rem;
-    border-radius: 12px;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 1px solid var(--card-border);
-     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-.highlight-card:hover {
-    transform: translateY(-6px);
-     box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-}
-.highlight-card i { font-size: 2.5rem; color: var(--primary); margin-bottom: 1rem; }
-.highlight-card h3 { font-size: 1.3rem; margin-bottom: 0.75rem; color: var(--text); }
-.highlight-card p { color: var(--text-muted); font-size: 0.95rem; }
-
-/* --- Compatibility/Limitations Section --- */
-.compatibility-section {
-    margin: 4rem 0;
-    padding: 2rem;
-    background-color: rgba(var(--accent-yellow-rgb, 250, 204, 21), 0.05); /* Subtle yellow background */
-    border-radius: 12px;
-    border-left: 6px solid var(--accent-yellow); /* Yellow accent */
-     box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-}
-.compatibility-section .section-title {
-    color: var(--accent-yellow);
-    text-align: center;
-    margin-bottom: 1.5rem;
-    font-size: 1.8rem; /* Slightly smaller than main title */
-}
-.compatibility-section .section-title i { margin-right: 0.5rem; }
-
-.limitation-card { padding: 1rem 0 0 0; }
-/* Removed h3 styling here, handled by section title potentially */
-.limitation-card > p:first-of-type { /* Target the intro paragraph */
-    text-align: center;
-    font-size: 1.1rem;
-    color: var(--text);
-    margin-bottom: 2rem;
-}
-.limitation-card p { color: var(--text-muted); margin-bottom: 1rem; line-height: 1.7; font-size: 1rem; }
-.limitation-card p:last-of-type { /* Final summary paragraph */
-    margin-top: 2rem;
-    font-style: italic;
-    opacity: 0.9;
-    text-align: center;
-    color: var(--text);
-}
-.limitation-card ul { list-style: none; padding-left: 0; margin-bottom: 1rem; }
-.limitation-card li {
-    background-color: rgba(0, 0, 0, 0.1); /* Darker background inside yellow box */
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 1.2rem;
-    margin-bottom: 1rem;
-    border-radius: 8px;
-    line-height: 1.6;
-    font-size: 0.95rem;
-    color: var(--text-muted);
-}
-.limitation-card li strong {
-    color: var(--accent-yellow-light);
-    font-weight: 600;
-    display: block;
-    margin-bottom: 0.5rem;
-    font-size: 1rem; /* Make keyword stand out */
-}
-.limitation-card kbd {
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 3px;
-    padding: 2px 6px; /* Slightly more padding */
-    font-family: 'Consolas', monospace; /* Use monospace */
-    font-size: 0.9em; /* Adjust size relative to surrounding text */
-    box-shadow: 1px 1px 1px rgba(0,0,0,0.2);
-    margin: 0 2px;
-    display: inline-block;
-    color: var(--text); /* Make key text clearer */
-    vertical-align: baseline; /* Align better with text */
+    max-width: 1000px;
+    margin: 3rem auto 0;
+    text-align: left;
 }
 
-/* --- Disclaimer, Terms, Use Cases (Minor Styling) --- */
-.disclaimer, .important-tip {
-    max-width: 900px; /* Slightly wider */
-    margin: 60px auto; /* More vertical space */
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-    text-align: left; /* Align text left for readability */
-}
-.disclaimer h2, .important-tip h2 {
-    text-align: center; /* Center headings */
-    margin-bottom: 1rem; /* Space below heading */
-    font-size: 1.5rem;
-    color: var(--text);
-}
-.disclaimer {
-    background: rgba(255, 69, 58, 0.08); /* Subtle red bg */
-    border-left: 5px solid #ff453a; /* Red accent */
-}
-.important-tip {
-    background: rgba(var(--primary-rgb, 192, 38, 211), 0.05); /* Subtle primary bg */
-     border-left: 5px solid var(--primary);
-}
-.disclaimer p, .important-tip p { font-size: 1rem; line-height: 1.7; color: var(--text-muted); margin-bottom: 1rem;}
-.important-tip ul { list-style: none; padding-left: 0; }
-.important-tip ul li { margin-bottom: 0.75rem; color: var(--text-muted); font-size: 1rem;}
-.important-tip .feature-list.simple-list i { color: var(--primary); } /* Use primary color for check/x marks */
-
-.use-case { margin-bottom: 1.5rem; }
-.use-case h3 { color: var(--text); margin-bottom: 0.5rem; font-size: 1.1rem;}
-
-/* --- FAQ Section --- */
-.faq-section { margin-top: 4rem; margin-bottom: 4rem;}
-.faq-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; /* Single column, reduced gap */ }
-.faq-item { background-color: var(--card-bg); border-radius: 8px; overflow: hidden; border: 1px solid var(--card-border);}
-.faq-question { padding: 1.25rem 1.5rem; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: background-color 0.2s; }
-.faq-question:hover { background-color: rgba(255, 255, 255, 0.05); }
-.faq-question h3 { font-size: 1.1rem; margin: 0; font-weight: 600; color: var(--text); }
-.faq-question i { transition: transform 0.3s; color: var(--primary); }
-.faq-answer { padding: 0 1.5rem; max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; color: var(--text-muted); line-height: 1.6; }
-.faq-answer p, .faq-answer br { margin-bottom: 1rem; } /* Ensure spacing in answers */
-
-
-/* --- Footer --- */
-.footer {
-    text-align: center;
-    padding: 2rem;
-    margin-top: 4rem;
-    border-top: 1px solid var(--card-border);
-    color: var(--text-muted);
-    font-size: 0.9rem;
-}
-
-/* --- Utility --- */
-.btn:disabled { /* Style for disabled button during checkout */
-    background-color: #555;
-    cursor: not-allowed;
-    opacity: 0.7;
-}
-
-/* --- Mobile Responsiveness --- */
-@media (max-width: 992px) { /* Adjust breakpoint for tablet/smaller layouts */
-    .product-grid {
-       /* Let it adapt: Will likely be 2 columns if space allows, else 1 */
-       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-   }
-    /* Keep featured card adjustments */
-    .product-card.featured {
-       transform: scale(1.0);
-    }
-    .product-card.featured:hover {
-       transform: translateY(-6px);
-    }
-}
-
-@media (max-width: 768px) {
-    .navbar { flex-direction: column; padding: 1rem; }
-    .nav-links { margin-top: 1rem; width: 100%; justify-content: center; gap: 0.5rem; flex-wrap: wrap; }
-    .logo { font-size: 32px; }
-    .nav-links a { padding: 0.5rem; font-size: 0.9rem; }
-    .container { padding: 1.5rem 1rem; }
-    .section-title { font-size: 1.6rem; margin-bottom: 1.5rem;}
-    .sub-title { font-size: 1.15rem; }
-
-    .requirements-downloads-grid, .faq-grid { grid-template-columns: 1fr; }
-    .product-grid, .features-grid, .highlights-section, .testimonial-grid { grid-template-columns: 1fr; }
-    .product-title { font-size: 1.2rem; }
-    .price { font-size: 1.8rem; }
-    .btn { padding: 0.75rem 1rem; font-size: 0.95rem; }
-    .faq-question { padding: 1rem 1.25rem; }
-    .tutorial-steps { gap: 1.5rem; }
-    .step-number { width: 35px; height: 35px; font-size: 1rem;}
-
-    .system-requirements table { display: block; overflow-x: auto; } /* Keep table scroll */
-    .download-item { flex-direction: column; text-align: center; } /* Stack download items */
-    .download-btn { margin-left: 0; margin-top: 0.5rem; width: 80%; } /* Center button below */
-    .download-item small { text-align: center; width: 100%; padding-right: 0;}
-
-     .compatibility-section { padding: 1.5rem 1rem; }
-     .limitation-card p, .limitation-card li { font-size: 0.9rem; }
-
-     .disclaimer, .important-tip { padding: 15px; margin: 30px auto;}
-     .disclaimer h2, .important-tip h2 { font-size: 1.3rem;}
-     .disclaimer p, .important-tip p, .important-tip ul li { font-size: 0.9rem;}
-
-}
-
-/* Adjust grid gap if explanation looks too far */
-@media (min-width: 769px) { /* Apply only when grid is likely NOT single column */
-    .product-grid {
-        /* Example: Reduce bottom margin slightly if needed */
-         margin-bottom: 3rem;
-    }
-}
-
-/* --- START: Features Showcase Section Styles --- */
-.features-showcase-section {
-    margin: 4rem 0; /* Consistent spacing */
-    padding: 2rem 0;
-    border-top: 1px solid var(--card-border);
-    border-bottom: 1px solid var(--card-border);
-}
-
-.feature-comparison-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* Two columns side-by-side */
-    gap: 2rem;
-    margin-bottom: 3rem; /* Space before the next grid */
-}
-
-.feature-other-grid {
-    display: grid;
-    /* Increased minimum width - try 350px or 400px if still too small */
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 1.5rem; /* Slightly reduced gap */
-}
-
-.feature-video-card {
-    background-color: var(--card-bg);
-    border-radius: 12px;
+.comparison-card {
+    background-color: var(--bg-card);
     padding: 1.5rem;
-    text-align: center;
-    border: 1px solid var(--card-border);
-    display: flex;
-    flex-direction: column; /* Stack elements inside card */
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
 }
-
-.feature-video-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-}
-
-.feature-video-card h3, /* For comparison titles */
-.feature-video-card h4 { /* For other feature titles */
-    font-size: 1.3rem;
-    color: var(--text);
+.comparison-card h4 {
     margin-bottom: 1rem;
-    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
-.feature-video-card h4 {
-     font-size: 1.1rem; /* Slightly smaller for individual features */
-     color: var(--primary); /* Use accent color for these */
-}
-.feature-video-card h4 kbd { /* Style kbd within h4 */
-    font-size: 0.8em; /* Make keys slightly smaller than title */
-    vertical-align: middle;
+.video-label {
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: var(--text-muted);
 }
 
 .video-wrapper {
     width: 100%;
-    margin-bottom: 1rem; /* Space below video before text */
-    background-color: #000; /* Black background while loading */
-    border-radius: 8px; /* Match card style */
-    overflow: hidden; /* Ensure video stays within bounds */
-    line-height: 0; /* Prevent extra space below video */
+    aspect-ratio: 16 / 9; /* Maintain aspect ratio */
+    overflow: hidden;
+    border-radius: 6px;
+    background-color: #000; /* Black bg for video */
 }
-
-.feature-video-card video {
-    display: block; /* Remove extra space below */
+.video-wrapper video {
     width: 100%;
-    height: auto; /* Maintain aspect ratio */
-    border-radius: 8px; /* Rounded corners for the video */
-}
-
-/* Emphasis for the "My View" card */
-.comparison-card.emphasized {
-    border: 2px solid var(--primary);
-    box-shadow: 0 0 15px rgba(var(--primary-rgb, 192, 38, 211), 0.4); /* Use RGB for glow */
-    transform: scale(1.02); /* Slightly larger */
-}
-.comparison-card.emphasized:hover {
-     transform: scale(1.02) translateY(-5px); /* Maintain scale on hover */
-     box-shadow: 0 0 20px rgba(var(--primary-rgb, 192, 38, 211), 0.5);
-}
-
-/* Small text under "My View" */
-.phone-recording-label {
+    height: 100%;
     display: block;
-    margin-top: -0.5rem; /* Pull up closer to video */
-    margin-bottom: 1rem; /* Space before description */
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    font-style: italic;
+    object-fit: cover;
 }
 
-.video-description {
+/* --- Features Section --- */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.feature-item {
+    background-color: var(--bg-card);
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.feature-icon {
+    font-size: 2.5rem;
+    color: var(--accent-yellow);
+    margin-bottom: 1.5rem;
+    display: block; /* Center icon */
+}
+
+.feature-item h3 {
+    margin-bottom: 0.75rem;
+}
+
+/* --- How It Works / Tutorial Section --- */
+.steps-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+    position: relative;
+}
+
+/* Optional: Connecting lines (pseudo-elements) */
+.steps-container::before {
+    content: '';
+    position: absolute;
+    top: 25px; /* Align with step number center */
+    left: 10%;
+    right: 10%;
+    height: 2px;
+    background-color: var(--border-color);
+    z-index: -1; /* Behind step numbers */
+}
+
+.step-item {
+    background-color: var(--bg-card);
+    padding: 2rem;
+    border-radius: 8px;
+    text-align: center;
+    border: 1px solid var(--border-color);
+    position: relative; /* For step number positioning */
+}
+
+.step-number {
+    position: absolute;
+    top: -25px; /* Position above the card */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 50px;
+    background-color: var(--accent-yellow);
+    color: var(--bg-dark);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--heading-font);
+    font-size: 1.5rem;
+    font-weight: 700;
+    border: 4px solid var(--bg-dark); /* Create space around number */
+}
+
+.step-content {
+    margin-top: 1.5rem; /* Space below number */
+}
+.step-content h3 {
+    margin-bottom: 0.5rem;
+}
+.step-btn {
+    margin-top: 1.5rem;
+}
+
+.tutorial-video {
+    margin-top: 4rem;
+    text-align: center;
+}
+.tutorial-video .sub-title {
+    margin-bottom: 2rem;
+}
+.video-container-large {
+    max-width: 800px;
+    margin: 0 auto;
+    aspect-ratio: 16 / 9;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    border: 1px solid var(--border-color);
+}
+.video-container-large iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* --- Commands / Hotkeys Section --- */
+kbd { /* Keyboard key styling */
+    background-color: #333;
+    color: var(--text-light);
+    border: 1px solid #555;
+    border-radius: 4px;
+    padding: 0.2em 0.6em;
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 0.9em;
+    box-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+    margin: 0 0.2em;
+}
+
+.commands-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.command-item {
+    background-color: var(--bg-card);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+.command-item h4 {
+    margin-bottom: 0.75rem;
+}
+.keys {
+    margin-bottom: 0.75rem;
+}
+
+/* --- Pricing Section --- */
+.pricing-section .limit-explanation {
+    text-align: center;
+    margin-top: -2.5rem;
+    margin-bottom: 2.5rem;
     font-size: 0.9rem;
-    color: var(--text-muted);
-    margin-top: auto; /* Push description to bottom if card heights vary */
-    padding-top: 0.5rem; /* Ensure some space if pulled up by margin-top: auto */
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem; /* Adjust gap as needed */
+    align-items: stretch; /* Make cards same height */
+}
+
+.pricing-card {
+    background-color: var(--bg-card);
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    text-align: center;
+    display: flex;
+    flex-direction: column; /* Align items vertically */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pricing-card:hover {
+     transform: translateY(-5px);
+     box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+.pricing-card.featured {
+    border: 2px solid var(--accent-yellow);
+    position: relative;
+    transform: scale(1.05); /* Make featured slightly larger */
+    z-index: 10;
+}
+.pricing-card.featured:hover {
+     transform: scale(1.05) translateY(-5px); /* Keep scale on hover */
 }
 
 
-/* Responsive adjustments for video showcase */
+.badge {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--accent-yellow);
+    color: var(--bg-dark);
+    padding: 0.3rem 1rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    font-family: var(--heading-font);
+}
+
+.pricing-title {
+    margin-bottom: 0.5rem;
+}
+
+.price {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+}
+
+.price-term {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--text-muted);
+}
+
+.pricing-limit {
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    color: var(--text-light);
+}
+
+.pricing-features {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 2rem;
+    text-align: left;
+    flex-grow: 1; /* Push button to bottom */
+}
+.pricing-features li {
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+}
+.pricing-features li i {
+    width: 20px; /* Align icons */
+    text-align: center;
+    margin-right: 0.75rem;
+    color: var(--accent-yellow); /* Checkmark color */
+}
+.pricing-features li i.fa-star {
+    color: #fcd34d; /* Different star color */
+}
+
+.pricing-card .purchase-btn {
+    width: 100%;
+    margin-top: auto; /* Stick to bottom */
+}
+
+/* --- Requirements & Download --- */
+.req-down-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    align-items: start;
+}
+
+.requirements-card, .download-card {
+    background-color: var(--bg-card);
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.requirements-list {
+    list-style: none;
+    padding: 0;
+}
+.requirements-list li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+.requirements-list li i {
+    width: 25px;
+    text-align: center;
+    margin-right: 1rem;
+    color: var(--accent-yellow);
+    font-size: 1.1rem;
+}
+.requirements-list li strong {
+    color: var(--text-light);
+    margin-right: 0.5rem;
+}
+
+.download-card .sub-title {
+    margin-bottom: 1rem;
+}
+.download-card p {
+    margin-bottom: 1.5rem;
+}
+.download-btn-large {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.1rem;
+}
+.download-note {
+    display: block;
+    text-align: center;
+    font-size: 0.85rem;
+    margin-top: 1rem;
+    color: var(--text-muted);
+}
+
+
+/* --- Testimonials Section --- */
+.testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.testimonial-card {
+    background-color: var(--bg-card);
+    padding: 2rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--accent-yellow); /* Accent border */
+}
+
+.stars {
+    color: var(--accent-yellow);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.testimonial-card p {
+    font-style: italic;
+    color: var(--text-light); /* Brighter text for quote */
+    margin-bottom: 1rem;
+}
+.testimonial-source {
+    font-weight: 500;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* --- Limitations Section --- */
+.limitations-section {
+    background-color: var(--bg-card); /* Distinct background */
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+.limitations-section .section-title i {
+    margin-right: 0.75rem;
+    color: var(--error-red); /* Warning color */
+}
+
+.limitation-card {
+    background-color: rgba(40, 40, 40, 0.5); /* Darker inner card */
+    padding: 2.5rem; /* Increased padding */
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+/* NEW/MODIFIED styles for the list */
+.limitations-list {
+    list-style: none;
+    padding: 0;
+    margin: 0; /* Remove default margin */
+}
+
+.limitations-list li {
+    display: grid; /* Use grid for better control */
+    grid-template-columns: auto 1fr; /* Icon/title column, Description column */
+    gap: 0.5rem 1.5rem;  /* Row gap, Column gap */
+    margin-bottom: 1.75rem; /* Space between list items */
+    align-items: start; /* Align items to the top of their grid area */
+}
+
+.limitations-list li:last-child {
+    margin-bottom: 0; /* No margin on the last item */
+}
+
+.limitation-icon-title {
+    display: flex;
+    align-items: center; /* Vertically align icon and title */
+    gap: 0.75rem;
+    grid-column: 1 / 2; /* Place in the first column */
+    padding-top: 0.15rem; /* Fine-tune vertical alignment */
+}
+
+.limitation-icon-title i {
+    /* Removed specific icon styles from here, handled by parent */
+    color: #fca5a5; /* Light red for warning icons */
+    font-size: 1.1rem;
+    width: 20px; /* Keep fixed width */
+    text-align: center;
+}
+
+.limitation-icon-title strong {
+     color: var(--text-light);
+     font-weight: 700; /* Make title bolder */
+}
+
+.limitation-desc {
+    grid-column: 2 / 3; /* Place in the second column */
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+/* Ensure kbd tags look good inline */
+.limitation-desc kbd {
+    margin: 0 0.1em; /* Slightly less horizontal margin */
+}
+
+/* Footer text style */
+.limitation-footer {
+    margin-top: 2rem; /* Space above footer text */
+    font-size: 0.95rem;
+    text-align: center;
+    color: var(--text-muted);
+}
+
+/* --- END Limitations Section --- */
+
+/* --- Keyboard Key Styling (ensure it's defined) --- */
+kbd {
+    background-color: #3a3a3a; /* Slightly lighter kbd */
+    color: var(--text-light);
+    border: 1px solid #555;
+    border-radius: 4px;
+    padding: 0.2em 0.6em;
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 0.9em;
+    box-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+    margin: 0 0.2em;
+    white-space: nowrap; /* Prevent wrapping inside keys */
+}
+
+
+/* --- FAQ Section --- */
+.faq-grid {
+    max-width: 800px; /* Constrain FAQ width */
+    margin: 0 auto;
+}
+
+.faq-item {
+    background-color: var(--bg-card);
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    overflow: hidden; /* Keep answer contained */
+}
+
+.faq-question {
+    background: none;
+    border: none;
+    width: 100%;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    text-align: left;
+}
+
+.faq-question h3 {
+    margin: 0;
+    color: var(--text-light);
+    font-size: 1.15rem; /* Slightly smaller heading for FAQ */
+}
+
+.faq-question i {
+    color: var(--accent-yellow);
+    transition: transform 0.3s ease;
+    font-size: 1.1rem;
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+    padding: 0 1.5rem; /* Horizontal padding when closed */
+}
+.faq-answer p, .faq-answer ol, .faq-answer ul {
+    margin-bottom: 1rem;
+}
+.faq-answer ol li::marker { /* Style ordered list numbers */
+     color: var(--accent-yellow);
+     font-weight: bold;
+}
+
+/* Style for expanded FAQ item */
+.faq-item.active .faq-question i {
+    transform: rotate(180deg);
+}
+.faq-item.active .faq-answer {
+    /* max-height is set by JS */
+    padding: 0 1.5rem 1.5rem; /* Add bottom padding when open */
+}
+
+/* --- Footer --- */
+.footer {
+    background-color: #0a0a0a; /* Even darker footer */
+    padding: 3rem 0 2rem;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.footer-logo {
+    font-family: var(--heading-font);
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--text-light);
+}
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+.footer-links a {
+    color: var(--text-muted);
+}
+.footer-links a:hover {
+    color: var(--text-light);
+}
+
+.footer-social {
+    display: flex;
+    gap: 1rem;
+}
+.footer-social a {
+    color: var(--text-muted);
+    font-size: 1.3rem;
+}
+.footer-social a:hover {
+    color: var(--text-light);
+}
+
+.footer-bottom {
+    border-top: 1px solid var(--border-color);
+    padding-top: 2rem;
+    text-align: center;
+}
+.footer-disclaimer {
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+}
+
+/* --- Highlight Feature Section --- */
+.highlight-feature-section {
+    position: relative; /* Needed for pseudo-element background */
+    overflow: hidden; /* Contain background elements */
+    padding: 6rem 0;
+    /* Cool Background Effect - Subtle Radial Gradients */
+    background:
+        radial-gradient(ellipse at 10% 90%, rgba(250, 204, 21, 0.08) 0%, transparent 50%), /* Bottom left yellow */
+        radial-gradient(ellipse at 90% 10%, rgba(250, 204, 21, 0.06) 0%, transparent 40%), /* Top right yellow */
+        var(--bg-dark); /* Base dark background */
+}
+
+/* Optional: Alternate background for variation */
+.highlight-feature-section.alt-bg {
+     background:
+        radial-gradient(ellipse at 90% 90%, rgba(250, 204, 21, 0.07) 0%, transparent 50%), /* Bottom right */
+        radial-gradient(ellipse at 10% 10%, rgba(250, 204, 21, 0.05) 0%, transparent 40%), /* Top left */
+        var(--bg-dark);
+}
+
+.highlight-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem; /* Adjust gap between media and text */
+    align-items: center; /* Vertically align content */
+}
+
+/* Order for media-left (default) */
+.highlight-grid.media-left .highlight-media {
+    grid-column: 1 / 2;
+}
+.highlight-grid.media-left .highlight-text {
+    grid-column: 2 / 3;
+}
+
+/* Order for media-right */
+.highlight-grid.media-right .highlight-media {
+    grid-column: 2 / 3;
+    grid-row: 1; /* Ensure it stays in the first row on mobile stack */
+}
+.highlight-grid.media-right .highlight-text {
+    grid-column: 1 / 2;
+    grid-row: 1; /* Ensure it stays in the first row on mobile stack */
+}
+
+.highlight-media .media-placeholder {
+    background-color: #000; /* Placeholder bg */
+    border-radius: 8px;
+    overflow: hidden; /* Clip corners */
+    aspect-ratio: 16 / 9; /* Maintain video aspect ratio */
+    border: 1px solid var(--border-color);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3),
+                0 0 15px rgba(250, 204, 21, 0.1); /* Subtle yellow glow on media */
+}
+.highlight-media video {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+.highlight-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--text-light);
+}
+
+.highlight-description {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+}
+
+.highlight-keys {
+    background-color: var(--bg-card);
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+    display: inline-block; /* Make it wrap content */
+}
+
+/* Responsive adjustments for highlight sections */
 @media (max-width: 992px) {
-    .comparison-card.emphasized {
-        transform: scale(1); /* Reset scale on medium screens if needed */
+    .highlight-grid {
+        grid-template-columns: 1fr; /* Stack columns */
+        gap: 2.5rem;
+        text-align: center; /* Center text when stacked */
     }
-     .comparison-card.emphasized:hover {
-         transform: translateY(-5px); /* Keep hover lift */
-     }
+    /* Reset grid column orders for stacking */
+    .highlight-grid.media-left .highlight-media,
+    .highlight-grid.media-left .highlight-text,
+    .highlight-grid.media-right .highlight-media,
+    .highlight-grid.media-right .highlight-text {
+        grid-column: 1 / 2;
+    }
+     /* Ensure media comes first visually when stacked in media-right */
+     .highlight-grid.media-right .highlight-media {
+        grid-row: 1;
+    }
+    .highlight-grid.media-right .highlight-text {
+        grid-row: 2;
+    }
+    .highlight-keys {
+        display: block; /* Take full width */
+    }
+}
+/* --- END Highlight Feature Section --- */
+
+
+/* --- Responsive Design --- */
+@media (max-width: 992px) {
+    .hero-feature-comparison {
+        grid-template-columns: 1fr; /* Stack comparison cards */
+    }
+    .pricing-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+    .pricing-card.featured {
+        transform: scale(1); /* Disable scaling on smaller screens */
+    }
+    .req-down-grid {
+         grid-template-columns: 1fr; /* Stack req/download */
+    }
 }
 
 @media (max-width: 768px) {
-    /* Stack the comparison videos on mobile */
-    .feature-comparison-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem; /* Reduce gap */
-        margin-bottom: 2rem;
-    }
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 2rem; }
+    section { padding: 4rem 0; }
 
-    .feature-other-grid {
-        gap: 1.5rem; /* Reduce gap */
+    .nav-container {
+        flex-direction: column;
+        align-items: flex-start;
     }
-
-    .feature-video-card {
-        padding: 1rem;
+    .nav-links {
+        margin-top: 1rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+        width: 100%; /* Allow full width for column layout */
     }
-
-    .feature-video-card h3 { font-size: 1.2rem; }
-    .feature-video-card h4 { font-size: 1rem; }
-
-    .comparison-card.emphasized {
-        /* Remove transform if it causes issues on mobile */
-        transform: none;
+    .nav-cta {
+        margin-top: 1rem;
+        align-self: flex-start; /* Align button left */
     }
-     .comparison-card.emphasized:hover {
-        transform: translateY(-5px); /* Keep lift is usually fine */
+    .hero-cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+     .steps-container::before { /* Hide connecting line on mobile */
+        display: none;
+    }
+     .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+     }
+     .footer-links {
+        justify-content: center;
      }
 }
-/* --- END: Features Showcase Section Styles --- */
 
-/* Add primary color RGB variable if not already present */
-/* Add this near the top in :root if it's missing */
-:root {
-    /* ... other variables ... */
-    --primary-rgb: 192, 38, 211; /* Add this line */
-}
-
-/* Fix for kbd tag styling if needed (Ensure it exists and looks good) */
-kbd {
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 3px;
-    padding: 2px 6px;
-    font-family: 'Consolas', monospace;
-    font-size: 0.9em;
-    box-shadow: 1px 1px 1px rgba(0,0,0,0.2);
-    margin: 0 2px;
-    display: inline-block;
-    color: var(--text);
-    vertical-align: baseline;
+@media (max-width: 576px) {
+    .container { padding: 0 1rem; }
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.75rem; }
+    .pricing-grid {
+        grid-template-columns: 1fr; /* Stack pricing cards */
+    }
+     .commands-grid {
+         grid-template-columns: 1fr; /* Stack commands */
+    }
 }
