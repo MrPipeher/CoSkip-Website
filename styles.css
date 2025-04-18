@@ -31,6 +31,7 @@ body {
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden; /* PREVENT HORIZONTAL SCROLLING TO OFF-SCREEN ELEMENTS */
 }
 
 /* --- Typography & Links --- */
@@ -1080,25 +1081,34 @@ kbd {
 
     .nav-links {
         /* Mobile Menu Styling */
-        position: fixed; /* Take over screen */
+        box-sizing: border-box;
+        position: fixed;
         top: 0;
-        right: -100%; /* Start off-screen */
-        width: 70%; /* Or a fixed width like 300px */
+        transform: translateX(100%); /* Start completely off-screen */
+        width: 70%;
         max-width: 320px;
         height: 100vh;
-        background-color: var(--bg-card); /* Use card background */
+        background-color: var(--bg-card); /* Ensure this has some opacity if needed, but likely solid */
         flex-direction: column;
-        align-items: flex-start; /* Align links left */
-        padding: 6rem 2rem 2rem; /* Adjust padding (top for spacing below navbar) */
+        align-items: flex-start;
+        padding: 6rem 2rem 2rem;
         box-shadow: -5px 0 15px rgba(0,0,0,0.2);
-        transition: right 0.4s ease-in-out;
-        z-index: 1050; /* Below toggle, above content */
-        gap: 0; /* Reset gap for vertical layout */
+        transition: transform 0.4s ease-in-out, visibility 0s linear 0.4s; /* Added visibility transition */
+        z-index: 1050; /* Ensure menu is above page content */
+        gap: 0;
         border-left: 1px solid var(--border-color);
+        overflow-y: auto;
+        /* START HIDDEN AND NON-INTERACTIVE */
+        pointer-events: none;
+        visibility: hidden;
     }
 
     .nav-links.active {
-        right: 0; /* Slide in */
+        transform: translateX(0%); /* Slide into view */
+        /* BECOME INTERACTIVE WHEN ACTIVE */
+        pointer-events: auto;
+        visibility: visible;
+        transition: transform 0.4s ease-in-out; /* Transition only transform when becoming visible */
     }
 
     .nav-links a {
@@ -1107,6 +1117,9 @@ kbd {
         width: 100%; /* Make links take full width */
         border-bottom: 1px solid var(--border-color); /* Separators */
         font-size: 1.1rem;
+        pointer-events: auto;
+        position: relative; /* Needed if z-index is added, good practice */
+        z-index: 1051; /* Ensure links are above menu background */
     }
      .nav-links a:hover {
         background-color: rgba(250, 204, 21, 0.05); /* Subtle hover */
@@ -1132,6 +1145,8 @@ kbd {
         width: 100%;
         text-align: center;
         border-bottom: none; /* Remove border from button */
+        z-index: 1051; /* Ensure button is clickable */
+        pointer-events: auto;
     }
      .mobile-cta:hover { /* Reset hover from link style */
         background-color: var(--accent-yellow-darker);
@@ -1143,24 +1158,26 @@ kbd {
         overflow: hidden;
     }
 
-     /* Optional: Dim background when menu is open */
+    /* Optional: Dim background when menu is open */
     body::before {
         content: '';
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
-        height: 100vh;
-        background-color: rgba(0, 0, 0, 0.5);
-        z-index: 1040; /* Below menu, above content */
+        height: 100%; /* Use 100% instead of 100vh if scrollbars appear */
+        background-color: rgba(0, 0, 0, 0.6); /* Slightly darker overlay */
+        z-index: 1040; /* IMPORTANT: Must be LOWER than .nav-links (1050) */
         opacity: 0;
         visibility: hidden;
         transition: opacity 0.4s ease, visibility 0s linear 0.4s;
+        pointer-events: none; /* Initially disable pointer events on overlay */
     }
     body.nav-open::before {
         opacity: 1;
         visibility: visible;
         transition: opacity 0.4s ease;
+        pointer-events: auto; /* Enable pointer events ONLY when visible for click-outside */
     }
 
 } /* End Media Query */

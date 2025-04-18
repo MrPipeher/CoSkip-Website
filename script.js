@@ -98,56 +98,36 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- Mobile Navigation Toggle ---
+    // --- Mobile Navigation Toggle (Simplified) ---
     const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
     const navLinksMenu = document.getElementById('nav-links-menu');
-    const navLinksInMenu = navLinksMenu.querySelectorAll('a'); // Get all links within the menu
 
     if (mobileNavToggle && navLinksMenu) {
+        const navLinksInMenu = navLinksMenu.querySelectorAll('a'); // Get all links/buttons
+
+        // Toggle Menu Visibility
         mobileNavToggle.addEventListener('click', () => {
             const isOpened = navLinksMenu.classList.toggle('active');
             mobileNavToggle.setAttribute('aria-expanded', isOpened);
-            document.body.classList.toggle('nav-open', isOpened); // Toggle body class
         });
 
-        // Function to close the menu
+        // Function to close the menu (Simplified)
         const closeMobileMenu = () => {
             navLinksMenu.classList.remove('active');
             mobileNavToggle.setAttribute('aria-expanded', 'false');
-            document.body.classList.remove('nav-open');
         };
 
-        // Close menu when a link inside it is clicked (for anchor links)
+        // Close menu when a link inside it is clicked
         navLinksInMenu.forEach(link => {
             link.addEventListener('click', (e) => {
-                // Only close if it's an internal anchor link or the mobile CTA button
-                const isInternalLink = link.getAttribute('href')?.startsWith('#');
-                const isMobileCta = link.classList.contains('mobile-cta'); // Check if it's the mobile button
-
-                if (isInternalLink || isMobileCta) {
-                    closeMobileMenu();
-                }
-                // Let external links or non-anchor links behave normally
+                // Close the menu regardless of link type for simplicity now
+                // We assume the separate smooth scroll handler will manage scrolling
+                closeMobileMenu();
             });
         });
 
-        // Optional: Close menu if user clicks outside of it (on the overlay)
-        document.body.addEventListener('click', (e) => {
-            // Check if the click is outside the menu AND outside the toggle button
-            if (document.body.classList.contains('nav-open') &&
-                !navLinksMenu.contains(e.target) &&
-                !mobileNavToggle.contains(e.target))
-             {
-                closeMobileMenu();
-            }
-        });
-
-         // Optional: Close menu on Escape key press
-         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && document.body.classList.contains('nav-open')) {
-                closeMobileMenu();
-            }
-         });
+    } else {
+        console.error("Mobile navigation elements not found!");
     }
 
     // --- Smooth Scrolling for Nav Links ---
