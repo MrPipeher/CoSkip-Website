@@ -241,6 +241,141 @@ section {
     margin-left: 1rem;
 }
 
+/* Mobile Navigation Toggle Button */
+.mobile-nav-toggle {
+    display: none; /* Hidden by default */
+    background: none;
+    border: none;
+    color: var(--text-light);
+    font-size: 1.75rem; /* Make icon larger */
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 1100; /* Ensure it's above nav links */
+    line-height: 1; /* Prevent extra space */
+}
+
+.mobile-nav-toggle .icon-close {
+    display: none; /* Hide close icon initially */
+}
+
+/* Style for when mobile menu is open */
+body.nav-open .mobile-nav-toggle .icon-hamburger {
+    display: none; /* Hide hamburger */
+}
+body.nav-open .mobile-nav-toggle .icon-close {
+    display: block; /* Show close icon */
+}
+
+/* Hide desktop CTA on mobile */
+.desktop-cta {
+    display: inline-block; /* Or flex, etc. based on your layout */
+}
+.mobile-cta {
+    display: none; /* Hide mobile CTA by default */
+}
+
+/* --- Responsive Navbar --- */
+@media (max-width: 992px) { /* Adjust breakpoint as needed */
+    .nav-container {
+        /* Keep flex, but button will control links */
+        position: relative; /* Needed if menu is absolutely positioned */
+    }
+
+    .mobile-nav-toggle {
+        display: block; /* Show hamburger on mobile */
+        position: absolute; /* Position relative to nav-container */
+        right: 1.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .nav-links {
+        /* Mobile Menu Styling */
+        position: fixed; /* Take over screen */
+        top: 0;
+        right: -100%; /* Start off-screen */
+        width: 70%; /* Or a fixed width like 300px */
+        max-width: 320px;
+        height: 100vh;
+        background-color: var(--bg-card); /* Use card background */
+        flex-direction: column;
+        align-items: flex-start; /* Align links left */
+        padding: 6rem 2rem 2rem; /* Adjust padding (top for spacing below navbar) */
+        box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+        transition: right 0.4s ease-in-out;
+        z-index: 1050; /* Below toggle, above content */
+        gap: 0; /* Reset gap for vertical layout */
+        border-left: 1px solid var(--border-color);
+    }
+
+    .nav-links.active {
+        right: 0; /* Slide in */
+    }
+
+    .nav-links a {
+        color: var(--text-light); /* Ensure links are bright */
+        padding: 0.8rem 0; /* More vertical space */
+        width: 100%; /* Make links take full width */
+        border-bottom: 1px solid var(--border-color); /* Separators */
+        font-size: 1.1rem;
+    }
+     .nav-links a:hover {
+        background-color: rgba(250, 204, 21, 0.05); /* Subtle hover */
+        color: var(--accent-yellow);
+    }
+    .nav-links a::after {
+        display: none; /* Remove desktop underline hover effect */
+    }
+    .nav-links a.nav-link-discord {
+         color: #7289da; /* Keep discord color */
+    }
+     .nav-links a.nav-link-discord:hover {
+         color: #5f73bc;
+    }
+
+    /* Show mobile CTA inside menu, hide desktop one */
+    .desktop-cta {
+        display: none;
+    }
+    .mobile-cta {
+        display: block; /* Show button inside mobile menu */
+        margin-top: 1.5rem; /* Space above button */
+        width: 100%;
+        text-align: center;
+        border-bottom: none; /* Remove border from button */
+    }
+     .mobile-cta:hover { /* Reset hover from link style */
+        background-color: var(--accent-yellow-darker);
+        color: var(--bg-dark);
+     }
+
+    /* Prevent body scroll when nav is open */
+    body.nav-open {
+        overflow: hidden;
+    }
+
+     /* Optional: Dim background when menu is open */
+    body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1040; /* Below menu, above content */
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.4s ease, visibility 0s linear 0.4s;
+    }
+    body.nav-open::before {
+        opacity: 1;
+        visibility: visible;
+        transition: opacity 0.4s ease;
+    }
+
+} /* End Media Query */
+
 /* --- Hero Section --- */
 .hero-section {
     padding: 6rem 0 4rem; /* More top padding */

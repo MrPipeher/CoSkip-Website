@@ -57,7 +57,13 @@
     <nav class="navbar">
         <div class="nav-container">
             <a href="#home" class="logo">Co-Skip</a>
-            <div class="nav-links">
+
+            <button class="mobile-nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-links-menu">
+                <i class="fas fa-bars icon-hamburger"></i>
+                <i class="fas fa-times icon-close"></i>
+            </button>
+
+            <div class="nav-links" id="nav-links-menu">
                 <a href="#features">Features</a>
                 <a href="#how-it-works">How It Works</a>
                 <a href="#pricing">Pricing</a>
@@ -66,9 +72,9 @@
                 <a href="https://discord.gg/vFdJmjjapa" target="_blank" rel="noopener noreferrer" class="nav-link-discord">
                     <i class="fab fa-discord"></i> Support
                 </a>
-                <!-- <span class="online-count">200+ ONLINE</span> -->
+                <a href="#pricing" class="btn btn-primary nav-cta mobile-cta">Get Key</a>
             </div>
-            <a href="#pricing" class="btn btn-primary nav-cta">Get Key</a>
+             <a href="#pricing" class="btn btn-primary nav-cta desktop-cta">Get Key</a>
         </div>
     </nav>
 
