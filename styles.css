@@ -1013,7 +1013,6 @@ kbd {
 /* --- Buy Now Pay Later Info Styling --- */
 .bnpl-info {
     text-align: center;
-    margin-top: 1.5rem; /* Space above the BNPL info */
     /*margin-bottom: 3rem; /* Increased space below BNPL before the grid */
     padding: 1rem 0;
     /* Optional: subtle background or border */
@@ -1022,15 +1021,10 @@ kbd {
     /* border-bottom: 1px solid var(--border-color); */
 }
 
-.bnpl-text {
-    color: var(--text-muted);
-    margin-bottom: 1rem;
-    font-size: 1rem; /* Adjust size as needed */
-}
-
 .bnpl-logos {
     display: flex;
     justify-content: center;
+    margin-bottom: 3rem;
     align-items: center;
     gap: 1rem; /* Space between logos */
     flex-wrap: wrap; /* Allow logos to wrap on smaller screens if needed */
