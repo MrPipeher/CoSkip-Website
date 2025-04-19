@@ -1010,6 +1010,38 @@ kbd {
     display: inline-block; /* Make it wrap content */
 }
 
+/* --- Buy Now Pay Later Info Styling --- */
+.bnpl-info {
+    text-align: center;
+    margin-top: 1.5rem; /* Space above the BNPL info */
+    /*margin-bottom: 3rem; /* Increased space below BNPL before the grid */
+    padding: 1rem 0;
+    /* Optional: subtle background or border */
+    /* background-color: rgba(255, 255, 255, 0.03); */
+    /* border-top: 1px solid var(--border-color); */
+    /* border-bottom: 1px solid var(--border-color); */
+}
+
+.bnpl-text {
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+    font-size: 1rem; /* Adjust size as needed */
+}
+
+.bnpl-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem; /* Space between logos */
+    flex-wrap: wrap; /* Allow logos to wrap on smaller screens if needed */
+}
+
+.bnpl-logos img {
+    height: 350px; /* Adjust height for consistent logo size */
+    width: auto; /* Maintain aspect ratio */
+    vertical-align: middle; /* Helps alignment if wrapping occurs */
+}
+
 /* Responsive adjustments for highlight sections */
 @media (max-width: 992px) {
     .highlight-grid {
