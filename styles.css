@@ -309,7 +309,7 @@ body.nav-open .mobile-nav-toggle .icon-close {
     text-align: left;
 }
 
-/* Highlight the ENTIRE "What They See" card */
+/* Highlight the card */
 .comparison-card.their-view { /* REMOVED .video-wrapper from selector */
     border: 2px solid var(--accent-yellow); /* Gold border on the card */
     /* Keep the existing card styles like padding, border-radius, etc. */
@@ -396,7 +396,7 @@ body.nav-open .mobile-nav-toggle .icon-close {
     position: relative;
 }
 
-/* Optional: Connecting lines (pseudo-elements) */
+/* Optional: Connecting lines */
 .steps-container::before {
     content: '';
     position: absolute;
@@ -943,7 +943,7 @@ kbd {
     align-items: center; /* Vertically align content */
 }
 
-/* Highlight the "Completely Undetectable" section using the new class */
+/* Highlight the section using the new class */
 .highlight-feature-section.featured-highlight .highlight-grid {
     /* Apply highlight to the grid containing text and media */
     border: 2px solid var(--accent-yellow);
