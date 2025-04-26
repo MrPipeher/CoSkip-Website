@@ -1036,6 +1036,102 @@ kbd {
     vertical-align: middle; /* Helps alignment if wrapping occurs */
 }
 
+/* --- Automation Section (Replaces Commands) --- */
+.automation-section {
+    /* Inherits section padding, alt-bg color */
+    position: relative; /* For potential pseudo-elements if needed later */
+    overflow: hidden;
+}
+
+.automation-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    gap: 3rem; /* Space between text and icon */
+    align-items: center; /* Vertically align content */
+}
+
+.automation-feature-title {
+    font-size: 1.75rem; /* Slightly larger title for the feature */
+    color: var(--accent-yellow); /* Highlight the feature title */
+    margin-bottom: 1.5rem;
+}
+
+.automation-text ul {
+    list-style: none; /* Remove default bullets */
+    padding-left: 0; /* Remove default padding */
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.automation-text ul li {
+    display: flex; /* Align icon and text */
+    align-items: start; /* Align to top if text wraps */
+    margin-bottom: 0.8rem;
+    color: var(--text-muted); /* Default text color */
+}
+
+.automation-text ul li i {
+    color: var(--accent-yellow); /* Icon color */
+    margin-right: 1rem; /* Space after icon */
+    margin-top: 0.15rem; /* Fine-tune vertical alignment */
+    width: 20px; /* Consistent icon width */
+    text-align: center;
+    flex-shrink: 0; /* Prevent icon from shrinking */
+}
+
+.automation-note {
+    font-style: italic;
+    font-size: 0.95rem;
+    margin-top: 1.5rem;
+}
+
+.automation-icon-container {
+    text-align: center; /* Center the icon within its column */
+}
+
+.automation-icon-container i.fa-computer-mouse {
+    font-size: 12rem; /* Make the icon very large */
+    color: var(--accent-yellow);
+    opacity: 0.8; /* Slightly reduce opacity for less harshness */
+    /* Optional: Add a subtle shadow */
+    text-shadow: 0 5px 15px rgba(250, 204, 21, 0.15);
+}
+
+/* Responsive adjustments for Automation section */
+@media (max-width: 992px) {
+    .automation-grid {
+        grid-template-columns: 1fr; /* Stack columns */
+        gap: 2.5rem;
+        text-align: center; /* Center text when stacked */
+    }
+
+    .automation-icon-container {
+        grid-row: 1; /* Put icon on top on mobile */
+        margin-bottom: 2rem; /* Add space below icon */
+    }
+
+    .automation-text {
+        grid-row: 2; /* Text below icon */
+        text-align: left; /* Revert text align for list readability */
+    }
+
+     .automation-text ul {
+         margin-left: auto; /* Center the list block somewhat */
+         margin-right: auto;
+         max-width: 400px; /* Limit list width for centering */
+         padding-left: 1rem; /* Add back some padding */
+     }
+      .automation-note {
+          text-align: center; /* Center the note */
+      }
+
+    .automation-icon-container i.fa-computer-mouse {
+        font-size: 8rem; /* Slightly smaller icon on mobile */
+    }
+}
+
+/* --- End Automation Section --- */
+
 /* Responsive adjustments for highlight sections */
 @media (max-width: 992px) {
     .highlight-grid {
