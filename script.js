@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Stripe Checkout ---
     const stripe = Stripe('pk_live_51NyaJIErsDMwjHJbY7JHPMqfZvkSMv3kOIo775RlVkojW77iW7RYZTmJ6ueDEDTsW2b90AJW9IWLneW4goUJ6ZqI00Vsxy0vpz'); // Your LIVE key
-    const serverURL = 'https://server5000.acserver.org';
+    const serverURL = 'https://co-skip-server.onrender.com';
     const purchaseButtons = document.querySelectorAll('.purchase-btn');
 
     purchaseButtons.forEach(button => {
