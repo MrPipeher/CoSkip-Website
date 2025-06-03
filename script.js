@@ -5,20 +5,48 @@ document.addEventListener('DOMContentLoaded', () => {
     const serverURL = 'https://co-skip-server.onrender.com';
     const purchaseButtons = document.querySelectorAll('.purchase-btn');
 
+    // Define product prices client-side for the pixel (mirroring server-side)
+    // This is for the 'value' in AddToCart. Ensure it's a string.
+    const clientProductPrices = {
+        'Key-1Day': '20.00',
+        'Key-7Day': '50.00',
+        'Key-30Day': '150.00',
+        'Key-1Year': '500.00'
+    };
+
     purchaseButtons.forEach(button => {
         button.addEventListener('click', async (event) => {
-            const productCard = event.target.closest('.pricing-card'); // Use pricing-card now
+            const productCard = event.target.closest('.pricing-card');
             const productTitle = button.getAttribute('data-product');
-            const quantity = 1;
+            const quantity = 1; // This is for the Reddit pixel num_items
 
-            // Basic check if productTitle exists
             if (!productTitle) {
                 console.error('Product title not found on button.');
                 alert('An error occurred. Could not identify the product.');
                 return;
             }
 
-            const originalButtonText = button.textContent; // Store original text
+            // --- NEW: Reddit Pixel AddToCart Event ---
+            const priceForPixel = clientProductPrices[productTitle] || '0.00'; // Get price for the current product
+            const currencyForPixel = 'USD'; // Assuming USD
+
+            if (typeof rdt === 'function') { // Check if Reddit pixel function exists
+                rdt('track', 'AddToCart', {
+                    content_ids: [productTitle],      // Array of product SKUs/IDs
+                    content_name: productTitle.replace(/-/g, ' '), // e.g., "Key 1Day" for readability
+                    content_type: 'product',          // Or 'product_group'
+                    value: priceForPixel,             // String: Price of the item(s) being added
+                    currency: currencyForPixel,       // String: Currency code
+                    num_items: quantity               // Number: How many of this item
+                });
+                console.log('Reddit AddToCart Fired:', { productTitle, priceForPixel });
+            } else {
+                console.warn('Reddit pixel (rdt) not found. AddToCart not fired.');
+            }
+            // --- END NEW: Reddit Pixel AddToCart Event ---
+
+
+            const originalButtonText = button.textContent;
             button.disabled = true;
             button.textContent = 'Processing...';
 
@@ -26,34 +54,30 @@ document.addEventListener('DOMContentLoaded', () => {
                 const response = await fetch(`${serverURL}/common/checkout`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ productTitle, quantity })
+                    body: JSON.stringify({ productTitle, quantity }) // quantity here is for Stripe
                 });
 
                 if (!response.ok) {
-                    // Try to get error message from server response if possible
                     let errorMsg = `Server error: ${response.status}`;
                     try {
                         const errorData = await response.json();
                         if (errorData && errorData.message) {
                             errorMsg += ` - ${errorData.message}`;
                         }
-                    } catch (e) { /* Ignore if response is not JSON */ }
+                    } catch (e) { /* Ignore */ }
                     throw new Error(errorMsg);
                 }
 
                 const session = await response.json();
 
                 if (session && session.url) {
-                    // Redirect to Stripe Checkout
                     window.location.href = session.url;
                 } else if (session && session.id) {
-                    // Alternative: Use Stripe.js redirectToCheckout (might be needed depending on server setup)
                     const { error } = await stripe.redirectToCheckout({ sessionId: session.id });
                     if (error) {
                         throw new Error(`Stripe redirect error: ${error.message}`);
                     }
-                }
-                 else {
+                } else {
                     throw new Error('Invalid checkout session data received.');
                 }
 
@@ -61,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.error('Checkout Error:', error);
                 alert(`Checkout failed: ${error.message}. Please try again or contact support via Discord.`);
                 button.disabled = false;
-                button.textContent = originalButtonText; // Restore original text on error
+                button.textContent = originalButtonText;
             }
         });
     });
