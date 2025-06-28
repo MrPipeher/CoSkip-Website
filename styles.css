@@ -615,6 +615,12 @@ kbd { /* Keyboard key styling */
     margin-top: auto; /* Stick to bottom */
 }
 
+/* New style for the Founder's Deal card */
+.pricing-card.founder {
+    border: 2px solid #FFD700; /* Gold border */
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.6); /* Gold glow */
+}
+
 /* --- Requirements & Download --- */
 .req-down-grid {
     display: grid;
