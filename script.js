@@ -34,11 +34,12 @@ document.addEventListener('DOMContentLoaded', () => {
         button.addEventListener('click', async (event) => {
             const productCard = event.target.closest('.pricing-card');
             const productTitle = button.getAttribute('data-product');
+            const program = button.getAttribute('data-program'); 
             const quantity = 1;
 
-            if (!productTitle) {
-                console.error('Product title not found on button.');
-                alert('An error occurred. Could not identify the product.');
+            if (!productTitle || !program) { // Also check for program now
+                console.error('Product title or program not found on button.');
+                alert('An error occurred. Could not identify the product version.');
                 return;
             }
 
@@ -74,7 +75,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     body: JSON.stringify({ 
                         productTitle, 
                         quantity,
-                        redditClickId // This will be the stored click ID, or null if it doesn't exist
+                        redditClickId,
+                        program: program
                     })
                 });
 
