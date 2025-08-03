@@ -1530,6 +1530,26 @@ kbd {
 
 } /* End Media Query */
 
+/* --- Pricing Interlude Styling --- */
+.pricing-interlude {
+    /* This adds the big space before and after */
+    margin: 4rem auto;
+    max-width: 1000px;
+}
+
+.interlude-title {
+    text-align: center;
+    font-size: 1.5rem;
+    color: var(--accent-yellow);
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+/* We remove the old margins from the callout since the parent now handles it */
+.marketplace-callout {
+    margin: 0;
+}
+
 /* --- FINAL RESPONSIVE POLISH --- */
 
 /* Targeting smaller tablets and mobile devices */
