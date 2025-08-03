@@ -1529,3 +1529,54 @@ kbd {
     }
 
 } /* End Media Query */
+
+/* --- FINAL RESPONSIVE POLISH --- */
+
+/* Targeting smaller tablets and mobile devices */
+@media (max-width: 768px) {
+
+    /* 1. Fix the Huge "Buy Now, Pay Later" Logos on Mobile */
+    .bnpl-logos img {
+        height: 40px; /* Drastically reduce the height on mobile */
+    }
+
+    /* 2. Make the Navbar Cleaner on Mobile */
+    .nav-container {
+        /* This prevents the logo from stacking awkwardly on top of the hamburger icon */
+        flex-direction: row; /* KEEP this as a row */
+        align-items: center; /* Vertically center the logo and hamburger */
+    }
+    
+    /* 3. Improve Spacing for the New Economy Section */
+    #economy-visual {
+        /* Ensure the animated background doesn't create weird sizing */
+        min-height: 250px;
+    }
+
+    #economy-visual img {
+        /* Ensure the image is not distorted */
+        object-fit: contain; /* Switch to 'contain' to ensure the whole image is visible */
+        max-height: 280px; /* Limit the max height of the image on mobile */
+    }
+}
+
+/* Targeting very small mobile devices for typography */
+@media (max-width: 576px) {
+
+    /* 4. Scale Down the Main Headings */
+    .hero-title {
+        font-size: 2.25rem; /* Make hero title a bit smaller */
+    }
+    
+    h2.section-title, .highlight-title {
+        font-size: 1.8rem; /* Make section titles smaller */
+    }
+    
+    /* 5. Make the Marketplace Callout more compact */
+    .marketplace-callout {
+        padding: 1.5rem;
+    }
+    .marketplace-text h3 {
+        font-size: 1.15rem;
+    }
+}
