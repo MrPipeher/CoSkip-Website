@@ -420,6 +420,56 @@ body.nav-open .mobile-nav-toggle .icon-close {
     100% { background-position: 0% 50%; }
 }
 
+/* --- Marketplace Callout --- */
+.marketplace-callout {
+    max-width: 1000px;
+    margin: 3rem auto 4rem; /* Spacing */
+    padding: 2rem;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-left: 5px solid #5865F2; /* Discord Blurple accent */
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.marketplace-icon {
+    font-size: 3rem;
+    color: #5865F2; /* Discord Blurple */
+    flex-shrink: 0; /* Prevent icon from shrinking */
+}
+
+.marketplace-text {
+    flex-grow: 1; /* Allow text to take up available space */
+}
+
+.marketplace-text h3 {
+    margin: 0 0 0.5rem;
+    color: var(--text-light);
+    font-size: 1.3rem;
+}
+
+.marketplace-text p {
+    margin: 0;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+.marketplace-cta {
+    flex-shrink: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .marketplace-callout {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+    }
+}
+
 /* --- Features Section --- */
 .features-grid {
     display: grid;
