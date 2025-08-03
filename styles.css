@@ -361,6 +361,54 @@ body.nav-open .mobile-nav-toggle .icon-close {
     object-fit: cover;
 }
 
+/* --- Marketplace & Economy Section --- */
+.economy-features-list {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0;
+}
+
+.economy-features-list li {
+    display: flex;
+    align-items: start;
+    font-size: 1.05rem;
+    margin-bottom: 1rem;
+}
+
+.economy-features-list li i {
+    color: var(--accent-yellow);
+    margin-right: 1rem;
+    margin-top: 0.25rem;
+    font-size: 1.1rem;
+}
+
+#economy-visual {
+    /* Cool animated gradient background */
+    background: linear-gradient(-45deg, #1a1a1a, #2c2a20, #1a1a1a, #312e20);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#economy-visual::before {
+    /* Add a big, cool icon in the middle */
+    font-family: "Font Awesome 6 Free";
+    content: "\f0d6"; /* Unicode for fa-money-bill-alt or use \f51e for fa-store */
+    font-weight: 900;
+    font-size: 8rem;
+    color: var(--accent-yellow);
+    opacity: 0.1;
+    text-shadow: 0 0 20px var(--accent-yellow);
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
 /* --- Features Section --- */
 .features-grid {
     display: grid;
