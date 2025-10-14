@@ -105,6 +105,24 @@
 </head>
 
 <body>
+    
+    <div id="launch-banner">
+        <div class="container">
+            <h2>🚀 Help Make Subscriptions Permanent! 🚀</h2>
+            <p>The Founder's Season is a 30-day trial to decide the future of Co-Skip. If we hit our community goal, this subscription model is here to stay!</p>
+            <div class="launch-stats">
+                <div class="stat-item">
+                    <span class="stat-title">Event Ends In:</span>
+                    <span id="countdown" class="stat-value">--D --H --M --S</span>
+                </div>
+                <!-- <div class="stat-item">
+                    <span class="stat-title">Founding Members:</span>
+                    <span id="sub-count" class="stat-value">-- / 200</span>
+                </div> -->
+            </div>
+        </div>
+    </div>
+
     <header class="sticky-header">
         <!-- <div class="sale-banner">
             <p>
@@ -568,7 +586,7 @@
         </section>
 
         <!-- Marketplace & Economy Section -->
-        <section class="highlight-feature-section alt-bg" id="economy">
+        <!-- <section class="highlight-feature-section alt-bg" id="economy">
             <div class="container">
                 <h2 class="section-title">Enter the Co-Skip Economy</h2>
                 <p class="section-subtitle">Your keys now have real-world value. Sell your assets, win prizes, and get paid.</p>
@@ -594,13 +612,13 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
         <!-- End Marketplace & Economy Section -->
 
         <section class="pricing-section" id="pricing">
             <div class="container">
 
-                <div class="bnpl-info">
+                <!-- <div class="bnpl-info">
                     <h2 class="section-title">Spread the cost!</h2>
                     <p class="section-subtitle">Pay in installments at checkout with:</p>
                     <div class="bnpl-logos">
@@ -608,10 +626,10 @@
                         <img src="https://raw.githubusercontent.com/MrPipeher/CoSkip-Website/main/images/afterpay-logo.png" alt="Afterpay/Clearpay" title="Afterpay/Clearpay">
                         <img src="https://raw.githubusercontent.com/MrPipeher/CoSkip-Website/main/images/klarna-logo.png" alt="Klarna" title="Klarna">
                     </div>
-                </div>
+                </div> -->
 
                 <!-- Pricing Interlude -->
-                <div class="pricing-interlude">
+                <!-- <div class="pricing-interlude">
                     <h3 class="interlude-title">Looking for a Deal?</h3>
                     <div class="marketplace-callout">
                         <div class="marketplace-icon">
@@ -625,68 +643,99 @@
                             <a href="https://discord.gg/vFdJmjjapa" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Browse the Market</a>
                         </div>
                     </div>
+                </div> -->
+
+                <h2 class="section-title">Become a Founding Member</h2>
+                <p class="section-subtitle">Join the Founder's Circle to help make this subscription model permanent. If our goal is met, you'll lock in this price forever.</p>
+
+                <!-- The New Founder's Subscription Offer -->
+                <div id="subscription-offer">
+                    <div class="pricing-card featured founder">
+                        <div class="badge">Founder's Deal</div>
+                        <h3 class="pricing-title">Co-Skip Elite Subscription</h3>
+                        <div class="price">$50<span class="price-term">/month</span></div>
+                        <p class="pricing-limit">Unlimited Questions*</p>
+
+                        <!-- ========= ADD THIS NEW "PLEDGE" SECTION HERE ========= -->
+                        <div class="founder-pledge">
+                            <h4>The Founder's Mission:</h4>
+                            <ul class="pledge-list">
+                                <li><i class="fas fa-check"></i> Your subscription helps us reach our community goal.</li>
+                                <li><i class="fas fa-crown"></i> If the goal is met, this subscription model becomes permanent.</li>
+                                <li><i class="fas fa-times"></i> If we miss the goal, we may return to a key-only system.</li>
+                            </ul>
+                        </div>
+                        <!-- ========= END OF NEW SECTION ========= -->
+
+                        <ul class="pricing-features">
+                            <li><i class="fas fa-star"></i> Access to All Pro Features</li>
+                            <li><i class="fas fa-infinity"></i> Unlimited AI Questions</li>
+                            <li><i class="fas fa-rocket"></i> Priority Access to New Features</li>
+                            <li><i class="fas fa-times-circle"></i> Cancel Your Plan Anytime</li>
+                        </ul>
+                        <!-- The button stays the same -->
+                        <button id="subscribe-now-btn" class="btn btn-primary btn-large" data-product="Co-Skip-Elite-Subscription" data-program="Co-Skip-v2">Subscribe Now</button>
+                    </div>
                 </div>
 
-                <h2 class="section-title">Choose Your Access Plan</h2>
-                <p class="section-subtitle">Simple, transparent pricing. Instant key delivery.</p>
-                <p class="limit-explanation">*A 'question' corresponds to one AI interaction (<kbd>Ctrl</kbd>+<kbd>M</kbd>). Unlimited plans are subject to our <a href="terms-of-service.html" target="_blank">Fair Use Policy</a>.</p>
-
-                <div class="tier-section" style="text-align: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #333;">
-                    <h2 class="tier-title" style="font-size: 2.2rem; margin-bottom: 0.5rem; color: var(--accent-yellow); display: inline-block; border-bottom: 2px solid var(--accent-yellow); padding-bottom: 0.5rem;">🚀 Co-Skip (Elite)</h2>
-                    <p class="tier-description" style="color: var(--text-light); margin-bottom: 1rem;">The ultimate engine, featuring our new persistence technology.</p>
-                    <div class="exam-list-container">
-                        <!-- <ul class="exam-list">
-                            <li><i class="fas fa-shield-alt" style="color: var(--accent-yellow);"></i> OnVUE, ETS (GRE/Praxis), CompTIA, GED, Respondus & all high-stakes exams.</li>
-                        </ul> -->
-                    </div>
-                    <div class="pricing-grid">
-                        <!-- 1 Day ELITE -->
-                        <div class="pricing-card elite-card">
-                            <h3 class="pricing-title">1 Day Access</h3>
-                            <div class="price">$50</div>
-                            <p class="pricing-limit">Up to 50 Questions*</p>
-                            <ul class="pricing-features">
-                                <li><i class="fas fa-check"></i> 1 Screenshot Per Question</li>
-                                <li><i class="fas fa-check"></i> Priority Support</li>
-                            </ul>
-                            <button class="btn btn-primary purchase-btn" data-product="Key-1Day-Elite" data-program="Co-Skip-v2">Get 1-Day Elite</button>
+                <div id="old-pricing-options">
+                    <div class="tier-section" style="text-align: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #333;">
+                        <h2 class="tier-title" style="font-size: 2.2rem; margin-bottom: 0.5rem; color: var(--accent-yellow); display: inline-block; border-bottom: 2px solid var(--accent-yellow); padding-bottom: 0.5rem;">🚀 Co-Skip (Elite)</h2>
+                        <p class="tier-description" style="color: var(--text-light); margin-bottom: 1rem;">The ultimate engine, featuring our new persistence technology.</p>
+                        <div class="exam-list-container">
+                            <!-- <ul class="exam-list">
+                                <li><i class="fas fa-shield-alt" style="color: var(--accent-yellow);"></i> OnVUE, ETS (GRE/Praxis), CompTIA, GED, Respondus & all high-stakes exams.</li>
+                            </ul> -->
                         </div>
-                        <!-- 7 Day ELITE -->
-                        <div class="pricing-card elite-card">
-                            <h3 class="pricing-title">7 Day Access</h3>
-                            <div class="price">$100</div>
-                            <p class="pricing-limit">Up to 150 Questions*</p>
-                            <ul class="pricing-features">
-                                <li><i class="fas fa-check"></i> 3 Screenshots Per Question</li>
-                                <li><i class="fas fa-check"></i> Priority Support</li>
-                            </ul>
-                            <button class="btn btn-primary purchase-btn" data-product="Key-7Day-Elite" data-program="Co-Skip-v2">Get 7-Day Elite</button>
-                        </div>
-                        <!-- 30 Day ELITE -->
-                        <div class="pricing-card featured elite-card">
-                            <div class="badge">Most Popular</div>
-                            <h3 class="pricing-title">30 Day Access</h3>
-                            <div class="price">$200</div>
-                            <p class="pricing-limit">Unlimited Questions*</p>
-                            <ul class="pricing-features">
-                                <li><i class="fas fa-check"></i> 5 Screenshots Per Question</li>
-                                <li><i class="fas fa-check"></i> Priority Support</li>
-                                <li><i class="fas fa-star"></i> Pro Features</li>
-                            </ul>
-                            <button class="btn btn-primary purchase-btn" data-product="Key-30Day-Elite" data-program="Co-Skip-v2">Get 30-Day Elite</button>
-                        </div>
-                        <!-- 1 Year ELITE -->
-                        <div class="pricing-card elite-card">
-                            <h3 class="pricing-title">1 Year Access</h3>
-                            <div class="price">$600</div>
-                            <p class="pricing-limit">Unlimited Questions*</p>
-                            <ul class="pricing-features">
-                                <li><i class="fas fa-check"></i> 10 Screenshots Per Question</li>
-                                <li><i class="fas fa-check"></i> Top Priority Support</li>
-                                <li><i class="fas fa-star"></i> Pro Features</li>
-                                <li><i class="fas fa-star"></i> Feature Request Priority</li>
-                            </ul>
-                            <button class="btn btn-primary purchase-btn" data-product="Key-1Year-Elite" data-program="Co-Skip-v2">Get Yearly Elite</button>
+                        <div class="pricing-grid">
+                            <!-- 1 Day ELITE -->
+                            <div class="pricing-card elite-card">
+                                <h3 class="pricing-title">1 Day Access</h3>
+                                <div class="price">$50</div>
+                                <p class="pricing-limit">Up to 50 Questions*</p>
+                                <ul class="pricing-features">
+                                    <li><i class="fas fa-check"></i> 1 Screenshot Per Question</li>
+                                    <li><i class="fas fa-check"></i> Priority Support</li>
+                                </ul>
+                                <button class="btn btn-primary purchase-btn" data-product="Key-1Day-Elite" data-program="Co-Skip-v2">Get 1-Day Elite</button>
+                            </div>
+                            <!-- 7 Day ELITE -->
+                            <div class="pricing-card elite-card">
+                                <h3 class="pricing-title">7 Day Access</h3>
+                                <div class="price">$100</div>
+                                <p class="pricing-limit">Up to 150 Questions*</p>
+                                <ul class="pricing-features">
+                                    <li><i class="fas fa-check"></i> 3 Screenshots Per Question</li>
+                                    <li><i class="fas fa-check"></i> Priority Support</li>
+                                </ul>
+                                <button class="btn btn-primary purchase-btn" data-product="Key-7Day-Elite" data-program="Co-Skip-v2">Get 7-Day Elite</button>
+                            </div>
+                            <!-- 30 Day ELITE -->
+                            <div class="pricing-card featured elite-card">
+                                <div class="badge">Most Popular</div>
+                                <h3 class="pricing-title">30 Day Access</h3>
+                                <div class="price">$200</div>
+                                <p class="pricing-limit">Unlimited Questions*</p>
+                                <ul class="pricing-features">
+                                    <li><i class="fas fa-check"></i> 5 Screenshots Per Question</li>
+                                    <li><i class="fas fa-check"></i> Priority Support</li>
+                                    <li><i class="fas fa-star"></i> Pro Features</li>
+                                </ul>
+                                <button class="btn btn-primary purchase-btn" data-product="Key-30Day-Elite" data-program="Co-Skip-v2">Get 30-Day Elite</button>
+                            </div>
+                            <!-- 1 Year ELITE -->
+                            <div class="pricing-card elite-card">
+                                <h3 class="pricing-title">1 Year Access</h3>
+                                <div class="price">$600</div>
+                                <p class="pricing-limit">Unlimited Questions*</p>
+                                <ul class="pricing-features">
+                                    <li><i class="fas fa-check"></i> 10 Screenshots Per Question</li>
+                                    <li><i class="fas fa-check"></i> Top Priority Support</li>
+                                    <li><i class="fas fa-star"></i> Pro Features</li>
+                                    <li><i class="fas fa-star"></i> Feature Request Priority</li>
+                                </ul>
+                                <button class="btn btn-primary purchase-btn" data-product="Key-1Year-Elite" data-program="Co-Skip-v2">Get Yearly Elite</button>
+                            </div>
                         </div>
                     </div>
                 </div>

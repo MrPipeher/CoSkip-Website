@@ -1,5 +1,40 @@
 // Replace the entire contents of your script.js file with this code.
 
+// --- LAUNCH EVENT CONFIGURATION ---
+    // IMPORTANT: Set the end date 30 days from your launch day.
+    // Example: For a launch on July 27th, 2024, the end date is August 26th, 2024.
+    // FORMAT: Year, Month (0-11), Day, Hour, Minute, Second
+    const launchEndDate = new Date(2025, 10, 13, 23, 59, 59).getTime(); // August 26th, 2024
+    // --- END OF CONFIGURATION ---
+
+
+    // --- LAUNCH EVENT LOGIC ---
+    const countdownElement = document.getElementById('countdown');
+
+    function updateLaunchBanner() {
+        if (countdownElement) {
+            const now = new Date().getTime();
+            const distance = launchEndDate - now;
+
+            if (distance < 0) {
+                countdownElement.innerHTML = "EVENT ENDED";
+            } else {
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                countdownElement.innerHTML = `${days}D ${hours}H ${minutes}M ${seconds}S`;
+            }
+        }
+    }
+
+    // Run the banner update immediately and then every second
+    if (countdownElement) {
+        updateLaunchBanner();
+        setInterval(updateLaunchBanner, 1000);
+    }
+
 document.addEventListener('DOMContentLoaded', () => {
 
     // --- NEW: Reddit Click ID Capture ---
@@ -17,17 +52,61 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     // --- END NEW CODE ---
 
+    // PASTE THIS RIGHT BEFORE YOUR "// --- Stripe Checkout ---" SECTION
+
+    // --- NEW: Subscription Checkout ---
+    const subscribeBtn = document.getElementById('subscribe-now-btn');
+    if (subscribeBtn) {
+        subscribeBtn.addEventListener('click', async () => {
+            // This must match the product ID key in your server's config
+            const productTitle = 'Co-Skip-Elite-Subscription'; 
+            const program = 'Co-Skip-v2';
+
+            const originalButtonText = subscribeBtn.textContent;
+            subscribeBtn.disabled = true;
+            subscribeBtn.textContent = 'Processing...';
+
+            // Retrieve Reddit click_id if present in session storage
+            const redditClickId = sessionStorage.getItem('rdt_cid') || null;
+
+            try {
+                const response = await fetch(`${serverURL}/common/create-subscription-checkout`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ redditClickId, program })
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.error || 'Server responded with an error');
+                }
+
+                const session = await response.json();
+                window.location.href = session.url; // Redirect to Stripe
+
+            } catch (error) {
+                console.error('Error creating subscription checkout session:', error);
+                alert('Could not initiate subscription checkout. Please try again or contact support.');
+                subscribeBtn.disabled = false;
+                subscribeBtn.textContent = originalButtonText;
+            }
+        });
+    }
+
 
     // --- Stripe Checkout ---
     const stripe = Stripe('pk_live_51NyaJIErsDMwjHJbY7JHPMqfZvkSMv3kOIo775RlVkojW77iW7RYZTmJ6ueDEDTsW2b90AJW9IWLneW4goUJ6ZqI00Vsxy0vpz'); // Your LIVE key
     const serverURL = 'https://co-skip-server.onrender.com';
+    // HIDE THE OLD ONE-TIME PURCHASE OPTIONS
+    document.getElementById('old-pricing-options').style.display = 'none';
     const purchaseButtons = document.querySelectorAll('.purchase-btn');
 
     const clientProductPrices = {
         'Key-1Day': '20.00',
         'Key-7Day': '50.00',
         'Key-30Day': '150.00',
-        'Key-1Year': '500.00'
+        'Key-1Year': '500.00',
+        'Co-Skip-Elite-Subscription': '50.00'
     };
 
     purchaseButtons.forEach(button => {

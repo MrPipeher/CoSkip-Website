@@ -1632,3 +1632,144 @@ kbd {
         font-size: 1.15rem;
     }
 }
+
+/* --- Founder's Season Launch Styles --- */
+
+/* The Main Banner */
+#launch-banner {
+    background: linear-gradient(45deg, #2a2202, #4d3d04);
+    color: #fff;
+    text-align: center;
+    padding: 1.5rem 1rem;
+    border-bottom: 4px solid var(--accent-yellow);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    animation: pulseGlow 3s infinite ease-in-out;
+}
+
+#launch-banner h2 {
+    margin-bottom: 0.5rem;
+    font-size: 1.8rem;
+    color: #fff;
+    text-shadow: 0 0 10px var(--accent-yellow);
+}
+
+#launch-banner p {
+    margin-bottom: 1.5rem;
+    color: var(--text-light);
+    font-size: 1.1rem;
+}
+
+/* The Countdown and Subscriber Stats */
+.launch-stats {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    background-color: rgba(0,0,0,0.2);
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.stat-title {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 0.25rem;
+}
+
+.stat-value {
+    font-family: var(--heading-font);
+    font-weight: 700;
+    font-size: 1.75rem;
+    color: var(--accent-yellow);
+    letter-spacing: 1px;
+}
+
+/* The New Subscription Offer Card */
+#subscription-offer .pricing-card.founder {
+    max-width: 500px;
+    margin: 0 auto; /* Center the single card */
+    border: 2px solid var(--accent-yellow);
+    box-shadow: 0 0 30px rgba(250, 204, 21, 0.4);
+    transform: scale(1.02); /* Make it stand out a bit */
+}
+
+#subscription-offer .price-term {
+    font-size: 1.2rem;
+    margin-left: 0.5rem;
+}
+
+/* Class to Hide Old Pricing Options */
+#old-pricing-options {
+    display: none; /* Hide the old options */
+}
+
+/* Pulsing Glow Animation for Banner */
+@keyframes pulseGlow {
+    0% { box-shadow: 0 5px 15px rgba(0,0,0,0.4), 0 0 10px rgba(250, 204, 21, 0.2); }
+    50% { box-shadow: 0 5px 20px rgba(0,0,0,0.5), 0 0 20px rgba(250, 204, 21, 0.5); }
+    100% { box-shadow: 0 5px 15px rgba(0,0,0,0.4), 0 0 10px rgba(250, 204, 21, 0.2); }
+}
+
+/* Responsive adjustments for the banner */
+@media (max-width: 768px) {
+    #launch-banner h2 { font-size: 1.5rem; }
+    #launch-banner p { font-size: 1rem; }
+    .stat-value { font-size: 1.5rem; }
+}
+
+.founder-pledge {
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--accent-yellow);
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 1.5rem 0;
+    text-align: left;
+}
+
+.founder-pledge h4 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    color: var(--accent-yellow);
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.founder-pledge .pledge-list {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+    font-size: 0.9rem;
+}
+
+.founder-pledge .pledge-list li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.founder-pledge .pledge-list li:last-child {
+    margin-bottom: 0;
+}
+
+.founder-pledge .pledge-list .fas {
+    width: 20px;
+    text-align: center;
+    margin-right: 0.5rem;
+}
+
+.founder-pledge .fa-check {
+    color: #28a745; /* Green */
+}
+
+.founder-pledge .fa-crown {
+    color: #ffc107; /* Yellow */
+}
+
+.founder-pledge .fa-times {
+    color: #dc3545; /* Red */
+}
