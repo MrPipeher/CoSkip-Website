@@ -78,10 +78,13 @@
 
 @media (max-width: 992px) {
     .nav-links {
-        display: none; /* Hide desktop links */
+        display: none; /* Hide the text links */
     }
+
+    /* THE DEFINITIVE FIX: Keep the CTA button but make it smaller */
     .nav-cta {
-        display: none; /* Hide desktop CTA button */
+        padding: 0.5rem 1rem; /* Smaller padding */
+        font-size: var(--fs-sm); /* Smaller font size */
     }
 
     .mobile-nav-toggle {
@@ -93,11 +96,8 @@
         position: fixed;
         top: 0;
         right: 0;
-        width: 70%; /* Or adjust as needed */
-        
-        /* THE SILVER BULLET FIX */
-        height: 100vh; /* Explicitly set height to 100% of the viewport height */
-        
+        width: 70%;
+        height: 100vh;
         flex-direction: column;
         align-items: flex-start;
         padding: 8rem var(--space-lg) var(--space-lg);
@@ -111,7 +111,6 @@
     #nav-links-menu.active {
         transform: translateX(0);
     }
-
     #nav-links-menu a {
         width: 100%;
         padding: var(--space-sm) 0;

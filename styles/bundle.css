@@ -95,12 +95,21 @@ ul, ol {
 /* ============================================= */
 /* BASE: TYPOGRAPHY                             */
 /* ============================================= */
+/* THE FIX: More robust overflow control */
+html, body {
+    overflow-x: hidden;
+}
+
 body {
     background-color: var(--clr-bg);
     color: var(--clr-text-muted);
     font-family: var(--font-primary);
     font-size: var(--fs-base);
-    overflow-x: hidden; /* THE SILVER BULLET FIX */
+}
+
+/* THE FIX: Prevent scrolling of the page when the mobile menu is open */
+body.nav-open {
+    overflow: hidden;
 }
 
 a {
@@ -209,10 +218,13 @@ p {
 
 @media (max-width: 992px) {
     .nav-links {
-        display: none; /* Hide desktop links */
+        display: none; /* Hide the text links */
     }
+
+    /* THE DEFINITIVE FIX: Keep the CTA button but make it smaller */
     .nav-cta {
-        display: none; /* Hide desktop CTA button */
+        padding: 0.5rem 1rem; /* Smaller padding */
+        font-size: var(--fs-sm); /* Smaller font size */
     }
 
     .mobile-nav-toggle {
@@ -224,11 +236,8 @@ p {
         position: fixed;
         top: 0;
         right: 0;
-        width: 70%; /* Or adjust as needed */
-        
-        /* THE SILVER BULLET FIX */
-        height: 100vh; /* Explicitly set height to 100% of the viewport height */
-        
+        width: 70%;
+        height: 100vh;
         flex-direction: column;
         align-items: flex-start;
         padding: 8rem var(--space-lg) var(--space-lg);
@@ -242,7 +251,6 @@ p {
     #nav-links-menu.active {
         transform: translateX(0);
     }
-
     #nav-links-menu a {
         width: 100%;
         padding: var(--space-sm) 0;
@@ -1121,6 +1129,24 @@ input:checked + .slider:before {
     display: inline-block;
     margin-bottom: var(--space-md);
 }
+/* ============================================= */
+/* RESPONSIVE: PRICING TOGGLE FIX                */
+/* ============================================= */
+@media (max-width: 480px) {
+    /* THE FIX: Force the toggle to stay in a row and manage spacing */
+    .pricing-toggle {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: var(--space-sm); /* Reduce gap on small screens */
+    }
+
+    .toggle-label {
+        font-size: var(--fs-sm); /* Make text slightly smaller */
+        white-space: nowrap; /* Prevent text from wrapping */
+    }
+}
+
 /* ============================================= */
 /* COMPONENT: FAQ ACCORDION                      */
 /* ============================================= */

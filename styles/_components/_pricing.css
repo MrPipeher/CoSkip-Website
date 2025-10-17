@@ -146,3 +146,21 @@ input:checked + .slider:before {
     display: inline-block;
     margin-bottom: var(--space-md);
 }
+
+/* ============================================= */
+/* RESPONSIVE: PRICING TOGGLE FIX                */
+/* ============================================= */
+@media (max-width: 480px) {
+    /* THE FIX: Force the toggle to stay in a row and manage spacing */
+    .pricing-toggle {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: var(--space-sm); /* Reduce gap on small screens */
+    }
+
+    .toggle-label {
+        font-size: var(--fs-sm); /* Make text slightly smaller */
+        white-space: nowrap; /* Prevent text from wrapping */
+    }
+}

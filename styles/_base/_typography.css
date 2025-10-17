@@ -1,12 +1,21 @@
 /* ============================================= */
 /* BASE: TYPOGRAPHY                             */
 /* ============================================= */
+/* THE FIX: More robust overflow control */
+html, body {
+    overflow-x: hidden;
+}
+
 body {
     background-color: var(--clr-bg);
     color: var(--clr-text-muted);
     font-family: var(--font-primary);
     font-size: var(--fs-base);
-    overflow-x: hidden; /* THE SILVER BULLET FIX */
+}
+
+/* THE FIX: Prevent scrolling of the page when the mobile menu is open */
+body.nav-open {
+    overflow: hidden;
 }
 
 a {
