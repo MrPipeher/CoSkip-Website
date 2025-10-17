@@ -1,0 +1,56 @@
+/* ============================================= */
+/* COMPONENT: BUTTONS                            */
+/* ============================================= */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xs);
+    padding: 0.8rem var(--space-md);
+    border: 2px solid transparent;
+    border-radius: var(--border-radius);
+    font-family: var(--font-secondary);
+    font-weight: 600;
+    font-size: var(--fs-base);
+    cursor: pointer;
+    text-align: center;
+    transition: all var(--transition-fast);
+    white-space: nowrap;
+}
+
+/* Primary Button (Cyan) */
+.btn-primary {
+    background-color: var(--clr-accent-primary);
+    color: var(--clr-bg);
+    box-shadow: 0 0 10px 0px rgba(0, 246, 255, 0.4);
+}
+.btn-primary:hover {
+    background-color: var(--clr-text-primary);
+    box-shadow: 0 0 20px 0px rgba(0, 246, 255, 0.6);
+    transform: translateY(-2px);
+}
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+/* Secondary Button (Outline) */
+.btn-secondary {
+    background-color: transparent;
+    color: var(--clr-text-primary);
+    border-color: var(--clr-border);
+}
+.btn-secondary:hover {
+    background-color: var(--clr-surface);
+    border-color: var(--clr-accent-primary);
+    color: var(--clr-accent-primary);
+    transform: translateY(-2px);
+}
+.btn-secondary:active {
+    transform: translateY(0);
+}
+
+/* Sizing */
+.btn-large {
+    padding: 1rem var(--space-lg);
+    font-size: var(--fs-lg);
+}

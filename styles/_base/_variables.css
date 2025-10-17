@@ -1,0 +1,47 @@
+/* ============================================= */
+/* DESIGN SYSTEM: VARIABLES                      */
+/* ============================================= */
+:root {
+    /* Color Palette: Clandestine Power */
+    --clr-bg: #0A0D14; /* Deep, near-black with a hint of blue */
+    --clr-surface: #141922; /* Slightly lighter for cards/surfaces */
+    --clr-border: #29303D; /* Muted border color */
+    
+    --clr-text-primary: #E1E8F2; /* Bright, readable primary text */
+    --clr-text-muted: #8899B3; /* Muted text for subtitles and descriptions */
+
+    --clr-accent-primary: #00F6FF; /* Electric Cyan - The main event */
+    --clr-accent-secondary: #FFD700; /* Gold - For achievements and highlights */
+
+    /* Typography */
+    --font-primary: 'Inter', sans-serif;
+    --font-secondary: 'Poppins', sans-serif;
+    
+    --fs-base: 1rem; /* Base font size (16px) */
+    --fs-sm: 0.875rem; /* Small */
+    --fs-lg: 1.125rem; /* Large */
+    --fs-xl: 1.25rem; /* XL */
+    --fs-h3: 1.5rem; /* H3 */
+    --fs-h2: 2.25rem; /* H2 */
+    --fs-h1: 3.5rem; /* H1 */
+
+    /* Spacing & Sizing */
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 1.5rem;
+    --space-lg: 2rem;
+    --space-xl: 3rem;
+    --space-section: 6rem; /* Vertical space between sections */
+    
+    --container-width: 1200px;
+    --border-radius: 8px;
+
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-smooth: 0.4s ease;
+
+    /* Shadows */
+    --shadow-sm: 0 4px 10px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 8px 20px rgba(0, 0, 0, 0.3);
+    --shadow-glow-primary: 0 0 15px 0px var(--clr-accent-primary);
+}

@@ -1,0 +1,61 @@
+/* ============================================= */
+/* LAYOUT: LEGAL PAGES (PRIVACY, TERMS)          */
+/* ============================================= */
+.legal-content-section {
+    padding-top: var(--space-xl);
+    padding-bottom: var(--space-section);
+}
+
+.legal-content-container {
+    max-width: 900px; /* Optimal width for readability */
+    margin: 0 auto;
+    padding: 0 var(--space-md);
+}
+
+.legal-content-container h1 {
+    text-align: center;
+    margin-bottom: var(--space-xl);
+}
+
+.legal-content-container h2 {
+    font-size: 1.75rem;
+    margin-top: var(--space-xl);
+    margin-bottom: var(--space-md);
+    padding-bottom: var(--space-xs);
+    border-bottom: 1px solid var(--clr-border);
+}
+
+.legal-content-container p {
+    margin-bottom: var(--space-md);
+}
+
+.legal-content-container ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: var(--space-md);
+}
+
+.legal-content-container ul li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-md);
+    margin-bottom: var(--space-sm);
+}
+
+.legal-content-container ul li .fas {
+    color: var(--clr-accent-primary);
+    font-size: 1.1rem;
+    width: 25px;
+    text-align: center;
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+}
+
+.legal-content-container ul ul {
+    margin-top: var(--space-sm);
+    margin-left: calc(25px + var(--space-md));
+}
+
+.legal-content-container strong {
+    color: var(--clr-text-primary);
+}

@@ -1,0 +1,47 @@
+/* ============================================= */
+/* LAYOUT: FOOTER                                */
+/* ============================================= */
+.site-footer {
+    background-color: var(--clr-bg);
+    border-top: 1px solid var(--clr-border);
+    padding: var(--space-xl) 0;
+    color: var(--clr-text-muted);
+    font-size: var(--fs-sm);
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* CHANGE THIS FROM space-between */
+    align-items: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-xl);
+}
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-md);
+}
+
+.footer-social a {
+    font-size: 1.5rem;
+}
+
+.footer-bottom {
+    border-top: 1px solid var(--clr-border);
+    padding-top: var(--space-lg);
+    text-align: center;
+}
+
+.footer-disclaimer {
+    margin-top: var(--space-xs);
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+.footer-bottom p {
+    margin-left: auto;
+    margin-right: auto;
+}

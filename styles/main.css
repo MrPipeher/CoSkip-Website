@@ -1,0 +1,23 @@
+/* ============================================= */
+/* MASTER STYLESHEET                             */
+/* ============================================= */
+
+/* 1. BASE STYLES */
+@import url('_base/_variables.css');
+@import url('_base/_reset.css');
+@import url('_base/_typography.css');
+
+/* 2. LAYOUTS */
+@import url('_layouts/_header.css');
+@import url('_layouts/_sections.css');
+@import url('_layouts/_features.css'); /* ADD THIS LINE */
+@import url('_layouts/_footer.css');
+@import url('_layouts/_legal.css'); 
+
+/* 3. COMPONENTS */
+@import url('_components/_buttons.css');
+@import url('_components/_cards.css');
+@import url('_components/_carousel.css');
+@import url('_components/_tabs.css');
+@import url('_components/_pricing.css');
+@import url('_components/_faq.css');

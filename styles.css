@@ -1773,3 +1773,44 @@ kbd {
 .founder-pledge .fa-times {
     color: #dc3545; /* Red */
 }
+
+/* Wrapper for the "Or Need a Key?" title section */
+.pricing-alternative {
+    text-align: center;
+    margin: 5rem 0 2rem 0; /* Creates space above and below */
+    padding-top: 3rem;
+    border-top: 1px dashed var(--border-color); /* A dashed line creates a clear visual break */
+}
+
+.alternative-title {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-light);
+}
+
+.alternative-subtitle {
+    max-width: 600px;
+    margin: 0 auto 2rem auto;
+    color: var(--text-muted);
+}
+
+/* Ensure pay-as-you-go cards are not visually "featured" */
+#pay-as-you-go-options .pricing-card {
+    border-color: var(--border-color); /* Use the default border color */
+    transform: none; /* Remove any scaling */
+    box-shadow: none; /* Remove any glow/shadow */
+    background-color: var(--bg-card); /* Ensure default background */
+}
+
+/* Keep the standard hover effect for interaction feedback */
+#pay-as-you-go-options .pricing-card:hover {
+     transform: translateY(-5px);
+     box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+/* Make sure the main subscription offer still stands out */
+#subscription-offer .pricing-card.founder {
+    border: 2px solid var(--accent-yellow);
+    box-shadow: 0 0 30px rgba(250, 204, 21, 0.4);
+    transform: scale(1.02);
+}

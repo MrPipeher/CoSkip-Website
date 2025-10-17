@@ -1,0 +1,91 @@
+/* ============================================= */
+/* COMPONENT: CARDS                              */
+/* ============================================= */
+
+/* Genesis Card */
+.genesis-card {
+    background-color: var(--clr-bg);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--border-radius);
+    padding: var(--space-lg);
+}
+.genesis-title {
+    text-align: center;
+    margin-bottom: var(--space-lg);
+}
+.genesis-card ul {
+    margin-top: var(--space-lg);
+}
+.genesis-card li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-sm);
+    color: var(--clr-text-muted);
+}
+.genesis-card .fas {
+    font-size: 1.25rem;
+}
+
+/* Specific visuals for genesis cards */
+.genesis-card.frustration .fas {
+    color: #FF5555; /* A cyberpunk-ish red */
+}
+.genesis-card.solution .fas {
+    color: #50fa7b; /* A cyberpunk-ish green */
+}
+.genesis-visual-before,
+.genesis-visual-after {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: calc(var(--border-radius) / 2);
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* Placeholder - replace with actual images/gifs */
+.genesis-visual-before {
+    background-image: url('../images/visual-before.gif');
+    background-size: cover;
+}
+.genesis-visual-after {
+    background-image: url('../images/visual-after.gif');
+    background-size: cover;
+}
+/* Proof Embed inside Genesis Card */
+.proof-embed {
+    margin-top: var(--space-lg);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+.proof-embed figcaption {
+    padding: var(--space-xs) var(--space-md);
+    background-color: var(--clr-bg);
+    font-size: var(--fs-sm);
+    text-align: center;
+    font-style: italic;
+}
+
+/* Feature Card in Arsenal Section */
+.feature-card {
+    background-color: var(--clr-surface);
+    padding: var(--space-lg);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--border-radius);
+}
+.feature-icon {
+    font-size: 2rem;
+    color: var(--clr-accent-primary);
+    margin-bottom: var(--space-md);
+}
+.feature-card h3 {
+    margin-bottom: var(--space-sm);
+}
+
+/* --- Final Polish: Proof Embed Caption --- */
+.proof-embed figcaption {
+    background-color: #000;
+    border-top: 1px solid var(--clr-border);
+}

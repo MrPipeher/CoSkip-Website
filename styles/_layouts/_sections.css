@@ -1,0 +1,291 @@
+/* ============================================= */
+/* LAYOUT: SECTIONS & CONTAINER                  */
+/* ============================================= */
+main {
+    overflow-x: hidden; /* Prevent horizontal scrollbars */
+}
+
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 var(--space-md);
+}
+
+/* Base styles for all sections */
+section {
+    padding: var(--space-section) 0;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: var(--space-sm);
+}
+
+.section-subtitle {
+    text-align: center;
+    font-size: var(--fs-lg);
+    color: var(--clr-text-muted);
+    max-width: 60ch;
+    margin: 0 auto var(--space-xl);
+}
+
+/* Specific Section Styles */
+
+/* --- Hero Section --- */
+.hero-section {
+    position: relative;
+    padding-top: calc(var(--space-section) / 2);
+    text-align: center;
+    overflow: hidden;
+}
+.hero-title {
+    margin-bottom: var(--space-md);
+}
+.hero-subtitle {
+    text-align: center;
+    font-size: var(--fs-lg);
+    color: var(--clr-text-muted);
+    max-width: 60ch;
+    margin: 0 auto var(--space-lg);
+    margin-left: auto;  /* ADD THIS LINE */
+    margin-right: auto; /* ADD THIS LINE */
+}
+.hero-cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-xl);
+}
+.hero-visual {
+    max-width: 900px;
+    margin: 0 auto;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--clr-border);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+}
+.hero-visual video {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}
+
+/* --- Proven-On Section --- */
+.proven-on-section {
+    padding: var(--space-xl) 0;
+    background-color: var(--clr-surface);
+    border-top: 1px solid var(--clr-border);
+    border-bottom: 1px solid var(--clr-border);
+}
+.proven-on-section .section-subtitle {
+    font-family: var(--font-secondary);
+    font-weight: 600;
+    color: var(--clr-text-muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: var(--fs-sm);
+    margin-bottom: var(--space-lg);
+}
+.logos-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-xl);
+    flex-wrap: wrap;
+}
+.logos-container img {
+    height: 40px;
+    opacity: 0.6;
+    transition: opacity var(--transition-fast);
+}
+.logos-container img:hover {
+    opacity: 1;
+}
+
+/* --- Genesis Section --- */
+.genesis-section {
+    background-color: var(--clr-surface);
+}
+.genesis-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-lg);
+}
+
+/* --- Arsenal Section Grid --- */
+.arsenal-section .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-lg);
+}
+
+/* --- Requirements Section --- */
+.requirements-section {
+    background-color: var(--clr-surface);
+    padding: var(--space-xl) 0;
+}
+.req-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-lg);
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.req-card {
+    background-color: var(--clr-bg);
+    padding: var(--space-lg);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--clr-border);
+}
+.req-card h3 {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-md);
+}
+.getting-started-list {
+    list-style: none;
+}
+.getting-started-list li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-sm);
+}
+.getting-started-list span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: var(--clr-accent-primary);
+    color: var(--clr-bg);
+    font-family: var(--font-secondary);
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+/* --- Final Polish: Launch Banner --- */
+#launch-banner {
+    background: linear-gradient(45deg, var(--clr-surface), var(--clr-bg));
+    text-align: center;
+    padding: var(--space-md) var(--space-md);
+    border-bottom: 2px solid var(--clr-accent-primary);
+    box-shadow: 0 4px 25px -5px rgba(0, 246, 255, 0.4); /* The Glow Effect */
+}
+
+#launch-banner h2 {
+    color: var(--clr-accent-primary);
+    text-shadow: 0 0 10px var(--clr-accent-primary);
+}
+
+/* ADD THIS NEW RULE */
+#launch-banner p {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* --- Final Polish: Requirements List --- */
+.requirements-list {
+    list-style: none; /* Already none, but for clarity */
+}
+.requirements-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-sm);
+}
+.requirements-list li::before {
+    content: '\f058'; /* Font Awesome check-circle icon */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: var(--clr-accent-primary);
+    margin-top: 0.15rem; /* Align icon nicely */
+}
+.requirements-list strong {
+    color: var(--clr-text-primary);
+}
+/* --- REVISED: Genesis / Capture Tech Section --- */
+.genesis-section {
+    background-color: var(--clr-bg); /* Match hero background */
+}
+.capture-tech-visual {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.capture-tech-visual img {
+    border-radius: var(--border-radius);
+    border: 1px solid var(--clr-border);
+    box-shadow: var(--shadow-md);
+}
+
+/* --- NEW: Trophy Case Section --- */
+.trophy-section {
+    /* The background is a semi-transparent gradient on top of a code-based SVG pattern */
+    background-color: var(--clr-bg);
+    background-image: 
+        linear-gradient(rgba(10, 13, 20, 0.95), rgba(10, 13, 20, 0.95)),
+        url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23141922' fill-opacity='0.6' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
+    border-top: 1px solid var(--clr-border);
+    border-bottom: 1px solid var(--clr-border);
+}
+.trophy-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+    align-items: center;
+}
+.trophy-visual img {
+    border-radius: var(--border-radius);
+    box-shadow: 0 10px 40px rgba(0, 246, 255, 0.2);
+    border: 1px solid var(--clr-accent-primary);
+}
+.trophy-text p {
+    font-size: var(--fs-lg);
+    color: var(--clr-text-primary);
+    margin-bottom: var(--space-lg);
+}
+/* --- NEW: Auto-Pilot Section --- */
+.auto-pilot-section {
+    background: radial-gradient(ellipse at center, var(--clr-surface) 0%, var(--clr-bg) 70%);
+    border-top: 1px solid var(--clr-border);
+    border-bottom: 1px solid var(--clr-border);
+}
+.auto-pilot-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+    align-items: center;
+}
+.auto-pilot-text p {
+    font-size: var(--fs-lg);
+    margin-bottom: var(--space-lg);
+}
+.auto-pilot-text ul {
+    list-style: none;
+    padding: 0;
+}
+.auto-pilot-text li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-sm);
+    font-size: var(--fs-base);
+}
+.auto-pilot-text .fas {
+    color: var(--clr-accent-primary);
+    font-size: 1.25rem;
+    width: 25px;
+    text-align: center;
+}
+.auto-pilot-icon {
+    text-align: center;
+}
+.auto-pilot-icon .fa-computer-mouse {
+    font-size: 12rem;
+    color: var(--clr-accent-primary);
+    opacity: 0.8;
+    text-shadow: 0 0 30px var(--clr-accent-primary);
+}

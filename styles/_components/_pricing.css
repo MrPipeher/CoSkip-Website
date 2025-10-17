@@ -1,0 +1,148 @@
+/* ============================================= */
+/* COMPONENT: PRICING                            */
+/* ============================================= */
+
+/* The Toggle Switch */
+.pricing-toggle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-xl);
+}
+.toggle-label {
+    font-family: var(--font-secondary);
+    font-weight: 600;
+    color: var(--clr-text-muted);
+    transition: color var(--transition-fast);
+}
+.toggle-label.active {
+    color: var(--clr-accent-primary);
+}
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+.switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--clr-surface);
+    border: 1px solid var(--clr-border);
+    transition: .4s;
+    border-radius: 34px;
+}
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 3px;
+    background-color: var(--clr-text-muted);
+    transition: .4s;
+    border-radius: 50%;
+}
+input:checked + .slider {
+    background-color: var(--clr-accent-primary);
+    box-shadow: var(--shadow-glow-primary);
+}
+input:checked + .slider:before {
+    transform: translateX(26px);
+    background-color: var(--clr-bg);
+}
+
+/* Plan Containers */
+.pricing-plan {
+    display: none;
+}
+.pricing-plan.active {
+    display: block;
+}
+
+/* Subscription Plan Card */
+#subscription-plan .pricing-card {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* Pay-as-you-go Grid */
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--space-lg);
+    align-items: stretch;
+}
+
+/* Generic Pricing Card Styles */
+.pricing-card {
+    background-color: var(--clr-surface);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--border-radius);
+    padding: var(--space-lg);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+.pricing-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+.pricing-card.featured {
+    border-color: var(--clr-accent-primary);
+    box-shadow: var(--shadow-glow-primary);
+    transform: scale(1.02);
+}
+.price {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: var(--space-xs);
+}
+.price-term {
+    font-size: var(--fs-base);
+    color: var(--clr-text-muted);
+}
+.pricing-limit {
+    margin-bottom: var(--space-md);
+}
+.pricing-features {
+    text-align: left;
+    margin: var(--space-md) 0;
+    flex-grow: 1; /* Pushes button to bottom */
+}
+.pricing-features li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-sm);
+}
+.pricing-features .fas {
+    color: var(--clr-accent-primary);
+}
+.pricing-features .fa-star {
+    color: var(--clr-accent-secondary);
+}
+.pricing-card .btn {
+    width: 100%;
+}
+.badge {
+    background-color: var(--clr-accent-secondary);
+    color: var(--clr-bg);
+    padding: 0.2rem 0.8rem;
+    border-radius: 20px;
+    font-size: var(--fs-sm);
+    font-weight: 700;
+    display: inline-block;
+    margin-bottom: var(--space-md);
+}

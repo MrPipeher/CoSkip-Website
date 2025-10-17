@@ -1,0 +1,39 @@
+/* ============================================= */
+/* LAYOUT: FEATURES SHOWCASE                     */
+/* ============================================= */
+.features-showcase-section {
+    background-color: var(--clr-surface);
+}
+
+.feature-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+    align-items: center;
+    margin-bottom: var(--space-section);
+}
+
+.feature-row:last-child {
+    margin-bottom: 0;
+}
+
+/* Alternating Logic */
+.feature-row:nth-child(even) .feature-image {
+    grid-column: 2 / 3;
+    grid-row: 1;
+}
+.feature-row:nth-child(even) .feature-text {
+    grid-column: 1 / 2;
+    grid-row: 1;
+}
+
+.feature-image img {
+    border-radius: var(--border-radius);
+    border: 1px solid var(--clr-border);
+    box-shadow: var(--shadow-md);
+}
+
+.feature-text h3 {
+    margin-bottom: var(--space-sm);
+    color: var(--clr-accent-primary);
+}
