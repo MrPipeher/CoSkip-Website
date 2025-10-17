@@ -100,6 +100,7 @@ body {
     color: var(--clr-text-muted);
     font-family: var(--font-primary);
     font-size: var(--fs-base);
+    overflow-x: hidden; /* THE SILVER BULLET FIX */
 }
 
 a {
@@ -129,7 +130,7 @@ p {
 }
 
 /* ============================================= */
-/* LAYOUT: HEADER & NAVIGATION                   */
+/* LAYOUT: HEADER & NAVIGATION - V3 (DEFINITIVE) */
 /* ============================================= */
 .sticky-header {
     position: sticky;
@@ -138,7 +139,7 @@ p {
 }
 
 .navbar {
-    background-color: rgba(10, 13, 20, 0.8); /* Use var(--clr-bg) with alpha */
+    background-color: rgba(10, 13, 20, 0.8);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--clr-border);
     padding: var(--space-sm) 0;
@@ -159,9 +160,7 @@ p {
     font-weight: 900;
     color: var(--clr-text-primary);
 }
-.logo:hover {
-    color: var(--clr-text-primary); /* No color change on hover */
-}
+.logo:hover { color: var(--clr-text-primary); }
 
 .nav-links {
     display: flex;
@@ -185,19 +184,18 @@ p {
     background-color: var(--clr-accent-primary);
     transition: width var(--transition-fast);
 }
-.nav-links a:hover {
-    color: var(--clr-text-primary);
-}
-.nav-links a:hover::after {
-    width: 100%;
-}
+.nav-links a:hover { color: var(--clr-text-primary); }
+.nav-links a:hover::after { width: 100%; }
 
 .nav-link-discord i {
     margin-right: var(--space-xs);
     vertical-align: middle;
 }
 
-/* Mobile Navigation */
+/* ============================================= */
+/* RESPONSIVE: MOBILE NAVIGATION (DEFINITIVE FIX) */
+/* ============================================= */
+
 .mobile-nav-toggle {
     display: none; /* Hidden on desktop */
     background: none;
@@ -205,10 +203,55 @@ p {
     color: var(--clr-text-primary);
     font-size: 1.75rem;
     cursor: pointer;
-    z-index: 1100;
+    z-index: 1100; 
 }
-.mobile-nav-toggle .icon-close {
-    display: none;
+.mobile-nav-toggle .icon-close { display: none; }
+
+@media (max-width: 992px) {
+    .nav-links {
+        display: none; /* Hide desktop links */
+    }
+    .nav-cta {
+        display: none; /* Hide desktop CTA button */
+    }
+
+    .mobile-nav-toggle {
+        display: block; /* Show the hamburger icon */
+    }
+
+    #nav-links-menu {
+        display: flex;
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 70%; /* Or adjust as needed */
+        
+        /* THE SILVER BULLET FIX */
+        height: 100vh; /* Explicitly set height to 100% of the viewport height */
+        
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 8rem var(--space-lg) var(--space-lg);
+        background-color: var(--clr-surface);
+        border-left: 1px solid var(--clr-border);
+        transform: translateX(100%);
+        transition: transform 0.3s ease-out;
+        z-index: 1050;
+    }
+
+    #nav-links-menu.active {
+        transform: translateX(0);
+    }
+
+    #nav-links-menu a {
+        width: 100%;
+        padding: var(--space-sm) 0;
+        font-size: var(--fs-lg);
+    }
+    #nav-links-menu a::after { display: none; }
+
+    body.nav-open .mobile-nav-toggle .icon-hamburger { display: none; }
+    body.nav-open .mobile-nav-toggle .icon-close { display: block; }
 }
 
 /* ============================================= */
