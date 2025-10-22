@@ -79,6 +79,91 @@
     <!-- Stripe.js Payment Library -->
     <script src="https://js.stripe.com/v3/" defer></script>
     <script src="script.js" defer></script>
+
+    <style>
+        /* ================================== */
+        /* == HERO SECTION OS WARNING (NEW PILL STYLE) == */
+        /* ================================== */
+        .hero-os-warning {
+            display: flex;
+            flex-wrap: wrap; /* Allows tags to stack on small screens */
+            justify-content: center;
+            align-items: center;
+            gap: 15px; /* Spacing between the pills */
+            /* New margin: 0 top, auto sides, 25px bottom */
+            margin: 0 auto 25px auto; 
+        }
+
+        /* Base style for each pill/tag */
+        .hero-os-warning span {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 50px; /* This creates the pill shape */
+            border: 1px solid transparent;
+        }
+        
+        /* Green pill for supported OS */
+        .hero-os-warning .supported {
+            color: #2ecc71;
+            background-color: rgba(46, 204, 113, 0.1);
+            border-color: rgba(46, 204, 113, 0.3);
+        }
+
+        /* Red pill for unsupported OS */
+        .hero-os-warning .unsupported {
+            color: #e74c3c;
+            background-color: rgba(231, 76, 60, 0.1);
+            border-color: rgba(231, 76, 60, 0.3);
+        }
+
+
+        /* ================================== */
+        /* == PRICING SECTION NOTICE BOX (SLIGHTLY IMPROVED) == */
+        /* ================================== */
+        .os-compatibility-notice {
+            background-color: rgba(0, 102, 255, 0.1); /* Your preferred blue */
+            border: 1px solid rgba(0, 132, 255, 0.4);
+            border-radius: 8px;
+            padding: 20px 25px; /* Increased horizontal padding for more breathing room */
+            margin: 0 auto 40px auto;
+            max-width: 700px;
+            text-align: center;
+        }
+        .os-compatibility-notice p {
+            margin: 8px 0;
+            font-size: 1.1rem;
+            font-family: 'Poppins', sans-serif;
+        }
+        .os-compatibility-notice i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        /* Color coding for Windows (SUPPORTED) */
+        .os-compatibility-notice .windows-supported {
+            color: #2ecc71; /* Green */
+        }
+        /* Color coding for Mac (NOT SUPPORTED) */
+        .os-compatibility-notice .mac-unsupported {
+            color: #e74c3c; /* Red */
+            font-weight: 700;
+        }
+
+        /* ================================== */
+        /* == SYSTEM REQUIREMENTS LIST (PERFECT - UNCHANGED) == */
+        /* ================================== */
+        .requirements-list .mac-notice {
+            color: #e74c3c; /* A stronger, more assertive red */
+            font-weight: bold;
+        }
+        .requirements-list .mac-notice i {
+            color: #e74c3c;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -121,6 +206,10 @@
         <section id="hero" class="hero-section">
             <div class="hero-glow-container"></div>
             <div class="container">
+                <div class="hero-os-warning">
+                    <span class="supported"><i class="fab fa-windows"></i> Windows 11 Supported</span>
+                    <span class="unsupported"><i class="fab fa-apple"></i> macOS Not Supported</span>
+                </div>
                 <h1 class="hero-title">Conquer Any Platform</h1>
                 <p class="hero-subtitle">The world's most reliable AI overlay, re-engineered with revolutionary capture technology for total confidence and control.</p>
                 <div class="hero-cta-buttons">
@@ -321,6 +410,10 @@
             <div class="container">
                 <h2 class="section-title">Join The Mission. Shape The Future.</h2>
                 <p class="section-subtitle">Become a Founding Member to help make subscriptions permanent and lock in your price forever.</p>
+                <div class="os-compatibility-notice">
+                    <p class="windows-supported"><i class="fab fa-windows"></i> <strong>Windows 11 Supported</strong></p>
+                    <p class="mac-unsupported"><i class="fab fa-apple"></i> <strong>macOS Not Supported</strong></p>
+                </div>
                 <div class="pricing-toggle">
                     <span class="toggle-label">Pay as You Go</span>
                     <label class="switch">
@@ -403,7 +496,8 @@
                     <div class="req-card">
                         <h3><i class="fas fa-cogs"></i> System Requirements</h3>
                         <ul class="requirements-list">
-                            <li><strong>OS:</strong> Windows 11 (Latest Window's Build)</li>
+                            <li><strong><i class="fab fa-windows"></i> OS:</strong> Windows 11 Only (Latest Build)</li>
+                            <li class="mac-notice"><strong><i class="fab fa-apple"></i> macOS:</strong> Not Currently Supported</li>
                             <li><strong>Privileges:</strong> Administrator rights</li>
                             <li><strong>Network:</strong> Stable internet connection</li>
                         </ul>
@@ -451,6 +545,15 @@
                         <div class="faq-answer">
                             <p><strong>Our goal is your success.</strong> Co-Skip is engineered to work flawlessly on the vast majority of modern Windows 11 systems. However, due to millions of possible hardware and software configurations, rare incompatibilities can occur.</p>
                             <p>If you experience a persistent issue that our direct founder-led support cannot resolve, we have a simple <strong>"Fair Play" policy: we will provide a full, no-hassle refund.</strong> We're confident in our product, and we stand by this commitment to our customers.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <h3>Is there a version for Mac or macOS?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Currently, Co-Skip is exclusively built and optimized for Windows 11 to ensure maximum performance and reliability with our unique capture technology. We understand there's a demand for a Mac version, and it's on our long-term roadmap. Please check back for future announcements!</p>
                         </div>
                     </div>
                 </div>
