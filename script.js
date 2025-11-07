@@ -4,6 +4,57 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+    // --- NEW MODULE: OS DETECTION & PLATFORM LOCK ---
+    // This module runs first to prevent macOS users from being able to click purchase buttons.
+    try {
+        const isMacUser = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+
+        if (isMacUser) {
+            console.log('macOS detected. Disabling all purchase options.');
+
+            // --- TARGETED ELEMENTS BASED ON YOUR HTML ---
+            const subscribeBtn = document.getElementById('subscribe-now-btn');
+            const purchaseButtons = document.querySelectorAll('.purchase-btn');
+            const navCtaButton = document.querySelector('.nav-cta'); // Your "Become a Founder" button
+            // --- END TARGETED ELEMENTS ---
+
+            const allButtonsToDisable = [...purchaseButtons];
+            if (subscribeBtn) allButtonsToDisable.push(subscribeBtn);
+            if (navCtaButton) allButtonsToDisable.push(navCtaButton);
+
+            // Loop through each button and disable it with a clear message
+            allButtonsToDisable.forEach(button => {
+                if (button) {
+                    button.disabled = true;
+                    button.style.pointerEvents = 'none';
+                    button.style.opacity = '0.5';
+                    button.style.cursor = 'not-allowed';
+                    
+                    // A smarter way to change the text without breaking layout too much
+                    if (button.classList.contains('nav-cta') || button.id === 'subscribe-now-btn') {
+                        button.textContent = 'macOS Not Supported';
+                    } else {
+                        // For smaller buttons like "Get X-Day Key"
+                        button.textContent = 'Not Supported';
+                    }
+
+                    // Also disable the link behavior for the nav-cta button
+                    if (button.tagName === 'A') {
+                        button.href = 'javascript:void(0);';
+                    }
+                }
+            });
+
+            // Show a highly visible, dedicated warning banner if one exists
+            const macWarningBanner = document.getElementById('mac-warning-banner');
+            if (macWarningBanner) {
+                macWarningBanner.style.display = 'block';
+            }
+        }
+    } catch (error) {
+        console.error('Error during OS detection:', error);
+    }
+
     // --- MODULE 1: ANALYTICS & TRACKING ---
     // Captures Reddit Click ID from the URL and stores it for the session.
     try {
