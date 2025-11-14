@@ -167,7 +167,7 @@
 </head>
 
 <body>
-    <div id="launch-banner">
+    <!-- <div id="launch-banner">
         <div class="container">
             <h2>🚀 THE FOUNDER'S SEASON IS LIVE! 🚀</h2>
             <p>Join the 30-day mission to make our new subscription model permanent and lock in your price forever.</p>
@@ -178,7 +178,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <header class="site-header sticky-header">
         <nav class="navbar">
@@ -193,7 +193,7 @@
                         <i class="fab fa-discord"></i> Community
                     </a>
                 </div>
-                <a href="#pricing" class="btn btn-primary nav-cta">Become a Founder</a>
+                <a href="#pricing" class="btn btn-primary nav-cta">Buy Now</a>
                 <button class="mobile-nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
                     <i class="fas fa-bars icon-hamburger"></i>
                     <i class="fas fa-times icon-close"></i>
@@ -214,7 +214,7 @@
                 <p class="hero-subtitle">The world's most reliable AI overlay, re-engineered with revolutionary capture technology for total confidence and control.</p>
                 <div class="hero-cta-buttons">
                     <a href="#pricing" class="btn btn-primary btn-large">
-                        <i class="fas fa-crown"></i> Become a Founder
+                        <i class="fas fa-crown"></i> Buy Now
                     </a>
                     <a href="#capture-tech" class="btn btn-secondary btn-large">
                         See The Tech <i class="fas fa-arrow-down"></i>
@@ -409,20 +409,20 @@
         <section id="pricing" class="pricing-section">
             <div class="container">
                 <h2 class="section-title">Join The Mission. Shape The Future.</h2>
-                <p class="section-subtitle">Become a Founding Member to help make subscriptions permanent and lock in your price forever.</p>
+                <p class="section-subtitle">Become a Member of our community!</p>
                 <div class="os-compatibility-notice">
                     <p class="windows-supported"><i class="fab fa-windows"></i> <strong>Windows 11 Supported</strong></p>
                     <p class="mac-unsupported"><i class="fab fa-apple"></i> <strong>macOS Not Supported</strong></p>
                 </div>
-                <div class="pricing-toggle">
+                <!-- <div class="pricing-toggle">
                     <span class="toggle-label">Pay as You Go</span>
                     <label class="switch">
                         <input type="checkbox" id="pricing-toggle-switch" checked>
                         <span class="slider"></span>
                     </label>
                     <span class="toggle-label active">Monthly Subscription (new)</span>
-                </div>
-                <div id="subscription-plan" class="pricing-plan active">
+                </div> -->
+                <!-- <div id="subscription-plan" class="pricing-plan active">
                     <div class="pricing-card featured founder">
                         <div class="badge">Best Value</div>
                         <h3>Founder's Circle Subscription</h3>
@@ -437,41 +437,33 @@
                         </ul>
                         <button id="subscribe-now-btn" class="btn btn-primary btn-large">Subscribe Now</button>
                     </div>
-                </div>
-                <div id="pay-as-you-go-plans" class="pricing-plan">
+                </div> -->
+                <div id="pay-as-you-go-plans" class="pricing-plan active">
                     <div class="pricing-grid">
                         <div class="pricing-card">
-                            <h3>1 Day Access Key</h3>
-                            <div class="price">$50</div>
-                            <p class="pricing-limit">Up to 50 Questions</p>
-                            <ul class="pricing-features">
-                                <li><i class="fas fa-check"></i> 1 Screenshots per Question</li>
-                                <li><i class="fas fa-check"></i> Standard Support</li>
-                                <li><i class="fas fa-check"></i> Standard Features</li>
-                            </ul>
-                            <button class="btn btn-secondary purchase-btn" data-product="Key-1Day-Elite">Get 1-Day Key</button>
-                        </div>
-                        <div class="pricing-card">
                             <h3>7 Day Access Key</h3>
-                            <div class="price">$100</div>
-                            <p class="pricing-limit">Up to 150 Questions</p>
-                            <ul class="pricing-features">
-                                <li><i class="fas fa-check"></i> 3 Screenshots per Question</li>
-                                <li><i class="fas fa-check"></i> Standard Support</li>
-                                <li><i class="fas fa-check"></i> Standard Features</li>
-                            </ul>
-                            <button class="btn btn-secondary purchase-btn" data-product="Key-7Day-Elite">Get 7-Day Key</button>
-                        </div>
-                        <div class="pricing-card">
-                            <h3>30 Day Access Key</h3>
-                            <div class="price">$200</div>
+                            <div class="price">$125</div>
                             <p class="pricing-limit">Unlimited Questions</p>
                             <ul class="pricing-features">
                                 <li><i class="fas fa-check"></i> 5 Screenshots per Question</li>
-                                <li><i class="fas fa-check"></i> Priority Support</li>
-                                <li><i class="fas fa-star"></i> Access to Pro Features</li>
+                                <li><i class="fas fa-star"></i> Access to ALL Features</li>
+                                <li><i class="fas fa-star"></i> Priority Support</li>
                             </ul>
-                            <button class="btn btn-secondary purchase-btn" data-product="Key-30Day-Elite">Get 30-Day Key</button>
+                            <button class="btn btn-secondary purchase-btn" data-product="Key-7Day-Elite">Get 7-Day Key</button>
+                        </div>
+                        <div class="pricing-card featured founder">
+                            <div class="badge">Best Value</div>
+                            <h3>Monthly Subscription</h3>
+                            <div class="price">$200<span class="price-term">/month</span></div>
+                            <p class="pricing-limit">Includes All Features & Unlimited Questions</p>
+                            <ul class="pricing-features">
+                                <li><i class="fas fa-rocket"></i> Access to All Current & Future Features</li>
+                                <li><i class="fas fa-rocket"></i> Feature Request Priority</li>
+                                <li><i class="fas fa-infinity"></i> Unlimited AI Questions</li>
+                                <li><i class="fas fa-user-shield"></i> Direct Founder Support</li>
+                                <li><i class="fas fa-times-circle"></i> Cancel Your Plan Anytime</li>
+                            </ul>
+                            <button id="subscribe-now-btn" class="btn btn-primary btn-large">Subscribe Now</button>
                         </div>
                         <div class="pricing-card">
                             <h3>Yearly Access Key</h3>
@@ -479,8 +471,8 @@
                             <p class="pricing-limit">Unlimited Questions</p>
                             <ul class="pricing-features">
                                 <li><i class="fas fa-check"></i> 5 Screenshots per Question</li>
+                                <li><i class="fas fa-star"></i> Access to ALL Features</li>
                                 <li><i class="fas fa-star"></i> Priority Support</li>
-                                <li><i class="fas fa-star"></i> Access to Pro Features</li>
                                 <li><i class="fas fa-star"></i> Feature Request Priority</li>
                             </ul>
                             <button class="btn btn-secondary purchase-btn" data-product="Key-30Day-Elite">Get 30-Day Key</button>
