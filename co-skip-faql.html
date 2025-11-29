@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Co-Skip FAQ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, #1d4ed8 0, transparent 50%),
+        radial-gradient(circle at bottom right, #7c3aed 0, #020617 60%);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
+      color: #e5e7eb;
+      overflow-x: hidden;
+    }
+
+    #root {
+      min-height: 100vh;
+    }
+
+    .app-shell {
+      position: relative;
+      min-height: 100vh;
+      padding: 3rem 1.5rem 4rem;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    @media (min-width: 768px) {
+      .app-shell {
+        padding: 4rem 2.5rem 5rem;
+      }
+    }
+
+    .cursor-gradient {
+      position: fixed;
+      width: 420px;
+      height: 420px;
+      border-radius: 9999px;
+      pointer-events: none;
+      background: radial-gradient(circle at center,
+        rgba(56, 189, 248, 0.45),
+        rgba(56, 189, 248, 0.03) 55%,
+        transparent 70%);
+      filter: blur(12px);
+      mix-blend-mode: screen;
+      transform: translate(-50%, -50%);
+      opacity: 0.9;
+      transition:
+        transform 140ms ease-out,
+        opacity 200ms ease-out;
+      z-index: 0;
+    }
+
+    .cursor-gradient.hidden {
+      opacity: 0;
+    }
+
+    .glass-wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 1040px;
+      width: 100%;
+    }
+
+    .glass-panel {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.82), rgba(15, 23, 42, 0.94));
+      border-radius: 1.5rem;
+      padding: 2.25rem 1.75rem 2.5rem;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      box-shadow:
+        0 30px 80px rgba(15, 23, 42, 0.9),
+        0 0 0 1px rgba(15, 23, 42, 0.9);
+      backdrop-filter: blur(26px) saturate(160%);
+      -webkit-backdrop-filter: blur(26px) saturate(160%);
+    }
+
+    @media (min-width: 768px) {
+      .glass-panel {
+        padding: 2.75rem 2.5rem 3rem;
+      }
+    }
+
+    .header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.7), rgba(59, 130, 246, 0.1));
+      border: 1px solid rgba(129, 140, 248, 0.5);
+      color: #bfdbfe;
+      margin-bottom: 1.25rem;
+    }
+
+    .header-pill-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 12px rgba(34, 197, 94, 0.9);
+    }
+
+    .title-row {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 1.75rem;
+    }
+
+    @media (min-width: 768px) {
+      .title-row {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 1.25rem;
+      }
+    }
+
+    .title-main {
+      font-size: 1.85rem;
+      line-height: 1.2;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: #f9fafb;
+    }
+
+    @media (min-width: 768px) {
+      .title-main {
+        font-size: 2.15rem;
+      }
+    }
+
+    .title-accent {
+      background: linear-gradient(120deg, #60a5fa, #a855f7, #f97316);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .title-sub {
+      max-width: 420px;
+      font-size: 0.95rem;
+      color: #9ca3af;
+    }
+
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      font-size: 0.8rem;
+      color: #9ca3af;
+      margin-bottom: 1.75rem;
+    }
+
+    .meta-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: radial-gradient(circle at top left, rgba(148, 163, 184, 0.35), rgba(15, 23, 42, 0.9));
+    }
+
+    .meta-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: #60a5fa;
+    }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    @media (min-width: 900px) {
+      .faq-grid {
+        grid-template-columns: minmax(0, 2fr) minmax(260px, 1fr);
+        gap: 1.5rem;
+      }
+    }
+
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .sidebar-card {
+      position: sticky;
+      top: 1.75rem;
+      align-self: flex-start;
+      padding: 1.1rem 1rem 1.25rem;
+      border-radius: 1.25rem;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      background: linear-gradient(150deg, rgba(15, 23, 42, 0.96), rgba(24, 35, 58, 0.96));
+      box-shadow: 0 22px 55px rgba(15, 23, 42, 0.85);
+    }
+
+    .sidebar-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #e5e7eb;
+      margin-bottom: 0.5rem;
+    }
+
+    .sidebar-text {
+      font-size: 0.8rem;
+      color: #9ca3af;
+      margin-bottom: 0.75rem;
+    }
+
+    .sidebar-bullets {
+      list-style: none;
+      padding-left: 0;
+      margin: 0 0 0.5rem;
+      font-size: 0.8rem;
+      color: #9ca3af;
+    }
+
+    .sidebar-bullets li {
+      display: flex;
+      gap: 0.35rem;
+      align-items: flex-start;
+      margin-bottom: 0.25rem;
+    }
+
+    .sidebar-bullets li::before {
+      content: "•";
+      color: #60a5fa;
+      margin-top: 0.05rem;
+    }
+
+    .sidebar-footnote {
+      font-size: 0.75rem;
+      color: #6b7280;
+      margin-top: 0.35rem;
+    }
+
+    .faq-item {
+      border-radius: 1rem;
+      padding: 0.85rem 1rem;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: radial-gradient(circle at top left, rgba(30, 64, 175, 0.45), rgba(15, 23, 42, 0.96));
+      box-shadow:
+        0 18px 35px rgba(15, 23, 42, 0.85),
+        inset 0 0 0 1px rgba(15, 23, 42, 0.9);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      transition:
+        transform 200ms cubic-bezier(0.23, 0.85, 0.32, 1),
+        box-shadow 200ms cubic-bezier(0.23, 0.85, 0.32, 1),
+        border-color 200ms ease-out,
+        background 220ms ease-out;
+    }
+
+    .faq-item:hover {
+      transform: translateY(-2px);
+      box-shadow:
+        0 24px 55px rgba(15, 23, 42, 0.95),
+        0 0 0 1px rgba(59, 130, 246, 0.35);
+      border-color: rgba(96, 165, 250, 0.7);
+      background: radial-gradient(circle at top left, rgba(59, 130, 246, 0.5), rgba(15, 23, 42, 0.98));
+    }
+
+    .faq-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      gap: 0.75rem;
+    }
+
+    .faq-title-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+      flex: 1;
+    }
+
+    .faq-kicker {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #9ca3af;
+    }
+
+    .faq-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #f9fafb;
+    }
+
+    .faq-chevron {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      color: #e5e7eb;
+      flex-shrink: 0;
+      background: radial-gradient(circle at top left, rgba(148, 163, 184, 0.28), rgba(15, 23, 42, 0.98));
+      transition:
+        transform 200ms ease-out,
+        background 200ms ease-out,
+        border-color 200ms ease-out;
+    }
+
+    .faq-item.open .faq-chevron {
+      transform: rotate(90deg);
+      background: radial-gradient(circle at top left, rgba(96, 165, 250, 0.35), rgba(15, 23, 42, 0.98));
+      border-color: rgba(96, 165, 250, 0.8);
+    }
+
+    .faq-body {
+      overflow: hidden;
+      transition:
+        max-height 260ms ease-out,
+        opacity 220ms ease-out,
+        transform 220ms ease-out;
+    }
+
+    .faq-body-inner {
+      padding-top: 0.65rem;
+      font-size: 0.85rem;
+      color: #d1d5db;
+    }
+
+    .faq-body-inner p {
+      margin: 0.1rem 0 0.4rem;
+    }
+
+    .faq-body-inner ul,
+    .faq-body-inner ol {
+      margin: 0.1rem 0 0.5rem 1.1rem;
+      padding-left: 0.35rem;
+    }
+
+    .faq-body-inner li {
+      margin-bottom: 0.2rem;
+    }
+
+    .faq-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.1rem 0.5rem;
+      border-radius: 999px;
+      font-size: 0.65rem;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      color: #9ca3af;
+      margin-bottom: 0.3rem;
+    }
+
+    .faq-tag-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 999px;
+      background: #60a5fa;
+    }
+
+    .warning-box {
+      border-radius: 0.9rem;
+      padding: 0.75rem 0.8rem;
+      border: 1px solid rgba(248, 113, 113, 0.65);
+      background: radial-gradient(circle at top left, rgba(248, 113, 113, 0.24), rgba(30, 64, 175, 0.9));
+      color: #fee2e2;
+      font-size: 0.8rem;
+      margin: 0.45rem 0;
+    }
+
+    .kbd {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.15rem 0.45rem;
+      border-radius: 0.4rem;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: rgba(15, 23, 42, 0.85);
+      box-shadow: 0 2px 0 rgba(15, 23, 42, 1);
+      font-size: 0.75em;
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 0.8em;
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: 999px;
+      padding: 0.08rem 0.45rem;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+    }
+
+    .footer-note {
+      margin-top: 1.75rem;
+      font-size: 0.78rem;
+      color: #6b7280;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel">
+    const { useState, useEffect, useRef } = React;
+
+    const faqData = [
+      {
+        id: "overview",
+        kicker: "Part 0",
+        title: "What is Co-Skip and what does this guide cover?",
+        tag: "Overview",
+        content: (
+          <>
+            <p>
+              Co-Skip lets you capture your screen, send it to an AI, and get fast, structured answers.
+              This guide walks you through:
+            </p>
+            <ul>
+              <li>Core workflows for capturing and sending questions</li>
+              <li>Window and response controls</li>
+              <li>Settings (General, Appearance, AI, Advanced AI, Hotkeys)</li>
+              <li>The in-app Command Line for quick, stealthy changes</li>
+            </ul>
+            <p>
+              Start with how to get an answer, then layer on customization and advanced control as you go.
+            </p>
+          </>
+        )
+      },
+      {
+        id: "workflows-main",
+        kicker: "Part 1.2",
+        title: "What are the two main ways to use Co-Skip?",
+        tag: "Core workflows",
+        content: (
+          <>
+            <p>There are two primary workflows, each for a different situation:</p>
+            <ol>
+              <li>
+                <strong>Standard Workflow (Power &amp; Flexibility)</strong> – Combine up to five screenshots
+                and optional text into one rich question.
+              </li>
+              <li>
+                <strong>Stealth Workflow (Speed &amp; Discretion)</strong> – A one-shot, right-click hold for
+                fast answers with minimal visible interaction.
+              </li>
+            </ol>
+          </>
+        )
+      },
+      {
+        id: "workflow-standard",
+        kicker: "Part 1.2",
+        title: "How do I use the Standard Workflow?",
+        tag: "Standard workflow",
+        content: (
+          <>
+            <p>
+              The Standard Workflow is best for complex questions where you want multiple screenshots and optional text.
+            </p>
+            <p>
+              <strong>Step 1: Capture –</strong> <span className="kbd">Ctrl</span> + <span className="kbd">J</span>
+            </p>
+            <ul>
+              <li>Take a full-screen capture.</li>
+              <li>Press up to <strong>5 times</strong> to stack screenshots into a single question.</li>
+            </ul>
+            <p>
+              <strong>Step 2: Add Text (optional) –</strong>{" "}
+              <span className="kbd">Ctrl</span> + <span className="kbd">L</span>
+            </p>
+            <ul>
+              <li>Opens the input field so you can add instructions or a specific question.</li>
+              <li>
+                Examples: <em>"Summarize the content in the last screenshot."</em> or{" "}
+                <em>"Based on the first image, solve for x."</em>
+              </li>
+            </ul>
+            <p>
+              <strong>Step 3: Send –</strong> <span className="kbd">Ctrl</span> + <span className="kbd">M</span>
+            </p>
+            <ul>
+              <li>Sends all screenshots plus text to the AI.</li>
+              <li>The answer appears in the Co-Skip window.</li>
+            </ul>
+          </>
+        )
+      },
+      {
+        id: "workflow-stealth",
+        kicker: "Part 1.2",
+        title: "How do I use the Stealth Workflow?",
+        tag: "Stealth workflow",
+        content: (
+          <>
+            <p>
+              The Stealth Workflow is designed for quick answers while avoiding obvious keyboard usage.
+            </p>
+            <ul>
+              <li>
+                <strong>How to trigger:</strong> Hold the <strong>right mouse button</strong> for about 5 seconds, then release.
+              </li>
+              <li>
+                <strong>What happens:</strong> Co-Skip takes a full-screen screenshot and sends it directly to the AI.
+              </li>
+              <li>
+                <strong>Limitation:</strong> It&apos;s a one-shot capture — no text input and no combining multiple screenshots.
+              </li>
+            </ul>
+          </>
+        )
+      },
+      {
+        id: "window-controls",
+        kicker: "Part 1.3",
+        title: "How do I manage the Co-Skip window and scroll responses?",
+        tag: "Window & responses",
+        content: (
+          <>
+            <p>
+              Use these controls to quickly show/hide Co-Skip and navigate long answers.
+            </p>
+            <ul>
+              <li>
+                <strong>Toggle Visibility:</strong>{" "}
+                <span className="kbd">Ctrl</span> + <span className="kbd">T</span> – hide or show the Co-Skip window.
+              </li>
+              <li>
+                <strong>Scroll Response:</strong>{" "}
+                <span className="kbd">Ctrl</span> + mouse wheel or{" "}
+                <span className="kbd">Ctrl</span> + <span className="kbd">↑</span>/<span className="kbd">↓</span>{" "}
+                arrow keys.
+              </li>
+              <li>
+                <strong>Flip Inverted Image:</strong>{" "}
+                <span className="kbd">Ctrl</span> + <span className="kbd">Shift</span> + <span className="kbd">F</span>{" "}
+                – crucial for upside-down LaTeX/math images.
+              </li>
+              <li>
+                <strong>Exit Application:</strong>{" "}
+                <span className="kbd">Ctrl</span> + <span className="kbd">Q</span> – cleanly closes Co-Skip.
+              </li>
+            </ul>
+          </>
+        )
+      },
+      {
+        id: "settings-access",
+        kicker: "Part 1.3",
+        title: "How do I open Settings, and what should I avoid during exams?",
+        tag: "Settings access",
+        content: (
+          <>
+            <p>
+              Open Settings with{" "}
+              <span className="kbd">Ctrl</span> + <span className="kbd">Shift</span> + <span className="kbd">S</span>.
+              This gives you full control over themes, AI behavior, hotkeys, and more.
+            </p>
+            <div className="warning-box">
+              ⚠️ <strong>CRITICAL WARNING:</strong> Do <strong>not</strong> open the main Settings window during a live
+              exam or in a monitored environment. Use it only for pre-setup.
+            </div>
+            <p>
+              During an exam, use the Command Line instead for safe, in-session changes (covered later in this guide).
+            </p>
+          </>
+        )
+      },
+      {
+        id: "settings-general",
+        kicker: "Part 2.1",
+        title: "What does the 'General' tab in Settings control?",
+        tag: "Settings – General",
+        content: (
+          <>
+            <p>
+              The <strong>General</strong> tab focuses on Study Guides and logging behavior.
+            </p>
+            <p><strong>Study Guides</strong></p>
+            <ul>
+              <li>
+                <strong>Save Questions for Review:</strong> When enabled, every question (screenshot) and AI answer is
+                saved into a neatly formatted HTML file.
+              </li>
+              <li>
+                <strong>Location:</strong> Shows where Study Guides are stored. Each session is in its own folder (e.g.{" "}
+                <code>Session_1</code>, <code>Session_2</code>).
+              </li>
+            </ul>
+            <p>
+              To review, copy the path from the Location field, paste it into File Explorer, and open the session folders.
+            </p>
+            <p><strong>Debugging &amp; Logs</strong></p>
+            <ul>
+              <li>
+                <strong>Debug Log Location:</strong> Path to the app&apos;s technical logs, used mainly when troubleshooting
+                serious issues (e.g. to include in a support ticket).
+              </li>
+              <li>
+                <strong>Clear Window Log:</strong> Wipes all text and images currently shown in the main Co-Skip window
+                without restarting the app.
+              </li>
+            </ul>
+            <p><strong>Pro tip:</strong> After any changes in Settings, always click <strong>Save and Apply</strong>.</p>
+          </>
+        )
+      },
+      {
+        id: "settings-appearance",
+        kicker: "Part 2.2",
+        title: "How do I adjust Co-Skip's size, transparency, and stealth look?",
+        tag: "Settings – Appearance",
+        content: (
+          <>
+            <p>
+              The <strong>Appearance</strong> tab handles sizing, scaling, and visual stealth modes.
+            </p>
+            <p><strong>Sizing &amp; Scaling</strong></p>
+            <ul>
+              <li><strong>Font Size:</strong> Controls text size inside the window.</li>
+              <li>
+                <strong>Window Transparency:</strong> Lower values = more transparent, higher values = more solid.
+              </li>
+            </ul>
+            <p>
+              <strong>Resize Tip:</strong> With Settings open, drag the corners of the main Co-Skip window to resize.
+            </p>
+            <p><strong>Stealth Mode</strong></p>
+            <ul>
+              <li>
+                <strong>Enable Borderless Mode:</strong> Removes the default title bar and borders for a cleaner, more
+                subtle window.
+              </li>
+            </ul>
+            <p><strong>👻 Ghost Mode – the stealth theme</strong></p>
+            <ul>
+              <li>
+                Select <strong>Ghost</strong> under Base Theme to make the window background and borders disappear
+                completely. Only AI text remains, blending into whatever app/webpage you&apos;re viewing.
+              </li>
+              <li>
+                All status messages (like &quot;Processing...&quot;) are hidden for a cleaner view.
+              </li>
+              <li>
+                Ghost Mode is <strong>session-only</strong>. On restart, Co-Skip returns to a visible theme so you don&apos;t
+                lose the window.
+              </li>
+            </ul>
+            <p>
+              <strong>Power move:</strong> Combine Ghost Mode with <strong>Direct Answers</strong> (AI Settings) so only the
+              final answer appears on-screen.
+            </p>
+          </>
+        )
+      },
+      {
+        id: "settings-ai",
+        kicker: "Part 2.3",
+        title: "How do the 'AI Settings' change Co-Skip's responses?",
+        tag: "Settings – AI",
+        content: (
+          <>
+            <p>
+              The <strong>AI Settings</strong> tab controls which model you use and how it responds.
+            </p>
+            <p><strong>AI Model</strong> (active only when AI Freedom Mode is OFF)</p>
+            <ul>
+              <li>
+                <strong>Flash 2.5 (Faster, recommended):</strong> Default model optimized for speed; ideal for most usage.
+              </li>
+              <li>
+                <strong>Pro 2.5 (More accurate, slower):</strong> More powerful model that can give deeper, more nuanced answers for complex tasks.
+              </li>
+            </ul>
+            <p><strong>AI Behavior – Direct Answers</strong></p>
+            <ul>
+              <li>
+                <strong>Direct Answers enabled:</strong> Co-Skip returns only the final answer (e.g. &quot;25&quot; for
+                &quot;5 × 5&quot;). Best for speed and stealth, and recommended with Ghost Mode.
+              </li>
+              <li>
+                <strong>Direct Answers disabled:</strong> Co-Skip adds more explanation and reasoning. Good for learning,
+                but can generate long answers and occasionally hit rendering limits for complex math.
+              </li>
+            </ul>
+            <p><strong>Test Mode (subject-matter expertise)</strong></p>
+            <ul>
+              <li>
+                Tunes the AI for your subject by adjusting its internal instructions (Math/Science, English/History, Coding,
+                etc.).
+              </li>
+              <li>
+                Choose the mode that matches your test or topic (e.g. Math, Coding, Nursing, Law, Real Estate).
+              </li>
+              <li>
+                You can also switch modes quickly via the Command Line.
+              </li>
+            </ul>
+          </>
+        )
+      },
+      {
+        id: "advanced-intro",
+        kicker: "Part 2.4a",
+        title: "What is AI Freedom Mode and who is it for?",
+        tag: "Advanced AI",
+        content: (
+          <>
+            <p>
+              <strong>AI Freedom Mode</strong> (Bring Your Own Key / BYOK) lets you connect Co-Skip to your own AI provider
+              instead of the built-in models.
+            </p>
+            <p><strong>Who should use this?</strong></p>
+            <ul>
+              <li>Advanced users comfortable with API keys and billing.</li>
+              <li>People who want to choose their own models and providers (Google, OpenAI, Anthropic, etc.).</li>
+            </ul>
+            <div className="warning-box">
+              ⚠️ <strong>Important:</strong>
+              <ul>
+                <li>
+                  You pay the provider directly for usage. Co-Skip only passes through your requests securely.
+                </li>
+                <li>
+                  You must follow the provider&apos;s Terms of Service.
+                </li>
+                <li>
+                  Only text responses are supported (no direct image-generation models). For math, your system prompt should
+                  request LaTeX, which Co-Skip then renders.
+                </li>
+              </ul>
+            </div>
+          </>
+        )
+      },
+      {
+        id: "advanced-keys",
+        kicker: "Part 2.4b",
+        title: "How do I get an API key for AI Freedom Mode?",
+        tag: "Advanced AI – Keys",
+        content: (
+          <>
+            <p>
+              To use AI Freedom Mode, you need an API key from a supported provider. Think of it like a password connecting
+              Co-Skip to your personal AI account.
+            </p>
+            <p><strong>Google Gemini</strong></p>
+            <ol>
+              <li>Open Google AI Studio.</li>
+              <li>Sign in with your Google account.</li>
+              <li>Click <em>&quot;Create API key in new project&quot;</em>.</li>
+              <li>Copy and store the key.</li>
+              <li>Recommended model name: <code>gemini-2.5-flash</code></li>
+            </ol>
+            <p><strong>OpenAI (ChatGPT)</strong></p>
+            <ol>
+              <li>Go to your OpenAI account&apos;s API Keys page.</li>
+              <li>Log in or sign up.</li>
+              <li>Click <em>&quot;Create new secret key&quot;</em>, name it (e.g. &quot;Co-Skip&quot;), and create.</li>
+              <li>Copy it immediately; it won&apos;t be shown again.</li>
+              <li>Recommended model name: <code>gpt-4o</code></li>
+            </ol>
+            <p><strong>Anthropic (Claude)</strong></p>
+            <ol>
+              <li>Open the Anthropic Console.</li>
+              <li>Log in and go to Account Settings → API Keys.</li>
+              <li>Click <em>&quot;Create Key&quot;</em>, name it, and create.</li>
+              <li>Copy and save the key.</li>
+              <li>Recommended model name: <code>claude-sonnet-4-5</code></li>
+            </ol>
+            <p>
+              <strong>Security tip:</strong> Treat API keys like passwords. Never share them publicly or commit them to open
+              source repos.
+            </p>
+          </>
+        )
+      },
+      {
+        id: "advanced-config",
+        kicker: "Part 2.4c",
+        title: "How do I configure AI Freedom Mode inside Co-Skip?",
+        tag: "Advanced AI – Config",
+        content: (
+          <>
+            <p>
+              Once you have an API key, configure it in the <strong>Advanced AI</strong> tab.
+            </p>
+            <ol>
+              <li>
+                <strong>Enable AI Freedom Mode</strong> – check the box to switch off built-in models and use your own.
+              </li>
+              <li>
+                <strong>Select Provider</strong> – choose Google Gemini, OpenAI, or Anthropic from the dropdown.
+              </li>
+              <li>
+                <strong>Custom Model Name (optional but recommended)</strong> – specify which model to use
+                (e.g. <code>gemini-2.5-flash</code>, <code>gpt-4o</code>, <code>claude-sonnet-4-5</code>).
+              </li>
+              <li>
+                <strong>Paste Your API Key</strong> carefully into the key field.
+              </li>
+              <li>
+                <strong>Set a System Prompt</strong> – instructions that are sent with every request.
+              </li>
+            </ol>
+            <p><strong>Example system prompts:</strong></p>
+            <ul>
+              <li>
+                Math: <em>&quot;You are a math expert. Solve the following problem and provide the answer in LaTeX format.&quot;</em>
+              </li>
+              <li>
+                Summarization: <em>&quot;You are a helpful assistant. Summarize the key points from the following text.&quot;</em>
+              </li>
+            </ul>
+            <p>Click <strong>Save and Apply</strong> to start using your custom AI setup.</p>
+          </>
+        )
+      },
+      {
+        id: "hotkeys",
+        kicker: "Part 2.5",
+        title: "How do I customize hotkeys in the 'Hotkeys' tab?",
+        tag: "Settings – Hotkeys",
+        content: (
+          <>
+            <p>
+              The <strong>Hotkeys</strong> tab lets you remap every shortcut so Co-Skip feels natural to you.
+            </p>
+            <p><strong>Changing a hotkey</strong></p>
+            <ol>
+              <li>Open the Hotkeys tab.</li>
+              <li>Click the field next to an action.</li>
+              <li>Press your new key combo (e.g. <span className="kbd">Ctrl</span> + <span className="kbd">1</span>).</li>
+              <li>The display updates to show your new binding.</li>
+            </ol>
+            <p><strong>Hotkey groups</strong></p>
+            <ul>
+              <li>
+                <strong>General:</strong> Toggle Visibility, Capture Screenshot, Toggle Text Input, Send Request,
+                Delete Last Screenshot.
+              </li>
+              <li>
+                <strong>In-App Controls:</strong> Switch Test Mode (legacy), Flip Inverted Images, Scroll Response Up/Down.
+              </li>
+              <li>
+                <strong>Application:</strong> Open Settings, Exit Application.
+              </li>
+            </ul>
+            <p>
+              <strong>Pro tip:</strong> Keep Capture, Send, and Toggle Visibility on easy-to-reach keys. Don&apos;t forget
+              to hit <strong>Save and Apply</strong> when done.
+            </p>
+          </>
+        )
+      },
+      {
+        id: "command-line",
+        kicker: "Part 3",
+        title: "What is the Command Line and how do I use it safely?",
+        tag: "Command line",
+        content: (
+          <>
+            <p>
+              The <strong>Command Line</strong> is your stealth control panel. It lets you change key settings mid-session
+              without opening the full Settings window — and is the only recommended way to adjust settings during a live exam.
+            </p>
+            <p><strong>How to use it</strong></p>
+            <ol>
+              <li>Press <span className="kbd">Ctrl</span> + <span className="kbd">L</span> to open the input field.</li>
+              <li>Type a command starting with <code>::</code>.</li>
+              <li>Press <span className="kbd">Enter</span> to execute.</li>
+            </ol>
+            <p>
+              Type <code>::help</code> at any time to see a full list of commands.
+            </p>
+            <p><strong>Core commands</strong></p>
+            <ul>
+              <li>
+                <code>::setai &lt;name&gt;</code> – switch models (<code>pro</code> or <code>flash</code>).
+              </li>
+              <li>
+                <code>::settheme &lt;dark | light&gt;</code> – change the UI theme.
+              </li>
+              <li>
+                <code>::settestmode &lt;name&gt;</code> – set subject-matter expertise (
+                <code>general</code>, <code>math</code>, <code>history</code>, <code>coding</code>,{" "}
+                <code>nursing</code>, <code>law</code>, <code>realestate</code>).
+              </li>
+              <li>
+                <code>::settransparency &lt;0–255&gt;</code> – adjust window transparency (0 = invisible, 255 = fully solid).
+              </li>
+              <li>
+                <code>::toggleguide</code> – toggle the Study Guide “Save for Review” feature.
+              </li>
+              <li>
+                <code>::clear</code> – instantly clear all text/images from the window.
+              </li>
+              <li>
+                <code>::exit</code> – close Co-Skip.
+              </li>
+            </ul>
+            <p>
+              With these commands you can adapt Co-Skip to almost any situation without sacrificing speed or safety.
+            </p>
+            <p>
+              This concludes the main walkthrough of Co-Skip&apos;s features — from basic workflows to advanced customization.
+            </p>
+          </>
+        )
+      }
+    ];
+
+    function FaqItem({ item, defaultOpen = false }) {
+      const [open, setOpen] = useState(defaultOpen);
+      const [height, setHeight] = useState(defaultOpen ? "auto" : 0);
+      const bodyRef = useRef(null);
+
+      const onToggle = () => {
+        setOpen((prev) => !prev);
+      };
+
+      useEffect(() => {
+        if (!bodyRef.current) return;
+
+        if (open) {
+          const scrollHeight = bodyRef.current.scrollHeight;
+          setHeight(scrollHeight);
+          const timeout = setTimeout(() => {
+            setHeight("auto");
+          }, 260);
+          return () => clearTimeout(timeout);
+        } else {
+          if (height === "auto") {
+            const scrollHeight = bodyRef.current.scrollHeight;
+            setHeight(scrollHeight);
+            requestAnimationFrame(() => setHeight(0));
+          } else {
+            setHeight(0);
+          }
+        }
+      }, [open]);
+
+      return (
+        <div className={"faq-item" + (open ? " open" : "")}>
+          <div className="faq-header" onClick={onToggle}>
+            <div className="faq-title-group">
+              <span className="faq-kicker">{item.kicker}</span>
+              <div className="faq-title">{item.title}</div>
+            </div>
+            <div className="faq-chevron">{">"}</div>
+          </div>
+          <div
+            className="faq-body"
+            style={{
+              maxHeight: open ? height : 0,
+              opacity: open ? 1 : 0,
+              transform: open ? "translateY(0px)" : "translateY(-4px)"
+            }}
+          >
+            <div className="faq-body-inner" ref={bodyRef}>
+              {item.tag && (
+                <div className="faq-tag">
+                  <span className="faq-tag-dot" />
+                  {item.tag}
+                </div>
+              )}
+              {item.content}
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    function App() {
+      const [cursor, setCursor] = useState({
+        x: window.innerWidth / 2,
+        y: window.innerHeight / 2
+      });
+      const [showCursor, setShowCursor] = useState(false);
+
+      const handleMouseMove = (e) => {
+        setShowCursor(true);
+        setCursor({ x: e.clientX, y: e.clientY });
+      };
+
+      const handleMouseLeave = () => {
+        setShowCursor(false);
+      };
+
+      return (
+        <div className="app-shell" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
+          <div
+            className={"cursor-gradient" + (showCursor ? "" : " hidden")}
+            style={{
+              left: cursor.x + "px",
+              top: cursor.y + "px"
+            }}
+          />
+          <div className="glass-wrap">
+            <div className="glass-panel">
+              <div className="header-badge">
+                <span className="header-pill-dot" />
+                Co-Skip – Official Guide
+              </div>
+              <div className="title-row">
+                <div>
+                  <div className="title-main">
+                    Learn every shortcut,{" "}
+                    <span className="title-accent">without getting in your way.</span>
+                  </div>
+                </div>
+                <div className="title-sub">
+                  A modern FAQ that covers everything from first capture to advanced AI configuration, plus
+                  stealth controls built for high-pressure environments.
+                </div>
+              </div>
+              <div className="meta-row">
+                <div className="meta-chip">
+                  <span className="meta-dot" />
+                  Core workflows
+                </div>
+                <div className="meta-chip">
+                  <span className="meta-dot" style={{ background: "#a855f7" }} />
+                  Settings &amp; customization
+                </div>
+                <div className="meta-chip">
+                  <span className="meta-dot" style={{ background: "#f97316" }} />
+                  Stealth &amp; exam safety
+                </div>
+              </div>
+
+              <div className="faq-grid">
+                <div className="faq-list">
+                  {faqData.map((item, idx) => (
+                    <FaqItem key={item.id} item={item} defaultOpen={idx === 0} />
+                  ))}
+                </div>
+                <aside className="sidebar-card">
+                  <div className="sidebar-title">Quick orientation</div>
+                  <div className="sidebar-text">
+                    New to Co-Skip? Start with the first three questions to get your core workflow set up,
+                    then customize AI and appearance.
+                  </div>
+                  <ul className="sidebar-bullets">
+                    <li>Use the Standard Workflow for anything complex.</li>
+                    <li>Use the Stealth Workflow when you only need one fast shot.</li>
+                    <li>Configure Study Guides before your first real session.</li>
+                  </ul>
+                  <div className="sidebar-footnote">
+                    Tip: Ghost Mode + Direct Answers is the cleanest combo if you want the app to visually disappear.
+                  </div>
+                </aside>
+              </div>
+
+              <div className="footer-note">
+                Co-Skip FAQ • Last updated 11/14/2025 • Built for fast answers and safe customization.
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<App />);
+  </script>
+</body>
+</html>
