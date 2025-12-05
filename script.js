@@ -173,16 +173,22 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- MODULE 8: STRIPE PAYMENT INTEGRATION ---
-    const stripe = Stripe('pk_live_51NyaJIErsDMwjHJbY7JHPMqfZvkSMv3kOIo775RlVkojW77iW7RYZTmJ6ueDEDTsW2b90AJW9IWLneW4goUJ6ZqI00Vsxy0vpz'); // Your LIVE key
     const serverURL = 'https://co-skip-server.onrender.com';
+    //const serverURL = 'http://localhost:5000';
 
     // Handle Subscription Checkout
-    const subscribeBtn = document.getElementById('subscribe-now-btn');
-    if (subscribeBtn) {
-        subscribeBtn.addEventListener('click', async () => {
-            const originalButtonText = subscribeBtn.textContent;
-            subscribeBtn.disabled = true;
-            subscribeBtn.textContent = 'Processing...';
+    const subscribeButtons = document.querySelectorAll('.subscribe-btn');
+    subscribeButtons.forEach(button => {
+        button.addEventListener('click', async () => {
+            const productTitle = button.getAttribute('data-product');
+            if (!productTitle) {
+                alert('An error occurred. Could not identify the subscription plan.');
+                return;
+            }
+            
+            const originalButtonText = button.textContent;
+            button.disabled = true;
+            button.textContent = 'Processing...';
 
             const redditClickId = sessionStorage.getItem('rdt_cid') || null;
 
@@ -190,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const response = await fetch(`${serverURL}/common/create-subscription-checkout`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ redditClickId, program: 'Co-Skip-v2' }) // Assuming program is constant
+                    body: JSON.stringify({ productTitle, redditClickId }) // Send the specific product title
                 });
 
                 if (!response.ok) {
@@ -203,13 +209,13 @@ document.addEventListener('DOMContentLoaded', () => {
             } catch (error) {
                 console.error('Error creating subscription checkout session:', error);
                 alert('Could not initiate subscription checkout. Please try again or contact support.');
-                subscribeBtn.disabled = false;
-                subscribeBtn.textContent = originalButtonText;
+                button.disabled = false;
+                button.textContent = originalButtonText;
             }
         });
-    }
+    });
 
-    // Handle Pay-as-you-go Checkout
+    // Handle Pay-as-you-go Checkout (No changes needed here, but kept for completeness)
     const purchaseButtons = document.querySelectorAll('.purchase-btn');
     purchaseButtons.forEach(button => {
         button.addEventListener('click', async () => {
@@ -218,6 +224,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert('An error occurred. Could not identify the product.');
                 return;
             }
+            
+            // For one-time keys, we give them v2.0
+            const program = 'Co-Skip-v2';
+
             const originalButtonText = button.textContent;
             button.disabled = true;
             button.textContent = 'Processing...';
@@ -227,24 +237,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 const response = await fetch(`${serverURL}/common/checkout`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        productTitle,
-                        quantity: 1,
-                        redditClickId,
-                        program: 'Co-Skip-v2' // Assuming program is constant
-                    })
+                    body: JSON.stringify({ productTitle, quantity: 1, redditClickId, program })
                 });
 
-                if (!response.ok) {
-                    throw new Error(`Server error: ${response.status}`);
-                }
+                if (!response.ok) throw new Error(`Server error: ${response.status}`);
+                
                 const session = await response.json();
-
-                if (session && session.url) {
-                    window.location.href = session.url;
-                } else {
-                    throw new Error('Invalid checkout session data received.');
-                }
+                if (session && session.url) window.location.href = session.url;
+                else throw new Error('Invalid checkout session data received.');
 
             } catch (error) {
                 console.error('Checkout Error:', error);
