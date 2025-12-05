@@ -800,4 +800,121 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </body>
 
+<!-- Co-Skip Support Widget (v4 - Brand Color Update) -->
+<style>
+    #cs-chat-widget { position: fixed; bottom: 20px; right: 20px; z-index: 9999; font-family: 'Segoe UI', sans-serif; }
+    #cs-chat-btn { background: #00F6FF; width: 60px; height: 60px; border-radius: 50%; box-shadow: 0 0 10px 0px rgba(0, 246, 255, 0.4); cursor: pointer; border: none; display: flex; align-items: center; justify-content: center; transition: transform 0.2s; }
+    #cs-chat-btn:hover { transform: scale(1.1); }
+    #cs-chat-window { display: none; width: 350px; height: 500px; background: #1a1a1a; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.5); flex-direction: column; overflow: hidden; border: 1px solid #333; }
+    #cs-header { background: #00F6FF; padding: 15px; color: #000; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
+    #cs-messages { flex: 1; padding: 15px; overflow-y: auto; color: #eee; font-size: 14px; display: flex; flex-direction: column; }
+    #cs-input-area { padding: 10px; background: #222; display: flex; border-top: 1px solid #333; }
+    #cs-input { flex: 1; background: #333; border: none; padding: 10px; color: white; border-radius: 4px; outline: none; }
+    .cs-msg { margin-bottom: 10px; padding: 8px 12px; border-radius: 8px; max-width: 80%; line-height: 1.4; word-wrap: break-word; }
+    .cs-bot { background: #333; color: #ddd; align-self: flex-start; }
+    .cs-user { background: #00F6FF; color: #000; align-self: flex-end; }
+    #cs-new-chat-btn { background: #0078F2; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; margin-top: 15px; align-self: center; }
+</style>
+
+<div id="cs-chat-widget">
+    <div id="cs-chat-window">
+        <div id="cs-header">
+            <span>Co-Skip Support AI</span>
+            <span style="cursor:pointer;" onclick="toggleChat()">✕</span>
+        </div>
+        <div id="cs-messages">
+            <div class="cs-msg cs-bot">👋 Hi! I'm the automated support agent. Ask me anything about Co-Skip!</div>
+        </div>
+        <div id="cs-input-area">
+            <input type="text" id="cs-input" placeholder="Type a message..." onkeypress="handleEnter(event)">
+        </div>
+    </div>
+    <button id="cs-chat-btn" onclick="toggleChat()">
+        <!-- Icon color changed to black -->
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="black"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+    </button>
+</div>
+
+<script>
+    const API_URL = "https://support.co-botz.com/api/web-chat"; 
+    let chatHistory = "";
+    let msgCounter = 0;
+
+    function toggleChat() {
+        const win = document.getElementById('cs-chat-window');
+        const btn = document.getElementById('cs-chat-btn');
+        if (win.style.display === 'none' || !win.style.display) {
+            win.style.display = 'flex';
+            btn.style.display = 'none';
+        } else {
+            win.style.display = 'none';
+            btn.style.display = 'flex';
+        }
+    }
+
+    function handleEnter(e) { if(e.key === 'Enter') sendMessage(); }
+
+    async function sendMessage() {
+        const input = document.getElementById('cs-input');
+        const text = input.value.trim();
+        if(!text) return;
+
+        addMessage(text, 'user');
+        input.value = '';
+        chatHistory += `User: ${text}\n`;
+
+        const typingId = addMessage('Thinking...', 'bot');
+
+        try {
+            const res = await fetch(API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: text, history: chatHistory })
+            });
+            const data = await res.json();
+            
+            document.getElementById(typingId).remove();
+            addMessage(data.reply, 'bot');
+            chatHistory += `Bot: ${data.reply}\n`;
+
+            if (data.status === 'RESOLVED' || data.status === 'ESCALATED') {
+                endChatSession();
+            }
+
+        } catch (err) {
+            const errorElement = document.getElementById(typingId);
+            if(errorElement) errorElement.innerHTML = "Error: Could not connect to the server.";
+        }
+    }
+
+    function addMessage(text, sender) {
+        const messagesContainer = document.getElementById('cs-messages');
+        const div = document.createElement('div');
+        div.className = `cs-msg cs-${sender}`;
+        div.innerHTML = text.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>').replace(/\n/g, '<br>');
+        div.id = 'msg-' + msgCounter++; 
+        messagesContainer.appendChild(div);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        return div.id;
+    }
+
+    function endChatSession() {
+        document.getElementById('cs-input-area').style.display = 'none';
+        const messages = document.getElementById('cs-messages');
+        const endButton = document.createElement('button');
+        endButton.id = 'cs-new-chat-btn';
+        endButton.innerText = 'Start New Chat';
+        endButton.onclick = startNewChat;
+        messages.appendChild(endButton);
+        messages.scrollTop = messages.scrollHeight;
+    }
+
+    function startNewChat() {
+        const messages = document.getElementById('cs-messages');
+        messages.innerHTML = '<div class="cs-msg cs-bot">👋 Hi! How can I help you with Co-Skip?</div>';
+        document.getElementById('cs-input-area').style.display = 'flex';
+        chatHistory = "";
+    }
+</script>
+
 </html>
