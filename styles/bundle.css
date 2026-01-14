@@ -985,6 +985,53 @@ section {
 /* COMPONENT: PRICING                            */
 /* ============================================= */
 
+/* === RENEWAL BAR STYLES === */
+.renewal-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+.renewal-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+}
+
+.renewal-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #00F6FF; /* Brand Cyan */
+    font-size: 1.1rem;
+    pointer-events: none;
+}
+
+#global-loyalty-key {
+    width: 100%;
+    padding: 12px 15px 12px 45px; /* Padding left for icon */
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50px;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+#global-loyalty-key:focus {
+    background: rgba(0, 0, 0, 0.4);
+    border-color: #00F6FF;
+    box-shadow: 0 0 15px rgba(0, 246, 255, 0.15);
+}
+
+#global-loyalty-key::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
 /* The Toggle Switch */
 .pricing-toggle {
     display: flex;
@@ -1199,3 +1246,4 @@ input:checked + .slider:before {
 .faq-item.active .faq-answer {
     padding-bottom: var(--space-md);
 }
+

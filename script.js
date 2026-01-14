@@ -215,7 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Handle Pay-as-you-go Checkout (No changes needed here, but kept for completeness)
+    // Handle Pay-as-you-go Checkout (GLOBAL KEY VERSION)
     const purchaseButtons = document.querySelectorAll('.purchase-btn');
     purchaseButtons.forEach(button => {
         button.addEventListener('click', async () => {
@@ -225,8 +225,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
             
-            // For one-time keys, we give them v2.0
-            const program = 'Co-Skip-v2';
+            // Logic to determine Version based on Product Title
+            // Ensure this matches your exact product naming convention
+            let program = 'Co-Skip-v2';
+            if (productTitle.includes('Ghost') || productTitle.includes('Elite')) {
+                 program = 'Co-Skip-v3'; 
+            }
+
+            // --- GET GLOBAL KEY ---
+            const globalInput = document.getElementById('global-loyalty-key');
+            let previousKey = null;
+
+            if (globalInput && globalInput.value.trim() !== "") {
+                previousKey = globalInput.value.trim();
+            }
+            // ---------------------
 
             const originalButtonText = button.textContent;
             button.disabled = true;
@@ -234,13 +247,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
             try {
                 const redditClickId = sessionStorage.getItem('rdt_cid') || null;
+                
                 const response = await fetch(`${serverURL}/common/checkout`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ productTitle, quantity: 1, redditClickId, program })
+                    body: JSON.stringify({ 
+                        productTitle, 
+                        quantity: 1, 
+                        redditClickId, 
+                        program, 
+                        previousKey // Sending the global key
+                    })
                 });
 
-                if (!response.ok) throw new Error(`Server error: ${response.status}`);
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.error || `Server error: ${response.status}`);
+                }
                 
                 const session = await response.json();
                 if (session && session.url) window.location.href = session.url;
@@ -248,7 +271,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             } catch (error) {
                 console.error('Checkout Error:', error);
-                alert(`Checkout failed: ${error.message}. Please try again or contact support.`);
+                alert(`Checkout failed: ${error.message}`);
                 button.disabled = false;
                 button.textContent = originalButtonText;
             }

@@ -641,58 +641,82 @@
             <div class="container">
                 <h2 class="section-title">Join The Mission. Shape The Future.</h2>
                 <p class="section-subtitle">Become a Member of our community!</p>
+                
                 <div class="os-compatibility-notice">
                     <p class="windows-supported"><i class="fab fa-windows"></i> <strong>Windows 11 Supported</strong></p>
                     <p class="mac-unsupported"><i class="fab fa-apple"></i> <strong>macOS Not Supported</strong></p>
                 </div>
+
+                <!-- GLOBAL LOYALTY BAR -->
+                <div class="renewal-container">
+                    <div class="renewal-wrapper">
+                        <i class="fas fa-key renewal-icon"></i>
+                        <input type="text" id="global-loyalty-key" placeholder="Returning user? Paste previous key for up to 20% off..." autocomplete="off">
+                        <div class="renewal-status"></div>
+                    </div>
+                </div>
+
                 <div id="pay-as-you-go-plans" class="pricing-plan active">
                     <div class="pricing-grid">
+                        
+                        <!-- CARD 1: 7-DAY ELITE -->
                         <div class="pricing-card">
-                            <h3>7 Day Access Key</h3>
+                            <h3>7-Day Access Key</h3>
                             <div class="price">$125</div>
                             <p class="pricing-limit">Quick Plan</p>
                             <ul class="pricing-features">
                                 <li><i class="fas fa-check"></i> v2.0 Engine</li>
                                 <li><i class="fas fa-infinity"></i> Unlimited AI Questions</li>
                             </ul>
+                            <!-- Updated Class to purchase-btn -->
                             <button class="btn btn-secondary purchase-btn" data-product="Key-7Day-Elite">Get 7-Day Key</button>
                         </div>
+
+                        <!-- CARD 2: 30-DAY STANDARD (Formerly Subscription) -->
                         <div class="pricing-card">
-                            <h3>Standard Subscription</h3>
-                            <div class="price">$200<span class="price-term">/month</span></div>
+                            <h3>30-Day Standard Key</h3>
+                            <div class="price">$200</div>
                             <p class="pricing-limit">For Everyday Use</p>
                             <ul class="pricing-features">
                                 <li><i class="fas fa-check"></i> v2.0 Engine</li>
                                 <li><i class="fas fa-infinity"></i> Unlimited AI Questions</li>
-                                <li><i class="fas fa-times-circle"></i> Cancel Anytime</li>
+                                <li><i class="fas fa-clock"></i> 30 Days Access</li>
                             </ul>
-                            <button class="btn btn-secondary subscribe-btn" data-product="Co-Skip-Elite-Subscription">Subscribe Standard</button>
+                            <!-- Updated ID to Key-30Day and Class to purchase-btn -->
+                            <button class="btn btn-secondary purchase-btn" data-product="Key-30Day">Get 30-Day Key</button>
                         </div>
 
+                        <!-- CARD 3: 30-DAY ELITE (Formerly Subscription) -->
                         <div class="pricing-card featured">
                             <div class="badge">Best Value</div>
-                            <h3>Elite Subscription</h3>
-                            <div class="price">$350<span class="price-term">/month</span></div>
+                            <h3>30-Day Elite Key</h3>
+                            <div class="price">$350</div>
                             <p class="pricing-limit">For High-Security</p>
                             <ul class="pricing-features">
                                 <li><i class="fas fa-rocket"></i> v3.0 Advanced Engine</li>
                                 <li><i class="fas fa-infinity"></i> Unlimited AI Questions</li>
                                 <li><i class="fas fa-user-shield"></i> Direct Founder Support</li>
-                                <li><i class="fas fa-times-circle"></i> Cancel Anytime</li>
+                                <li><i class="fas fa-clock"></i> 30 Days Access</li>
                             </ul>
-                            <button class="btn btn-primary subscribe-btn" data-product="Key-Monthly-Ghost">Subscribe Elite</button>
+                            <!-- Updated ID to Key-30Day-Elite and Class to purchase-btn -->
+                            <button class="btn btn-primary purchase-btn" data-product="Key-30Day-Elite">Get 30-Day Elite</button>
                         </div>
+
+                        <!-- CARD 4: 1-YEAR ELITE -->
                         <div class="pricing-card">
-                            <h3>Elite Yearly Access</h3>
+                            <h3>1-Year Elite Key</h3>
                             <div class="price">$1000</div>
                             <p class="pricing-limit">Yearly Success</p>
                             <ul class="pricing-features">
                                 <li><i class="fas fa-rocket"></i> v3.0 Advanced Engine</li>
                                 <li><i class="fas fa-infinity"></i> Unlimited AI Questions</li>
                                 <li><i class="fas fa-user-shield"></i> Direct Founder Support</li>
+                                <li><i class="fas fa-calendar-check"></i> 365 Days Access</li>
                             </ul>
-                            <button class="btn btn-secondary subscribe-btn" data-product="Key-Yearly-Ghost">Get Yearly Key</button>
+                            <!-- Updated ID to Key-1Year-Elite and Class to purchase-btn -->
+                            <button class="btn btn-secondary purchase-btn" data-product="Key-1Year-Elite">Get Yearly Key</button>
                         </div>
+
                     </div>
                 </div>
             </div>
