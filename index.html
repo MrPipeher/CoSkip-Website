@@ -242,69 +242,174 @@
             </div>
         </section>
 
-        <!-- REVISED SECTION 5: THE ARSENAL / FEATURES (EXPANDED) -->
+        <!-- ============================================= -->
+        <!-- NEW SECTION: CORE WORKFLOWS (HOW TO USE)      -->
+        <!-- ============================================= -->
+        <section id="workflows" class="workflow-section">
+            <div class="container">
+                <h2 class="section-title">Two Ways to Conquer</h2>
+                <p class="section-subtitle">Co-Skip adapts to your environment. Choose between absolute control or total discretion.</p>
+
+                <div class="workflow-grid">
+                    
+                    <!-- METHOD 1: STANDARD -->
+                    <div class="workflow-card">
+                        <div class="workflow-title">
+                            <i class="fas fa-keyboard"></i>
+                            <h3>Method 1: The Standard Workflow</h3>
+                        </div>
+                        <p style="margin-bottom: 20px;"><strong>Best For:</strong> Complex questions, math problems, or adding specific instructions.</p>
+                        
+                        <ul class="workflow-steps">
+                            <li data-step="1">
+                                <strong>Capture (<span class="key-badge">Ctrl</span> + <span class="key-badge">J</span>)</strong>
+                                Press to take a full-screen screenshot. You can press this up to 5 times to combine multiple images into one complex question.
+                            </li>
+                            <li data-step="2">
+                                <strong>Add Text (<span class="key-badge">Ctrl</span> + <span class="key-badge">L</span>)</strong>
+                                <em>Optional.</em> Open the input bar to type specific instructions like "Solve for X" or "Summarize the last paragraph."
+                            </li>
+                            <li data-step="3">
+                                <strong>Send (<span class="key-badge">Ctrl</span> + <span class="key-badge">M</span>)</strong>
+                                Instantly bundles your images and text and sends them to the AI for processing.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- METHOD 2: STEALTH -->
+                    <div class="workflow-card">
+                        <div class="workflow-title">
+                            <i class="fas fa-computer-mouse"></i>
+                            <h3>Method 2: The Stealth Workflow</h3>
+                        </div>
+                        <p style="margin-bottom: 20px;"><strong>Best For:</strong> Speed and discretion. A completely keyboard-free experience.</p>
+                        
+                        <ul class="workflow-steps">
+                            <li data-step="1">
+                                <strong>The Action</strong>
+                                Simply press and hold your <strong>Right Mouse Button</strong> for 5 seconds.
+                            </li>
+                            <li data-step="2">
+                                <strong>The Release</strong>
+                                Release the button. Co-Skip automatically captures the screen and sends it to the AI.
+                            </li>
+                            <li data-step="3">
+                                <strong>The Result</strong>
+                                The answer appears instantly. You never touched your keyboard or looked suspicious.
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- REVISED SECTION 5: HOW IT WORKS / FEATURES -->
         <section id="features" class="features-showcase-section">
             <div class="container">
-                <h2 class="section-title">A Platform Built for Power Users</h2>
-                <p class="section-subtitle">Discover the deep customization and control that sets Co-Skip apart.</p>
+                <h2 class="section-title">Master The Platform</h2>
+                <p class="section-subtitle">A deep dive into the workflows that give you the edge.</p>
 
+                <!-- FEATURE 1: COMMAND LINE -->
                 <article class="feature-row">
                     <div class="feature-image">
                         <img src="https://raw.githubusercontent.com/MrPipeher/CoSkip-Website/main/images/features/commandline.png" alt="Co-Skip Command Line Interface">
                     </div>
                     <div class="feature-text">
-                        <h3>Control at the Speed of Thought.</h3>
-                        <p>For the power user who values speed and efficiency. Our new command-line interface lets you instantly change themes, switch AI modes, toggle settings, and more, without ever leaving your keyboard.</p>
+                        <h3>The Command Line: Instant Control.</h3>
+                        <p>Change settings instantly without opening menus or leaving your keyboard. Just press <span class="key-cap">Ctrl</span>+<span class="key-cap">L</span> to open the command bar.</p>
+                        
+                        <div class="cmd-example">
+                            <div><span class="cmd-highlight">::setai pro</span> (Switch to Pro Model)</div>
+                            <div><span class="cmd-highlight">::settheme light</span> (Toggle UI Theme)</div>
+                            <div><span class="cmd-highlight">::clear</span> (Wipe Screen Instantly)</div>
+                        </div>
+                        <ul class="feature-list">
+                            <li><strong>Stealth:</strong> Commands execute silently.</li>
+                            <li><strong>Speed:</strong> No clicking through menus during crunch time.</li>
+                        </ul>
                     </div>
                 </article>
 
+                <!-- FEATURE 2: TEST MODES -->
                 <article class="feature-row">
                     <div class="feature-image">
                         <img src="https://raw.githubusercontent.com/MrPipeher/CoSkip-Website/main/images/features/testmodes.png" alt="Co-Skip Test Mode settings">
                     </div>
                     <div class="feature-text">
-                        <h3>AI That Speaks Your Language.</h3>
-                        <p>Switch the AI's subject-matter expertise on the fly. Whether you're tackling advanced calculus, legal case studies, or complex code, Co-Skip's Test Modes ensure you get the most relevant and accurate answers.</p>
+                        <h3>Context-Aware Intelligence.</h3>
+                        <p>Don't settle for generic answers. Co-Skip modifies the AI's logic based on the subject you are tackling.</p>
+                        <ul class="feature-list">
+                            <li><strong>Math/Science:</strong> Optimized for LaTeX, formulas, and step-by-step logic.</li>
+                            <li><strong>Coding:</strong> Specialized for Python, Java, C++, and syntax highlighting.</li>
+                            <li><strong>History/English:</strong> tuned for essay structure and literary analysis.</li>
+                        </ul>
+                        <p style="margin-top: 10px; font-size: 0.9rem;"><em>Switch modes instantly via command: <span class="cmd-highlight">::settestmode math</span></em></p>
                     </div>
                 </article>
 
+                <!-- FEATURE 3: HOTKEYS -->
                 <article class="feature-row">
                     <div class="feature-image">
                         <img src="https://raw.githubusercontent.com/MrPipeher/CoSkip-Website/main/images/features/hotkeys.png" alt="Co-Skip Hotkey customization settings">
                     </div>
                     <div class="feature-text">
-                        <h3>Your Workflow, Your Rules.</h3>
-                        <p>Every user is different. That's why every hotkey in Co-Skip is fully customizable. Remap any action to fit your muscle memory and create the fastest, most intuitive workflow for you.</p>
+                        <h3>The Standard Workflow.</h3>
+                        <p>Designed for power users. Every action is mapped to a customizable hotkey for maximum efficiency.</p>
+                        <ul class="feature-list">
+                            <li><strong>Capture (<span class="key-cap">Ctrl</span>+<span class="key-cap">J</span>):</strong> Take up to 5 screenshots to combine complex questions.</li>
+                            <li><strong>Add Text (<span class="key-cap">Ctrl</span>+<span class="key-cap">L</span>):</strong> Add context like "Solve for X" or "Summarize this".</li>
+                            <li><strong>Send (<span class="key-cap">Ctrl</span>+<span class="key-cap">M</span>):</strong> Submit images and text to the AI instantly.</li>
+                            <li><strong>Toggle (<span class="key-cap">Ctrl</span>+<span class="key-cap">T</span>):</strong> Instantly hide/show the overlay.</li>
+                        </ul>
                     </div>
                 </article>
 
+                <!-- FEATURE 4: STUDY GUIDE -->
                 <article class="feature-row">
                     <div class="feature-image">
                         <img src="https://raw.githubusercontent.com/MrPipeher/CoSkip-Website/main/images/features/studyguide.png" alt="Co-Skip Study Guide export">
                     </div>
                     <div class="feature-text">
-                        <h3>Turn Cram Sessions into a Knowledge Base.</h3>
-                        <p>Activate 'Study Guide Mode' and Co-Skip automatically saves every question and AI answer into organized, reviewable files. Stop just getting answers—start building a permanent library of knowledge.</p>
+                        <h3>Build Your Knowledge Base.</h3>
+                        <p>Don't just get the answer—keep it. When 'Study Guide Mode' is active, your session is automatically logged.</p>
+                        <ul class="feature-list">
+                            <li><strong>Auto-Save:</strong> Every question and AI answer is saved to a local HTML file.</li>
+                            <li><strong>Review:</strong> Perfect for creating study sheets for final exams.</li>
+                            <li><strong>Organized:</strong> Sessions are sorted by date and time automatically.</li>
+                        </ul>
                     </div>
                 </article>
 
+                <!-- FEATURE 5: BYOK -->
                 <article class="feature-row">
                     <div class="feature-image">
                         <img src="https://raw.githubusercontent.com/MrPipeher/CoSkip-Website/main/images/features/byok.png" alt="Co-Skip AI Freedom Mode settings">
                     </div>
                     <div class="feature-text">
-                        <h3>Unleash Your Own AI.</h3>
-                        <p>Co-Skip is more than a tool—it's a secure pipeline. Plug in your own API key from OpenAI, Anthropic, or Google to leverage any model you want, with full control over the system prompt.</p>
+                        <h3>AI Freedom Mode (BYOK).</h3>
+                        <p>For advanced users who want total control. Connect directly to your own paid accounts with major AI providers.</p>
+                        <ul class="feature-list">
+                            <li><strong>Providers:</strong> Support for OpenAI (GPT-4o), Anthropic (Claude 3.5), and Google (Gemini).</li>
+                            <li><strong>System Prompt:</strong> You define the AI's personality. Tell it to "Always answer in code" or "Be brief".</li>
+                            <li><strong>Zero Limits:</strong> Use the most powerful models available on the market.</li>
+                        </ul>
                     </div>
                 </article>
 
+                <!-- FEATURE 6: PERSONALIZATION -->
                 <article class="feature-row">
                     <div class="feature-image">
                         <img src="https://raw.githubusercontent.com/MrPipeher/CoSkip-Website/main/images/features/personalize.png" alt="Co-Skip Appearance customization settings">
                     </div>
                     <div class="feature-text">
-                        <h3>A Seamless Extension of Your Desktop.</h3>
-                        <p>A tool should adapt to you. With granular control over themes, colors, transparency, window size, and font scaling, you can make Co-Skip blend in or stand out to match your exact preference.</p>
+                        <h3>Ghost Mode & Appearance.</h3>
+                        <p>Co-Skip is designed to blend into your environment. Customize the look to match your desktop or browser.</p>
+                        <ul class="feature-list">
+                            <li><strong>Ghost Mode:</strong> Removes all borders and backgrounds. Only the text remains visible.</li>
+                            <li><strong>Transparency:</strong> Adjust opacity to see through the window.</li>
+                            <li><strong>Scaling:</strong> Adjust font sizes for 4K monitors or small laptop screens.</li>
+                        </ul>
                     </div>
                 </article>
             </div>
