@@ -595,6 +595,157 @@ section {
 }
 
 /* ============================================= */
+/* NEW: ENHANCED FEATURE TEXT STYLES             */
+/* ============================================= */
+
+/* Keycap styling for hotkeys inside text */
+.key-cap {
+    display: inline-block;
+    padding: 2px 6px;
+    background: #222;
+    border: 1px solid #444;
+    border-radius: 4px;
+    box-shadow: 0 2px 0 #000;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8em;
+    color: #fff;
+    font-weight: bold;
+    margin: 0 2px;
+    vertical-align: middle;
+}
+
+/* Styled lists inside feature rows */
+.feature-list {
+    margin-top: 15px;
+    list-style: none;
+    padding-left: 0;
+}
+
+.feature-list li {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 8px;
+    color: var(--clr-text-muted);
+    font-size: 0.95rem;
+}
+
+.feature-list li::before {
+    content: '\f054'; /* FontAwesome chevron right */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    top: 3px;
+    color: var(--clr-accent-primary);
+    font-size: 0.8rem;
+}
+
+/* Command line example styling */
+.cmd-example {
+    background: #0d1117;
+    border-left: 3px solid var(--clr-accent-primary);
+    padding: 10px 15px;
+    margin-top: 15px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    color: #e6edf3;
+    border-radius: 0 4px 4px 0;
+}
+
+.cmd-highlight {
+    color: var(--clr-accent-primary);
+    font-weight: bold;
+}
+
+/* ============================================= */
+/* NEW: WORKFLOW STEPS STYLING                   */
+/* ============================================= */
+.workflow-section {
+    background-color: var(--clr-bg); /* Dark background */
+    padding-top: var(--space-section);
+    padding-bottom: var(--space-section); /* CHANGED FROM 0 TO var(--space-section) */
+}
+
+.workflow-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+}
+
+@media (max-width: 768px) {
+    .workflow-grid { grid-template-columns: 1fr; }
+}
+
+.workflow-card {
+    background: var(--clr-surface);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--border-radius);
+    padding: var(--space-lg);
+    height: 100%;
+}
+
+.workflow-title {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--clr-border);
+    padding-bottom: 15px;
+}
+
+.workflow-title i {
+    font-size: 1.5rem;
+    color: var(--clr-accent-primary);
+}
+
+.workflow-steps {
+    list-style: none;
+    padding: 0;
+}
+
+.workflow-steps li {
+    position: relative;
+    padding-left: 45px;
+    margin-bottom: 20px;
+    color: var(--clr-text-muted);
+}
+
+.workflow-steps li strong {
+    color: var(--clr-text-primary);
+    display: block;
+    margin-bottom: 4px;
+}
+
+/* The "Circle" for Step Numbers */
+.workflow-steps li::before {
+    content: attr(data-step);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 30px;
+    height: 30px;
+    background: rgba(0, 246, 255, 0.1);
+    border: 1px solid var(--clr-accent-primary);
+    color: var(--clr-accent-primary);
+    border-radius: 50%;
+    text-align: center;
+    line-height: 28px;
+    font-weight: bold;
+    font-family: var(--font-secondary);
+}
+
+/* Highlight key presses in text */
+.key-badge {
+    background: #222;
+    border: 1px solid #444;
+    border-radius: 4px;
+    padding: 2px 6px;
+    font-size: 0.85em;
+    color: #fff;
+    font-family: monospace;
+}
+
+/* ============================================= */
 /* LAYOUT: FOOTER                                */
 /* ============================================= */
 .site-footer {
@@ -1245,155 +1396,4 @@ input:checked + .slider:before {
 
 .faq-item.active .faq-answer {
     padding-bottom: var(--space-md);
-}
-
-/* ============================================= */
-/* NEW: ENHANCED FEATURE TEXT STYLES             */
-/* ============================================= */
-
-/* Keycap styling for hotkeys inside text */
-.key-cap {
-    display: inline-block;
-    padding: 2px 6px;
-    background: #222;
-    border: 1px solid #444;
-    border-radius: 4px;
-    box-shadow: 0 2px 0 #000;
-    font-family: 'Courier New', monospace;
-    font-size: 0.8em;
-    color: #fff;
-    font-weight: bold;
-    margin: 0 2px;
-    vertical-align: middle;
-}
-
-/* Styled lists inside feature rows */
-.feature-list {
-    margin-top: 15px;
-    list-style: none;
-    padding-left: 0;
-}
-
-.feature-list li {
-    position: relative;
-    padding-left: 25px;
-    margin-bottom: 8px;
-    color: var(--clr-text-muted);
-    font-size: 0.95rem;
-}
-
-.feature-list li::before {
-    content: '\f054'; /* FontAwesome chevron right */
-    font-family: 'Font Awesome 6 Free';
-    font-weight: 900;
-    position: absolute;
-    left: 0;
-    top: 3px;
-    color: var(--clr-accent-primary);
-    font-size: 0.8rem;
-}
-
-/* Command line example styling */
-.cmd-example {
-    background: #0d1117;
-    border-left: 3px solid var(--clr-accent-primary);
-    padding: 10px 15px;
-    margin-top: 15px;
-    font-family: 'Courier New', monospace;
-    font-size: 0.9rem;
-    color: #e6edf3;
-    border-radius: 0 4px 4px 0;
-}
-
-.cmd-highlight {
-    color: var(--clr-accent-primary);
-    font-weight: bold;
-}
-
-/* ============================================= */
-/* NEW: WORKFLOW STEPS STYLING                   */
-/* ============================================= */
-.workflow-section {
-    background-color: var(--clr-bg); /* Dark background */
-    padding-top: var(--space-section);
-    padding-bottom: var(--space-section); /* CHANGED FROM 0 TO var(--space-section) */
-}
-
-.workflow-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-xl);
-}
-
-@media (max-width: 768px) {
-    .workflow-grid { grid-template-columns: 1fr; }
-}
-
-.workflow-card {
-    background: var(--clr-surface);
-    border: 1px solid var(--clr-border);
-    border-radius: var(--border-radius);
-    padding: var(--space-lg);
-    height: 100%;
-}
-
-.workflow-title {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 20px;
-    border-bottom: 1px solid var(--clr-border);
-    padding-bottom: 15px;
-}
-
-.workflow-title i {
-    font-size: 1.5rem;
-    color: var(--clr-accent-primary);
-}
-
-.workflow-steps {
-    list-style: none;
-    padding: 0;
-}
-
-.workflow-steps li {
-    position: relative;
-    padding-left: 45px;
-    margin-bottom: 20px;
-    color: var(--clr-text-muted);
-}
-
-.workflow-steps li strong {
-    color: var(--clr-text-primary);
-    display: block;
-    margin-bottom: 4px;
-}
-
-/* The "Circle" for Step Numbers */
-.workflow-steps li::before {
-    content: attr(data-step);
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 30px;
-    height: 30px;
-    background: rgba(0, 246, 255, 0.1);
-    border: 1px solid var(--clr-accent-primary);
-    color: var(--clr-accent-primary);
-    border-radius: 50%;
-    text-align: center;
-    line-height: 28px;
-    font-weight: bold;
-    font-family: var(--font-secondary);
-}
-
-/* Highlight key presses in text */
-.key-badge {
-    background: #222;
-    border: 1px solid #444;
-    border-radius: 4px;
-    padding: 2px 6px;
-    font-size: 0.85em;
-    color: #fff;
-    font-family: monospace;
 }
