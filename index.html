@@ -935,65 +935,77 @@
                 </div>
 
                 <div id="pay-as-you-go-plans" class="pricing-plan active">
-                    <div class="pricing-grid">
-                        
-                        <!-- CARD 1: 7-DAY ELITE -->
-                        <div class="pricing-card">
-                            <h3>7-Day Access Key</h3>
-                            <div class="price">$125</div>
-                            <p class="pricing-limit">Quick Plan</p>
-                            <ul class="pricing-features">
-                                <li><i class="fas fa-check"></i> v2.0 Engine</li>
-                                <li><i class="fas fa-infinity"></i> Unlimited AI Questions</li>
-                                <li><i class="fas fa-clock"></i> 7 Days Access</li>
-                            </ul>
-                            <!-- Updated Class to purchase-btn -->
-                            <button class="btn btn-secondary purchase-btn" data-product="Key-7Day-Elite">Get 7-Day Key</button>
+    
+                        <!-- GROUP 1: STANDARD TIER (v2.0) -->
+                        <h3 class="pricing-tier-label">Standard Tier (v2.0 Engine)</h3>
+                        <div class="pricing-grid-standard">
+                            
+                            <!-- 7-DAY STANDARD -->
+                            <div class="pricing-card">
+                                <h3>7-Day Access</h3>
+                                <div class="price">$125</div>
+                                <p class="pricing-limit">Quick Pass</p>
+                                <ul class="pricing-features">
+                                    <li><i class="fas fa-check"></i> v2.0 Engine</li>
+                                    <li><i class="fas fa-infinity"></i> Unlimited AI Questions</li>
+                                    <li><i class="fas fa-clock"></i> 7 Days Access</li>
+                                </ul>
+                                <button class="btn btn-secondary purchase-btn" data-product="Key-7Day-Elite">Get 7-Day Key</button>
+                            </div>
+
+                            <!-- 30-DAY STANDARD -->
+                            <div class="pricing-card featured-standard">
+                                <!-- The Badge -->
+                                <div class="badge" style="background: #0078F2;">Save 60% vs Weekly</div>
+                                
+                                <h3>30-Day Standard</h3>
+                                <div class="price">$200</div>
+                                <p class="pricing-limit">Everyday Use</p>
+                                <ul class="pricing-features">
+                                    <li><i class="fas fa-check"></i> v2.0 Engine</li>
+                                    <li><i class="fas fa-infinity"></i> Unlimited AI Questions</li>
+                                    <li><i class="fas fa-clock"></i> 30 Days Access</li>
+                                </ul>
+                                <button class="btn btn-secondary purchase-btn" data-product="Key-30Day">Get 30-Day Key</button>
+                            </div>
+
+                            <!-- 1-YEAR STANDARD (Bulk Savings) -->
+                            <div class="pricing-card">
+                                <div class="badge" style="background: #2ecc71; color: #fff;">Save 60%</div>
+                                <h3>1-Year Standard</h3>
+                                <div class="price">$1000</div>
+                                <p class="pricing-limit">Long-Term Value</p>
+                                <ul class="pricing-features">
+                                    <li><i class="fas fa-check"></i> v2.0 Engine</li>
+                                    <li><i class="fas fa-infinity"></i> Unlimited AI Questions</li>
+                                    <li><i class="fas fa-user-shield"></i> Priority Support</li>
+                                    <li><i class="fas fa-calendar-check"></i> 365 Days Access</li>
+                                </ul>
+                                <button class="btn btn-secondary purchase-btn" data-product="Key-1Year-Elite">Get Yearly Key</button>
+                            </div>
+
                         </div>
 
-                        <!-- CARD 2: 30-DAY STANDARD (Formerly Subscription) -->
-                        <div class="pricing-card">
-                            <h3>30-Day Standard Key</h3>
-                            <div class="price">$200</div>
-                            <p class="pricing-limit">For Everyday Use</p>
-                            <ul class="pricing-features">
-                                <li><i class="fas fa-check"></i> v2.0 Engine</li>
-                                <li><i class="fas fa-infinity"></i> Unlimited AI Questions</li>
-                                <li><i class="fas fa-clock"></i> 30 Days Access</li>
-                            </ul>
-                            <!-- Updated ID to Key-30Day and Class to purchase-btn -->
-                            <button class="btn btn-secondary purchase-btn" data-product="Key-30Day">Get 30-Day Key</button>
-                        </div>
+                        <!-- GROUP 2: ELITE TIER (v3.0) -->
+                        <h3 class="pricing-tier-label" style="margin-top: 60px;">Elite Tier (v3.0 Advanced)</h3>
+                        <div class="pricing-grid-elite">
+                            
+                            <!-- 30-DAY ELITE (The Star) -->
+                            <div class="pricing-card featured" style="width: 100%;">
+                                <div class="badge">Most Powerful</div>
+                                <h3>30-Day Elite Key</h3>
+                                <div class="price">$350</div>
+                                <p class="pricing-limit">System-Level Privacy</p>
+                                <ul class="pricing-features">
+                                    <li><i class="fas fa-rocket"></i> <strong>v3.0 Advanced Engine</strong></li>
+                                    <li><i class="fas fa-shield-alt"></i> Hardware-Level Isolation</li>
+                                    <li><i class="fas fa-infinity"></i> Unlimited AI Questions</li>
+                                    <li><i class="fas fa-crown"></i> Direct Founder Support</li>
+                                    <li><i class="fas fa-clock"></i> 30 Days Access</li>
+                                </ul>
+                                <button class="btn btn-primary purchase-btn" data-product="Key-30Day-Elite">Get 30-Day Elite</button>
+                            </div>
 
-                        <!-- CARD 3: 30-DAY ELITE (Formerly Subscription) -->
-                        <div class="pricing-card featured">
-                            <div class="badge">Best Value</div>
-                            <h3>30-Day Elite Key</h3>
-                            <div class="price">$350</div>
-                            <p class="pricing-limit">Maximum Privacy</p>
-                            <ul class="pricing-features">
-                                <li><i class="fas fa-rocket"></i> v3.0 Advanced Engine</li>
-                                <li><i class="fas fa-infinity"></i> Unlimited AI Questions</li>
-                                <li><i class="fas fa-user-shield"></i> Direct Founder Support</li>
-                                <li><i class="fas fa-clock"></i> 30 Days Access</li>
-                            </ul>
-                            <!-- Updated ID to Key-30Day-Elite and Class to purchase-btn -->
-                            <button class="btn btn-primary purchase-btn" data-product="Key-30Day-Elite">Get 30-Day Elite</button>
-                        </div>
-
-                        <!-- CARD 4: 1-YEAR ELITE -->
-                        <div class="pricing-card">
-                            <h3>1-Year Elite Key</h3>
-                            <div class="price">$1000</div>
-                            <p class="pricing-limit">Yearly Success</p>
-                            <ul class="pricing-features">
-                                <li><i class="fas fa-check"></i> v2.0 Engine</li>
-                                <li><i class="fas fa-infinity"></i> Unlimited AI Questions</li>
-                                <li><i class="fas fa-user-shield"></i> Direct Founder Support</li>
-                                <li><i class="fas fa-calendar-check"></i> 365 Days Access</li>
-                            </ul>
-                            <!-- Updated ID to Key-1Year-Elite and Class to purchase-btn -->
-                            <button class="btn btn-secondary purchase-btn" data-product="Key-1Year-Elite">Get Yearly Key</button>
                         </div>
 
                     </div>

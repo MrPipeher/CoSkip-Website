@@ -1532,3 +1532,42 @@ input:checked + .slider:before {
         text-align: left;
     }
 }
+
+/* Pricing Group Headers */
+.pricing-tier-label {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #00F6FF; /* Your brand cyan */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    margin: 40px 0 25px 0;
+    position: relative;
+    display: block;
+}
+
+/* 3-Column Grid for Standard Plans */
+.pricing-grid-standard {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin-bottom: 50px;
+}
+
+/* Centered Container for Elite Plan */
+.pricing-grid-elite {
+    display: flex;
+    justify-content: center;
+    max-width: 500px; /* Limits width so the card doesn't stretch too wide */
+    margin: 0 auto;
+}
+
+/* Mobile Responsive */
+@media (max-width: 992px) {
+    .pricing-grid-standard {
+        grid-template-columns: 1fr; /* Stack on mobile */
+    }
+    .pricing-grid-elite {
+        width: 100%;
+    }
+}
