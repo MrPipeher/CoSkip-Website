@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Exam Viewer</title>
+    <style>
+        /* --- General Body Styles --- */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden; /* Prevent body scroll, handle inside containers */
+        }
+
+        #browser-window { display: flex; width: 100%; height: 100vh; background-color: #ffffff; flex-direction: column; }
+
+        /* --- Custom Browser Title Bar --- */
+        #browser-title-bar { background-color: #6a9fdb; color: white; padding: 0; display: flex; align-items: flex-end; justify-content: space-between; height: 38px; flex-shrink: 0; }
+        .title-bar-left { display: flex; align-items: flex-end; height: 100%; }
+        .browser-tab { background-color: #f0f2f5; color: #333; padding: 8px 12px; border: 1px solid #b8b8b8; border-bottom: none; border-radius: 4px 4px 0 0; font-size: 0.9em; display: flex; align-items: center; }
+        .browser-tab .inline-close { margin-left: 10px; font-size: 1.1em; color: #555; opacity: 0.8; cursor: pointer; }
+        .title-bar-right .main-close-btn { background-color: #d14141; color: white; border: none; width: 40px; height: 30px; font-size: 1.4em; line-height: 30px; text-align: center; font-family: 'Arial Black', Gadget, sans-serif; margin-bottom: 2px; }
+
+        /* --- Custom Browser Navigation Bar --- */
+        #browser-nav-bar { background-color: #f0f2f5; padding: 6px 12px; display: flex; align-items: center; border-top: 1px solid #b8b8b8; border-bottom: 2px solid #b8b8b8; flex-shrink: 0; }
+        .nav-icons { display: flex; align-items: center; flex-grow: 1; }
+        .nav-icons span { font-size: 1.5em; color: #555; margin-right: 16px; cursor: pointer; }
+        .nav-icons .forward-arrow { color: #aaa; }
+        #recording-indicator { background-color: #cc3333; color: #ffffff; padding: 5px 12px; border-radius: 12px; font-size: 0.8em; font-weight: 600; display: flex; align-items: center; }
+        .record-dot { display: inline-block; width: 8px; height: 8px; background-color: white; border-radius: 50%; margin-right: 6px; }
+        
+        /* --- Exam Container --- */
+        #exam-wrapper { flex-grow: 1; display: flex; flex-direction: column; overflow-y: hidden; }
+        #exam-container { max-width: 1200px; width: 100%; margin: 0 auto; display: flex; flex-direction: column; flex-grow: 1; min-height: 0; }
+        #exam-header { display: flex; justify-content: space-between; align-items: center; padding: 16px 24px; border-bottom: 1px solid #d1d7dc; flex-shrink: 0; }
+        #exam-header h1 { font-size: 1.2em; margin: 0; font-weight: 500; color: #2d3b45; }
+        #timer-container { display: flex; align-items: center; font-weight: 600; color: #2d3b45; font-size: 0.95em; }
+        .timer-spinner { width: 18px; height: 18px; border: 3px solid #6a9fdb; border-top-color: transparent; border-radius: 50%; animation: spin 1s linear infinite; margin-right: 8px; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        
+        #main-content { display: flex; flex-grow: 1; overflow-y: hidden; }
+        #sidebar { width: 180px; min-width: 180px; border-right: 1px solid #d1d7dc; padding: 24px; background-color: #f7f9fa; overflow-y: auto; }
+        #quiz-area { flex-grow: 1; padding: 24px 32px; overflow-y: auto; }
+
+        /* --- Sidebar & Question Styles --- */
+        #sidebar h2 { font-size: 1em; margin-top: 0; margin-bottom: 12px; color: #2d3b45; }
+        .page-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 24px; }
+        .page-grid .page-link { position: relative; text-decoration: none; color: #005697; padding: 10px; border: 1px solid #d1d7dc; text-align: center; border-radius: 4px; background-color: #ffffff; font-weight: 600; }
+        .page-grid .page-link.answered { background-color: #e0e9f1; border-color: #b4cde2; color: #2d3b45; }
+        .page-link .checkmark { display: none; font-weight: bold; color: #005697; margin-left: 5px; }
+        .page-link.answered .checkmark { display: inline; }
+        .page-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+        .page-navigation button { padding: 8px 18px; border: 1px solid #c8c8c8; background-color: #0073e6; color: white; cursor: pointer; border-radius: 4px; font-size: 0.9em; font-weight: 600; }
+        .page-navigation button:first-child { margin-right: 10px; background-color: #f8f8f8; color: #333; }
+        .question { margin-bottom: 32px; }
+        .question-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+        .question-title { font-weight: 700; font-size: 1.05em; color: #333; }
+        .question-status { font-size: 0.85em; color: #555; display: none; }
+        .question-status.saved { display: block; }
+        .listen-btn { display: inline-flex; align-items: center; font-size: 0.9em; color: #333; background-color: #f0f0f0; border: 1px solid #ccc; border-radius: 4px; padding: 4px 8px; margin-top: 8px; cursor: pointer;}
+        .listen-btn span { font-size: 1.2em; margin-right: 6px; }
+        .question p { font-size: 1em; line-height: 1.5; margin-bottom: 16px; }
+        .options label { display: block; margin-bottom: 12px; padding: 12px; border-radius: 4px; border: 1px solid #d1d7dc; cursor: pointer; }
+        .options input[type="radio"] { margin-right: 12px; transform: translateY(1px); }
+        #submit-container { text-align: right; padding-top: 20px; border-top: 1px solid #d1d7dc; }
+        #submit-btn { padding: 12px 28px; font-size: 1.05em; background-color: #0073e6; color: #ffffff; border: none; border-radius: 4px; cursor: pointer; font-weight: 600; }
+        
+        /* --- Final Standalone Score Screen Styles --- */
+        #final-score-container {
+            display: none; /* Hidden by default */
+            width: 100%;
+            height: 100vh;
+            background-color: #f7f9fa; /* Light gray background */
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        #final-score-area {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px;
+            padding-top: 10vh; /* Move content up */
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+        }
+
+        #final-score-area h1 {
+            font-size: 2.5em;
+            font-weight: 600;
+            color: #2d3b45;
+            margin: 0 0 50px 0;
+        }
+
+        .score-circle-container {
+            position: relative;
+            width: 250px;
+            height: 250px;
+            margin-bottom: 60px;
+        }
+        
+        .score-circle-svg {
+            transform: rotate(-90deg);
+        }
+
+        .score-circle-track {
+            stroke: #e0e9f1;
+            stroke-width: 12;
+            fill: transparent;
+        }
+
+        .score-circle-animated {
+            stroke: #0073e6;
+            stroke-width: 12;
+            fill: transparent;
+            stroke-linecap: round;
+            stroke-dasharray: 754; /* Circumference */
+            stroke-dashoffset: 754;
+            transition: stroke-dashoffset 2s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+        }
+
+        .score-text-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .score-text-content p {
+            margin: 0;
+            font-size: 1em;
+            color: #555;
+            font-weight: 500;
+        }
+
+        #score-display {
+            font-size: 4em;
+            font-weight: 700;
+            color: #2d3b45;
+            margin-top: 8px;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+        
+        #score-display span {
+            font-weight: 400;
+            font-size: 0.5em;
+            color: #666;
+        }
+
+        .score-details-box {
+            background-color: #ffffff;
+            border: 1px solid #d1d7dc;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+            width: 100%;
+            max-width: 700px;
+            display: flex;
+            justify-content: space-between;
+            padding: 25px 35px;
+            font-size: 1.1em;
+            line-height: 1.6;
+            box-sizing: border-box;
+        }
+
+        .details-col-left, .details-col-right {
+            color: #2d3b45;
+            text-align: left;
+        }
+        
+        .details-col-right {
+            text-align: right;
+        }
+        
+        /* Upsell Badge on Result Screen */
+        .co-skip-upsell {
+            margin-top: 30px;
+            background: #e6f4ff;
+            border: 1px solid #0073e6;
+            padding: 15px 25px;
+            border-radius: 8px;
+            text-align: center;
+            color: #005697;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .co-skip-upsell:hover { transform: translateY(-2px); }
+        .co-skip-upsell a { text-decoration: none; color: #005697; }
+
+    </style>
+    <!-- MathJax for LaTeX rendering -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+    <div id="browser-window">
+        <div id="browser-title-bar">
+            <div class="title-bar-left"><div class="browser-tab"><span>Exam Viewer</span><span class="inline-close">&times;</span></div></div>
+            <div class="title-bar-right"><button class="main-close-btn">&times;</button></div>
+        </div>
+        <div id="browser-nav-bar">
+            <div class="nav-icons"><span>&larr;</span><span class="forward-arrow">&rarr;</span><span>&#x21bb;</span><span>&#x24d8;</span></div>
+            <div id="recording-indicator"><span class="record-dot"></span>RECORDING</div>
+        </div>
+        <div id="exam-wrapper">
+            <div id="exam-container">
+                <div id="exam-header">
+                    <h1>Exam 2 - Requires Secure Browser + Webcam</h1>
+                    <div id="timer-container"><div class="timer-spinner"></div><span id="timer-text">0:52:00 remaining</span></div>
+                </div>
+                <div id="main-content">
+                    <div id="sidebar"></div>
+                    <div id="quiz-area"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="final-score-container">
+        <div id="final-score-area">
+            <h1>Quiz Submitted</h1>
+            <div class="score-circle-container">
+                 <svg class="score-circle-svg" width="250" height="250" viewBox="0 0 250 250">
+                    <circle class="score-circle-track" r="120" cx="125" cy="125"></circle>
+                    <circle class="score-circle-animated" r="120" cx="125" cy="125"></circle>
+                </svg>
+                <div class="score-text-content">
+                    <p>Your Score</p>
+                    <p id="score-display"></p>
+                </div>
+            </div>
+            <div class="score-details-box">
+                <div class="details-col-left">
+                    <div><b>Attempts:</b> 1/3</div>
+                    <div><b>Student:</b> Practice User</div>
+                </div>
+                 <div class="details-col-right">
+                    <div><b>Exam 2 - College Algebra</b></div>
+                </div>
+            </div>
+            
+            <!-- CO-SKIP UPSELL BUTTON -->
+            <div class="co-skip-upsell">
+                <a href="../index.html#pricing">
+                    Struggling with these concepts? Unlock Co-Skip to see the step-by-step logic.
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        const quizData = [
+            {
+                question: "What does GDP stand for?",
+                options: ["Global Domestic Product", "Gross Domestic Product", "Gross Dollar Production", "General Domestic Product"],
+                answer: "Gross Domestic Product"
+            },
+            {
+                question: "Which type of unemployment is caused by a mismatch between the skills of workers and the requirements of jobs?",
+                options: ["Frictional Unemployment", "Cyclical Unemployment", "Structural Unemployment", "Seasonal Unemployment"],
+                answer: "Structural Unemployment"
+            },
+            {
+                question: "What is the primary tool used by the Federal Reserve to control the money supply?",
+                options: ["Taxation", "Government Spending", "Open Market Operations", "Price Ceilings"],
+                answer: "Open Market Operations"
+            },
+            {
+                question: "Real GDP differs from Nominal GDP because Real GDP is adjusted for:",
+                options: ["Unemployment", "Inflation", "Population growth", "Depreciation"],
+                answer: "Inflation"
+            },
+            {
+                question: "What is the term for two consecutive quarters of negative economic growth?",
+                options: ["Depression", "Inflation", "Recession", "Stagflation"],
+                answer: "Recession"
+            },
+            {
+                question: "Who conducts Fiscal Policy in the United States?",
+                options: ["The Federal Reserve", "The Supreme Court", "Congress and the President", "The Treasury Department"],
+                answer: "Congress and the President"
+            },
+            {
+                question: "Which economic concept describes the value of the next best alternative forgone when a decision is made?",
+                options: ["Sunk Cost", "Marginal Cost", "Opportunity Cost", "Fixed Cost"],
+                answer: "Opportunity Cost"
+            },
+            {
+                question: "The Consumer Price Index (CPI) is used primarily to measure:",
+                options: ["Unemployment rate", "Inflation rate", "Interest rates", "GDP Growth"],
+                answer: "Inflation rate"
+            },
+            {
+                question: "If the government spends more money than it collects in tax revenue in a single year, this results in a:",
+                options: ["Trade Deficit", "Budget Surplus", "Budget Deficit", "National Debt"],
+                answer: "Budget Deficit"
+            },
+            {
+                question: "Which curve illustrates the inverse relationship between the unemployment rate and the inflation rate in the short run?",
+                options: ["Laffer Curve", "Lorenz Curve", "Phillips Curve", "Demand Curve"],
+                answer: "Phillips Curve"
+            },
+            {
+                question: "If the Federal Reserve wants to stimulate the economy, it would likely:",
+                options: ["Raise interest rates", "Sell government bonds", "Lower the reserve requirement", "Increase taxes"],
+                answer: "Lower the reserve requirement"
+            },
+            {
+                question: "What is 'Fiat Money'?",
+                options: ["Money backed by gold", "Money that has intrinsic value", "Money that has value because the government decrees it", "Digital cryptocurrency"],
+                answer: "Money that has value because the government decrees it"
+            },
+            {
+                question: "The phenomenon where increased government borrowing raises interest rates and reduces private investment is called:",
+                options: ["The Multiplier Effect", "Crowding Out", "Quantitative Easing", "The Wealth Effect"],
+                answer: "Crowding Out"
+            },
+            {
+                question: "Which component is the largest part of US GDP?",
+                options: ["Government Spending", "Net Exports", "Investment", "Consumer Spending (Consumption)"],
+                answer: "Consumer Spending (Consumption)"
+            },
+            {
+                question: "Stagflation is a condition characterized by:",
+                options: ["High inflation and high unemployment", "Low inflation and low unemployment", "High inflation and low unemployment", "Low inflation and high unemployment"],
+                answer: "High inflation and high unemployment"
+            },
+            {
+                question: "Which entity is known as the 'Lender of Last Resort'?",
+                options: ["The World Bank", "The IMF", "The Central Bank", "Commercial Banks"],
+                answer: "The Central Bank"
+            },
+            {
+                question: "Comparative Advantage suggests that countries should trade based on:",
+                options: ["Absolute production numbers", "Lower opportunity costs", "Higher tariffs", "Currency strength"],
+                answer: "Lower opportunity costs"
+            },
+            {
+                question: "What happens to the aggregate demand curve if taxes decrease?",
+                options: ["It shifts to the left", "It shifts to the right", "It stays the same", "It becomes vertical"],
+                answer: "It shifts to the right"
+            },
+            {
+                question: "Unemployment that occurs because it takes time for workers to find the right job (e.g., recent graduates) is called:",
+                options: ["Frictional Unemployment", "Structural Unemployment", "Cyclical Unemployment", "Hidden Unemployment"],
+                answer: "Frictional Unemployment"
+            },
+            {
+                question: "The formula for the spending multiplier is:",
+                options: ["1 / (1 - MPC)", "1 / MPC", "MPC / MPS", "1 - MPS"],
+                answer: "1 / (1 - MPC)"
+            }
+        ];
+
+        let currentPage = 0;
+        const questionsPerPage = 5;
+        const totalPages = Math.ceil(quizData.length / questionsPerPage);
+        const userAnswers = new Array(quizData.length).fill(null);
+        
+        function renderBrowser() {
+            // Already visible by default via CSS/HTML structure now
+        }
+        
+        function generateSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.innerHTML = '';
+            for (let i = 0; i < totalPages; i++) {
+                const pageHeader = document.createElement('h2'); pageHeader.textContent = `Page ${i + 1}:`; sidebar.appendChild(pageHeader);
+                const pageGrid = document.createElement('div'); pageGrid.className = 'page-grid';
+                const startQ = i * questionsPerPage; const endQ = startQ + questionsPerPage;
+                for (let j = startQ; j < endQ && j < quizData.length; j++) {
+                    const link = document.createElement('a'); link.href = '#'; link.className = 'page-link'; link.id = `q-link-${j + 1}`; link.innerHTML = `${j + 1} <span class="checkmark">&#10003;</span>`; pageGrid.appendChild(link);
+                }
+                sidebar.appendChild(pageGrid);
+            }
+        }
+        function renderQuiz() {
+            const quizArea = document.getElementById('quiz-area');
+            
+            quizArea.innerHTML = `
+                <div id="quiz-form"></div>
+                <div class="page-footer" style="display: flex; justify-content: space-between; align-items: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #d1d7dc;">
+                    <div id="page-info" style="color: #555; font-weight: 600;"></div>
+                    <div class="page-navigation">
+                        <button id="prev-btn" onclick="previousPage()" style="padding: 10px 20px; background: #f0f0f0; border: 1px solid #ccc; border-radius: 4px; cursor: pointer; margin-right: 10px; color: #333;">Previous</button>
+                        <button id="next-btn" onclick="nextPage()" style="padding: 10px 20px; background: #0073e6; color: white; border: none; border-radius: 4px; cursor: pointer;">Next</button>
+                        <button id="submit-btn" onclick="submitQuiz()" style="display: none; padding: 10px 20px; background: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">Submit Quiz</button>
+                    </div>
+                </div>
+            `;
+
+            const quizForm = document.getElementById('quiz-form');
+            const startIndex = currentPage * questionsPerPage;
+            const pageQuestions = quizData.slice(startIndex, startIndex + questionsPerPage);
+
+            // 2. Render Questions
+            pageQuestions.forEach((q, index) => {
+                const questionIndex = startIndex + index;
+                const questionElement = document.createElement('div'); 
+                questionElement.className = 'question';
+                
+                const questionHeader = document.createElement('div'); 
+                questionHeader.className = 'question-header';
+                
+                const questionTitle = document.createElement('div'); 
+                questionTitle.className = 'question-title'; 
+                questionTitle.innerText = `Question ${questionIndex + 1} (2 points)`;
+                
+                const questionStatus = document.createElement('div'); 
+                questionStatus.className = 'question-status'; 
+                questionStatus.id = `q-status-${questionIndex + 1}`; 
+                questionStatus.innerHTML = `&#10003; Saved`;
+                
+                questionHeader.appendChild(questionTitle); 
+                questionHeader.appendChild(questionStatus); 
+                questionElement.appendChild(questionHeader);
+                
+                const questionText = document.createElement('p'); 
+                questionText.innerHTML = q.question; 
+                questionElement.appendChild(questionText);
+                
+                // Listen Button (Visual Only)
+                const listenButton = document.createElement('button'); 
+                listenButton.className = 'listen-btn'; 
+                listenButton.innerHTML = `<span>&#9654;</span> Listen`; 
+                questionElement.appendChild(listenButton);
+                
+                const optionsElement = document.createElement('div'); 
+                optionsElement.className = 'options'; 
+                optionsElement.style.marginTop = '16px';
+                
+                q.options.forEach(option => {
+                    const label = document.createElement('label');
+                    const radio = document.createElement('input'); 
+                    radio.type = 'radio'; 
+                    radio.name = `question${questionIndex}`; 
+                    radio.value = option;
+                    
+                    if (userAnswers[questionIndex] === option) { 
+                        radio.checked = true; 
+                        questionStatus.classList.add('saved'); 
+                    }
+                    
+                    radio.onchange = () => { 
+                        userAnswers[questionIndex] = option; 
+                        document.getElementById(`q-link-${questionIndex + 1}`).classList.add('answered'); 
+                        document.getElementById(`q-status-${questionIndex + 1}`).classList.add('saved'); 
+                    };
+                    
+                    label.appendChild(radio);
+                    const optionSpan = document.createElement('span');
+                    optionSpan.innerHTML = ` ${option}`;
+                    label.appendChild(optionSpan);
+                    optionsElement.appendChild(label);
+                });
+                
+                questionElement.appendChild(optionsElement); 
+                quizForm.appendChild(questionElement);
+            });
+
+            // 3. Update Page Info
+            document.getElementById('page-info').innerText = `Page ${currentPage + 1} of ${totalPages}`;
+
+            // 4. Handle Button Visibility
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const submitBtn = document.getElementById('submit-btn');
+
+            // Hide Previous on first page
+            if (currentPage === 0) {
+                prevBtn.style.display = 'none';
+            } else {
+                prevBtn.style.display = 'inline-block';
+            }
+
+            // Swap Next for Submit on last page
+            if (currentPage === totalPages - 1) {
+                nextBtn.style.display = 'none';
+                submitBtn.style.display = 'inline-block';
+            } else {
+                nextBtn.style.display = 'inline-block';
+                submitBtn.style.display = 'none';
+            }
+
+            // Rerender LaTeX
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        }
+        function nextPage() { 
+            if (currentPage < totalPages - 1) { 
+                currentPage++; 
+                renderQuiz(); 
+                document.getElementById('quiz-area').scrollTop = 0;
+            } 
+        }
+
+        function previousPage() { 
+            if (currentPage > 0) { 
+                currentPage--; 
+                renderQuiz(); 
+                document.getElementById('quiz-area').scrollTop = 0;
+            } 
+        }
+        
+        function submitQuiz() {
+            clearInterval(timerInterval);
+            document.getElementById('browser-window').style.display = 'none';
+            document.getElementById('final-score-container').style.display = 'flex';
+            
+            let score = 0;
+            quizData.forEach((q, index) => { if (userAnswers[index] === q.answer) { score += 2; } });
+            const totalPoints = quizData.length * 2;
+            document.getElementById('score-display').innerHTML = `${score} <span>/ ${totalPoints}</span>`;
+            
+            const scorePercentage = (score / totalPoints);
+            const circle = document.querySelector('.score-circle-animated');
+            const circumference = 2 * Math.PI * 120;
+            const offset = circumference - scorePercentage * circumference;
+            setTimeout(() => { circle.style.strokeDashoffset = offset; }, 100);
+        }
+
+        let timeLeft = 50 * 60;
+        let timerInterval;
+        function updateTimer() {
+            timeLeft--;
+            const minutes = Math.floor(timeLeft / 60); const seconds = timeLeft % 60;
+            const timerText = document.getElementById('timer-text');
+            if (timerText) { timerText.innerText = `0:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')} remaining`; }
+            if (timeLeft <= 0) { clearInterval(timerInterval); submitQuiz(); }
+        }
+        
+        // Auto-Start immediately
+        generateSidebar();
+        renderQuiz();
+        timerInterval = setInterval(updateTimer, 1000);
+
+    </script>
+</body>
+</html>

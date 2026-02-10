@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice Lab | Co-Skip</title>
+    <link href="styles/bundle.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;900&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body { background-color: #050505; color: #fff; font-family: 'Inter', sans-serif; }
+        
+        /* Hero Header */
+        .practice-header { 
+            padding: 100px 20px 60px; 
+            text-align: center; 
+            background: radial-gradient(circle at 50% 0%, rgba(0, 246, 255, 0.08) 0%, transparent 70%); 
+        }
+        .practice-title { font-family: 'Poppins', sans-serif; font-size: 2.8rem; margin-bottom: 15px; color: #fff; }
+        .practice-subtitle { color: #aaa; max-width: 600px; margin: 0 auto; font-size: 1.1rem; line-height: 1.6; }
+
+        /* Grid Layout */
+        .category-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 25px; 
+            max-width: 1200px; 
+            margin: 0 auto 100px; 
+            padding: 0 20px; 
+        }
+
+        /* Card Design */
+        .drill-card {
+            background: rgba(20, 20, 20, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .drill-card:hover { 
+            transform: translateY(-5px); 
+            border-color: #00F6FF; 
+            box-shadow: 0 10px 30px rgba(0, 246, 255, 0.1); 
+        }
+        
+        .drill-icon { 
+            width: 50px; height: 50px; 
+            background: rgba(0, 246, 255, 0.1); 
+            color: #00F6FF; 
+            border-radius: 8px; 
+            display: flex; align-items: center; justify-content: center; 
+            font-size: 1.5rem; 
+            margin-bottom: 20px; 
+        }
+        
+        .drill-name { font-size: 1.4rem; font-weight: 700; margin-bottom: 8px; font-family: 'Poppins'; }
+        .drill-meta { font-size: 0.85rem; color: #666; margin-bottom: 15px; display: flex; gap: 15px; }
+        .drill-meta span { display: flex; align-items: center; gap: 5px; }
+        .drill-desc { color: #999; font-size: 0.95rem; margin-bottom: 25px; line-height: 1.5; flex-grow: 1; }
+        
+        .drill-btn {
+            width: 100%;
+            padding: 12px 0;
+            text-align: center;
+            background: transparent;
+            border: 1px solid #333;
+            color: #fff;
+            font-weight: 600;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        .drill-btn:hover { background: #00F6FF; color: #000; border-color: #00F6FF; }
+
+    </style>
+</head>
+<body>
+
+    <!-- Simple Nav -->
+    <nav style="padding: 25px 40px; display: flex; justify-content: space-between; align-items: center;">
+        <a href="index.html" style="color: #fff; font-weight: 900; font-size: 1.5rem; text-decoration: none; font-family: 'Poppins';">Co-Skip</a>
+        <a href="index.html#pricing" style="color: #aaa; text-decoration: none; font-size: 0.9rem; font-weight: 600;">Get The Tool <i class="fas fa-arrow-right" style="margin-left: 5px;"></i></a>
+    </nav>
+
+    <header class="practice-header">
+        <h1 class="practice-title">Learning Center</h1>
+        <p class="practice-subtitle">Select a subject below to begin a standardized simulation. Use Co-Skip to capture difficult questions and build your study guide.</p>
+    </header>
+
+    <div class="category-grid">
+    
+        <!-- 1. NURSING -->
+        <div class="drill-card">
+            <div class="drill-icon"><i class="fas fa-user-nurse"></i></div>
+            <div class="drill-name">Nursing Fundamentals</div>
+            <div class="drill-meta"><span><i class="far fa-question-circle"></i> 30 Qs</span></div>
+            <p class="drill-desc">Standardized clinical simulation covering patient safety, medication administration, and ethical practice. <strong>(ATI Style)</strong></p>
+            <a href="simulators/nursing.html" target="_blank" class="drill-btn">Start Simulation</a>
+        </div>
+
+        <!-- 2. MATH -->
+        <div class="drill-card">
+            <div class="drill-icon"><i class="fas fa-square-root-alt"></i></div>
+            <div class="drill-name">College Algebra</div>
+            <div class="drill-meta"><span><i class="far fa-question-circle"></i> 20 Qs</span></div>
+            <p class="drill-desc">Logic and calculation drill focusing on functions, equations, and graphing logic. <strong>(Canvas Style)</strong></p>
+            <a href="simulators/math.html" target="_blank" class="drill-btn">Start Simulation</a>
+        </div>
+
+        <!-- 3. HISTORY -->
+        <div class="drill-card">
+            <div class="drill-icon"><i class="fas fa-globe-americas"></i></div>
+            <div class="drill-name">World History</div>
+            <div class="drill-meta"><span><i class="far fa-question-circle"></i> 25 Qs</span></div>
+            <p class="drill-desc">Global geopolitical events, ancient civilizations, and modern era milestones. <strong>(Canvas Style)</strong></p>
+            <a href="simulators/history.html" target="_blank" class="drill-btn">Start Simulation</a>
+        </div>
+
+        <!-- 4. CODING -->
+        <div class="drill-card">
+            <div class="drill-icon"><i class="fas fa-code"></i></div>
+            <div class="drill-name">Computer Science</div>
+            <div class="drill-meta"><span><i class="far fa-question-circle"></i> 20 Qs</span></div>
+            <p class="drill-desc">Python syntax, data structures, algorithms, and object-oriented programming concepts. <strong>(Canvas Style)</strong></p>
+            <a href="simulators/coding.html" target="_blank" class="drill-btn">Start Simulation</a>
+        </div>
+
+        <!-- 5. PSYCHOLOGY -->
+        <div class="drill-card">
+            <div class="drill-icon"><i class="fas fa-brain"></i></div>
+            <div class="drill-name">Intro to Psychology</div>
+            <div class="drill-meta"><span><i class="far fa-question-circle"></i> 20 Qs</span></div>
+            <p class="drill-desc">Cognitive development, behavioral theories, neuroscience basics, and research methods. <strong>(Canvas Style)</strong></p>
+            <a href="simulators/psych.html" target="_blank" class="drill-btn">Start Simulation</a>
+        </div>
+
+        <!-- 6. ECONOMICS -->
+        <div class="drill-card">
+            <div class="drill-icon"><i class="fas fa-chart-line"></i></div>
+            <div class="drill-name">Macroeconomics</div>
+            <div class="drill-meta"><span><i class="far fa-question-circle"></i> 20 Qs</span></div>
+            <p class="drill-desc">Supply and demand, fiscal policy, GDP calculation, and market structures. <strong>(Canvas Style)</strong></p>
+            <a href="simulators/econ.html" target="_blank" class="drill-btn">Start Simulation</a>
+        </div>
+
+        <!-- 7. ANATOMY -->
+        <div class="drill-card">
+            <div class="drill-icon"><i class="fas fa-heartbeat"></i></div>
+            <div class="drill-name">Human Anatomy</div>
+            <div class="drill-meta"><span><i class="far fa-question-circle"></i> 20 Qs</span></div>
+            <p class="drill-desc">Skeletal system, muscular physiology, nervous system pathways, and organ functions. <strong>(Canvas Style)</strong></p>
+            <a href="simulators/anatomy.html" target="_blank" class="drill-btn">Start Simulation</a>
+        </div>
+
+    </div>
+
+    <footer style="text-align: center; color: #444; padding-bottom: 40px; font-size: 0.8rem;">
+        &copy; 2026 Co-Skip. All rights reserved.
+    </footer>
+
+</body>
+</html>
