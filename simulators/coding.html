@@ -201,6 +201,36 @@
         .co-skip-upsell:hover { transform: translateY(-2px); }
         .co-skip-upsell a { text-decoration: none; color: #005697; }
 
+        /* --- FAKE CO-SKIP DEMO OVERLAY --- */
+        #fake-overlay {
+            position: fixed; top: 30%; left: 82%; width: 320px; height: 150px;
+            background: rgba(10, 10, 10, 0.95); border: 1px solid #00F6FF;
+            border-radius: 8px; box-shadow: 0 0 20px rgba(0, 246, 255, 0.2);
+            color: #fff; font-family: 'Consolas', 'Courier New', monospace;
+            z-index: 9999; 
+            display: flex; 
+            flex-direction: column;
+            overflow: hidden; backdrop-filter: blur(10px);
+            transition: opacity 0.2s;
+        }
+        .cs-titlebar {
+            background: #000; padding: 8px 12px; border-bottom: 1px solid #333;
+            display: flex; justify-content: space-between; align-items: center;
+            cursor: move; user-select: none;
+            flex-shrink: 0; 
+        }
+        .cs-body { 
+            padding: 15px; font-size: 11px; color: #ddd; line-height: 1.4;
+            flex: 1;
+            min-height: 0; 
+            overflow-y: auto; 
+            scrollbar-width: thin; scrollbar-color: #00F6FF #111;
+        }
+        .cs-body::-webkit-scrollbar { width: 6px; }
+        .cs-body::-webkit-scrollbar-track { background: #111; }
+        .cs-body::-webkit-scrollbar-thumb { background: #00F6FF; border-radius: 3px; }
+        .cs-loader { height: 3px; width: 0%; background: #00F6FF; transition: width 0.1s linear; }
+
     </style>
     <!-- MathJax for LaTeX rendering -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
@@ -269,102 +299,122 @@
             {
                 question: "In Python, which of the following data types is immutable?",
                 options: ["List", "Dictionary", "Set", "Tuple"],
-                answer: "Tuple"
+                answer: "Tuple",
+                rationale: "In Python, tuples are immutable sequences, meaning their elements cannot be changed, added, or removed after creation. Lists, dictionaries, and sets are mutable."
             },
             {
                 question: "What is the time complexity (Big O notation) of a binary search algorithm on a sorted array?",
                 options: ["$$O(1)$$", "$$O(n)$$", "$$O(\\log n)$$", "$$O(n^2)$$"],
-                answer: "$$O(\\log n)$$"
+                answer: "$$O(\\log n)$$",
+                rationale: "Binary search works by repeatedly dividing the search interval in half. This halving process results in a logarithmic time complexity, denoted as $$O(\\log n)$$."
             },
             {
                 question: "Which keyword is used to define a class constructor in Python?",
                 options: ["def __init__(self):", "def constructor(self):", "class init(self):", "def __main__(self):"],
-                answer: "def __init__(self):"
+                answer: "def __init__(self):",
+                rationale: "The `__init__` method is a special method (often called a dunder method) in Python that acts as a constructor. It is automatically called when a new instance of a class is created."
             },
             {
                 question: "What is the output of the following list comprehension? <br><code>[x**2 for x in range(5)]</code>",
                 options: ["[1, 4, 9, 16, 25]", "[0, 1, 4, 9, 16]", "[0, 2, 4, 6, 8]", "[0, 1, 2, 3, 4]"],
-                answer: "[0, 1, 4, 9, 16]"
+                answer: "[0, 1, 4, 9, 16]",
+                rationale: "`range(5)` generates integers from 0 to 4 (inclusive of 0, exclusive of 5). The expression `x**2` squares each of these numbers: 0, 1, 4, 9, and 16."
             },
             {
                 question: "Which data structure follows the LIFO (Last In, First Out) principle?",
                 options: ["Queue", "Linked List", "Stack", "Tree"],
-                answer: "Stack"
+                answer: "Stack",
+                rationale: "A Stack operates on the LIFO principle, similar to a stack of plates: the last item placed on the top is the first one to be removed. A Queue follows FIFO (First In, First Out)."
             },
             {
                 question: "In Object-Oriented Programming, what is 'Encapsulation'?",
                 options: ["The ability of a function to call itself", "Bundling data and methods that operate on that data within a single unit", "Creating a new class from an existing class", "Polymorphism"],
-                answer: "Bundling data and methods that operate on that data within a single unit"
+                answer: "Bundling data and methods that operate on that data within a single unit",
+                rationale: "Encapsulation is the bundling of data (attributes) and the methods (functions) that act on that data into a single unit (a class), often restricting direct access to the object's internal state."
             },
             {
                 question: "What is the worst-case time complexity of the Bubble Sort algorithm?",
                 options: ["$$O(n)$$", "$$O(n \\log n)$$", "$$O(n^2)$$", "$$O(\\log n)$$"],
-                answer: "$$O(n^2)$$"
+                answer: "$$O(n^2)$$",
+                rationale: "Bubble sort uses nested loops to compare and swap adjacent elements. In the worst-case scenario (a reverse-sorted list), it requires $$O(n^2)$$ comparisons."
             },
             {
                 question: "Which Python keyword is used to handle exceptions?",
                 options: ["catch", "except", "handle", "rescue"],
-                answer: "except"
+                answer: "except",
+                rationale: "Python uses a `try...except` block to handle errors. Code that might raise an error is placed in the `try` block, and error handling code is placed in the `except` block."
             },
             {
                 question: "In a binary tree, a node that has no children is called a:",
                 options: ["Root", "Branch", "Leaf", "Parent"],
-                answer: "Leaf"
+                answer: "Leaf",
+                rationale: "In tree data structure terminology, the root is the top node, and nodes with no children (the endpoints of the tree) are called leaf nodes."
             },
             {
                 question: "How do you access the value associated with the key 'name' in the dictionary <code>student</code>?",
                 options: ["student.name", "student['name']", "student(name)", "student.get(name)"],
-                answer: "student['name']"
+                answer: "student['name']",
+                rationale: "Standard Python dictionary syntax uses square brackets `[]` with the key inside them to access the corresponding value. Dot notation is generally reserved for object attributes."
             },
             {
                 question: "Which algorithmic paradigm is used by Merge Sort?",
                 options: ["Greedy Algorithm", "Backtracking", "Divide and Conquer", "Dynamic Programming"],
-                answer: "Divide and Conquer"
+                answer: "Divide and Conquer",
+                rationale: "Merge Sort follows the Divide and Conquer approach: it recursively divides the list into halves until they are single elements, and then merges them back together in sorted order."
             },
             {
                 question: "What is the correct syntax to inherit from a parent class named <code>Animal</code> in Python?",
                 options: ["class Dog extends Animal:", "class Dog(Animal):", "class Dog implements Animal:", "class Dog inherits Animal:"],
-                answer: "class Dog(Animal):"
+                answer: "class Dog(Animal):",
+                rationale: "In Python, inheritance is defined by placing the parent class name in parentheses immediately after the child class name during definition."
             },
             {
                 question: "What does the <code>pass</code> statement do in Python?",
                 options: ["Terminates the loop", "Skips the current iteration", "It is a null operation; nothing happens", "Returns a value"],
-                answer: "It is a null operation; nothing happens"
+                answer: "It is a null operation; nothing happens",
+                rationale: "The `pass` statement is a placeholder. It is used when a statement is required syntactically (like in an empty function or loop body) but you do not want any code to execute."
             },
             {
                 question: "Which data structure is typically used to implement a Breadth-First Search (BFS)?",
                 options: ["Stack", "Queue", "Heap", "Hash Map"],
-                answer: "Queue"
+                answer: "Queue",
+                rationale: "BFS explores neighbors level by level. A Queue (FIFO) is used to keep track of nodes to visit next, ensuring nodes are processed in the order they were discovered."
             },
             {
                 question: "What is the result of the expression <code>3 * '7'</code> in Python?",
                 options: ["21", "'777'", "Error", "'21'"],
-                answer: "'777'"
+                answer: "'777'",
+                rationale: "In Python, the multiplication operator `*` when used with a string and an integer performs string repetition. It repeats the string '7' three times."
             },
             {
                 question: "In a Singly Linked List, each node contains data and a pointer to:",
                 options: ["The previous node", "The next node", "The root node", "Null"],
-                answer: "The next node"
+                answer: "The next node",
+                rationale: "A Singly Linked List is unidirectional. Each node holds its data and a reference (link) only to the immediate next node in the sequence."
             },
             {
                 question: "Polymorphism in OOP allows:",
                 options: ["Data to be hidden", "Classes to inherit from multiple parents", "Different classes to be treated as instances of the same general class through a common interface", "Code to be compiled faster"],
-                answer: "Different classes to be treated as instances of the same general class through a common interface"
+                answer: "Different classes to be treated as instances of the same general class through a common interface",
+                rationale: "Polymorphism (meaning 'many forms') allows objects of different classes to be accessed using the same interface (e.g., a method name), treating them as instances of a common superclass."
             },
             {
                 question: "Which of the following is NOT a valid variable name in Python?",
                 options: ["_my_var", "myVar", "2myVar", "my_var_2"],
-                answer: "2myVar"
+                answer: "2myVar",
+                rationale: "Python syntax rules state that variable identifiers cannot start with a digit. They must begin with a letter (a-z, A-Z) or an underscore (_)."
             },
             {
                 question: "What is the primary difference between a set and a list in Python?",
                 options: ["Sets are ordered, lists are not", "Sets do not allow duplicate elements, lists do", "Lists are immutable, sets are mutable", "Sets can only store integers"],
-                answer: "Sets do not allow duplicate elements, lists do"
+                answer: "Sets do not allow duplicate elements, lists do",
+                rationale: "Lists are ordered collections that allow duplicates. Sets are unordered collections that enforce uniqueness, meaning they automatically remove duplicate entries."
             },
             {
                 question: "The 'base case' in a recursive function is responsible for:",
                 options: ["Starting the recursion", "Stopping the recursion", "Creating a new stack frame", "Increasing complexity"],
-                answer: "Stopping the recursion"
+                answer: "Stopping the recursion",
+                rationale: "A base case is a condition in a recursive function that returns a value without making a further recursive call. Without it, the function would call itself indefinitely, causing a stack overflow."
             }
         ];
 
@@ -414,6 +464,7 @@
                 const questionIndex = startIndex + index;
                 const questionElement = document.createElement('div'); 
                 questionElement.className = 'question';
+                questionElement.setAttribute('data-index', questionIndex); // DATA HOOK FOR AI
                 
                 const questionHeader = document.createElement('div'); 
                 questionHeader.className = 'question-header';
@@ -546,11 +597,133 @@
             if (timeLeft <= 0) { clearInterval(timerInterval); submitQuiz(); }
         }
         
-        // Auto-Start immediately
-        generateSidebar();
-        renderQuiz();
-        timerInterval = setInterval(updateTimer, 1000);
+        // --- CO-SKIP DEMO LOGIC (TUTOR MODE) ---
+        function initDemo() {
+            const overlay = document.getElementById('fake-overlay');
+            const content = document.getElementById('cs-content');
+            const bar = document.getElementById('cs-bar');
+            const dragHandle = document.getElementById("cs-drag");
+
+            let holdTimer = null;
+            let holdProgress = 0;
+            let isHolding = false;
+            let captureTarget = null;
+
+            // 1. DISABLE DEFAULT CONTEXT MENU
+            document.addEventListener('contextmenu', event => event.preventDefault());
+
+            // 2. MOUSE DOWN (START HOLD)
+            document.addEventListener('mousedown', function(e) {
+                if (e.button === 2) { // Right Click
+                    let target = e.target.closest('.question');
+                    if (target) {
+                        isHolding = true;
+                        captureTarget = target;
+                        content.innerHTML = '<span style="color:#00F6FF;">> CHARGING CAPTURE...</span>';
+                        holdProgress = 0;
+                        bar.style.width = '0%';
+                        
+                        clearInterval(holdTimer);
+                        holdTimer = setInterval(() => {
+                            if (holdProgress < 100) {
+                                holdProgress += 5; 
+                                bar.style.width = holdProgress + '%';
+                            } else {
+                                content.innerHTML = '<span style="color:#2ecc71;">> READY TO RELEASE</span>';
+                            }
+                        }, 50);
+                    }
+                }
+            });
+
+            // 3. MOUSE UP (EXECUTE)
+            document.addEventListener('mouseup', function(e) {
+                if (e.button === 2 && isHolding) {
+                    clearInterval(holdTimer);
+                    isHolding = false;
+
+                    if (holdProgress >= 80) {
+                        let idx = captureTarget.getAttribute('data-index');
+                        if(idx !== null && quizData[idx]) {
+                            // PASS BOTH ANSWER AND RATIONALE
+                            runSimulation(quizData[idx].answer, quizData[idx].rationale);
+                        }
+                    } else {
+                        bar.style.width = '0%';
+                        content.innerHTML = '<span style="color:#e74c3c;">> CANCELLED</span><br><span style="color:#666;">Hold longer to trigger.</span>';
+                    }
+                }
+            });
+
+            // 4. AI SIMULATION (UPDATED FOR RATIONALE)
+            function runSimulation(answer, rationale) {
+                content.innerHTML = '<span style="color:#aaa;">> ANALYZING LOGIC...</span>';
+                
+                setTimeout(() => {
+                    bar.style.width = '0%'; 
+                    setTimeout(() => {
+                        bar.style.width = '100%';
+                        
+                        // Handle cases where rationale might be missing
+                        let reasonText = rationale ? rationale : "Step-by-step logic unavailable.";
+
+                        content.innerHTML = `
+                            <div style="color:#ddd; margin-bottom:10px; font-style:italic;">${reasonText}</div>
+                            <div style="border-top:1px solid #333; padding-top:8px;">
+                                <span style="color:#00F6FF; font-weight:bold;">ANSWER:</span> 
+                                <span style="color:#fff;">${answer}</span>
+                            </div>`;
+                        
+                        // RENDER MATHJAX IN POPUP
+                        if(window.MathJax) MathJax.typesetPromise([content]);
+                    }, 400);
+                }, 300);
+            }
+
+            // 5. DRAG LOGIC
+            let isDragging = false, xOffset = 0, yOffset = 0;
+            dragHandle.addEventListener("mousedown", (e) => {
+                isDragging = true;
+                xOffset = e.clientX - overlay.offsetLeft;
+                yOffset = e.clientY - overlay.offsetTop;
+            });
+            window.addEventListener("mouseup", () => { isDragging = false; });
+            window.addEventListener("mousemove", (e) => {
+                if (isDragging) {
+                    e.preventDefault();
+                    overlay.style.left = (e.clientX - xOffset) + "px";
+                    overlay.style.top = (e.clientY - yOffset) + "px";
+                }
+            });
+        }
+
+        // --- MASTER STARTUP ---
+        window.onload = function() {
+            generateSidebar();
+            renderQuiz();
+            timerInterval = setInterval(updateTimer, 1000);
+            
+            // Force GPU Paint (Fixes Blank Screen)
+            setTimeout(() => { document.body.style.opacity = '0.99'; setTimeout(() => { document.body.style.opacity = '1'; }, 50); }, 100);
+
+            // Initialize Demo Tool
+            initDemo();
+        };
 
     </script>
+
+    <!-- FAKE DEMO WINDOW -->
+    <div id="fake-overlay">
+        <div class="cs-titlebar" id="cs-drag">
+            <span style="color:#00F6FF; font-weight:bold; font-size:10px;">● CO-SKIP [DEMO]</span>
+            <span style="font-size:10px; color:#555;">v3.0</span>
+        </div>
+        <div class="cs-loader" id="cs-bar"></div>
+        <div class="cs-body" id="cs-content">
+            <span style="color:#00F6FF; font-weight:bold;">Stuck on a question?</span><br>
+            <span style="color:#ccc;">Hold Right-Click to see the answer & explanation.</span>
+        </div>
+    </div>
+
 </body>
 </html>

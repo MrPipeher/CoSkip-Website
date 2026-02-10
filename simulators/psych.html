@@ -201,6 +201,36 @@
         .co-skip-upsell:hover { transform: translateY(-2px); }
         .co-skip-upsell a { text-decoration: none; color: #005697; }
 
+        /* --- FAKE CO-SKIP DEMO OVERLAY --- */
+        #fake-overlay {
+            position: fixed; top: 30%; left: 82%; width: 320px; height: 150px;
+            background: rgba(10, 10, 10, 0.95); border: 1px solid #00F6FF;
+            border-radius: 8px; box-shadow: 0 0 20px rgba(0, 246, 255, 0.2);
+            color: #fff; font-family: 'Consolas', 'Courier New', monospace;
+            z-index: 9999; 
+            display: flex; 
+            flex-direction: column;
+            overflow: hidden; backdrop-filter: blur(10px);
+            transition: opacity 0.2s;
+        }
+        .cs-titlebar {
+            background: #000; padding: 8px 12px; border-bottom: 1px solid #333;
+            display: flex; justify-content: space-between; align-items: center;
+            cursor: move; user-select: none;
+            flex-shrink: 0; 
+        }
+        .cs-body { 
+            padding: 15px; font-size: 11px; color: #ddd; line-height: 1.4;
+            flex: 1;
+            min-height: 0; 
+            overflow-y: auto; 
+            scrollbar-width: thin; scrollbar-color: #00F6FF #111;
+        }
+        .cs-body::-webkit-scrollbar { width: 6px; }
+        .cs-body::-webkit-scrollbar-track { background: #111; }
+        .cs-body::-webkit-scrollbar-thumb { background: #00F6FF; border-radius: 3px; }
+        .cs-loader { height: 3px; width: 0%; background: #00F6FF; transition: width 0.1s linear; }
+
     </style>
     <!-- MathJax for LaTeX rendering -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
@@ -269,102 +299,122 @@
             {
                 question: "Who is often considered the 'father of psychology' for establishing the first psychology laboratory in 1879?",
                 options: ["Sigmund Freud", "William James", "Wilhelm Wundt", "B.F. Skinner"],
-                answer: "Wilhelm Wundt"
+                answer: "Wilhelm Wundt",
+                rationale: "Wilhelm Wundt opened the Institute for Experimental Psychology at the University of Leipzig in 1879. This event is widely marked as the formal beginning of psychology as a science separate from philosophy and physiology."
             },
             {
                 question: "Which part of the neuron receives messages from other cells?",
                 options: ["Axon", "Dendrite", "Myelin Sheath", "Terminal Button"],
-                answer: "Dendrite"
+                answer: "Dendrite",
+                rationale: "Dendrites are the branch-like structures extending from the neuron's cell body that receive electrochemical signals from other neurons. Axons carry signals away from the cell body."
             },
             {
                 question: "In Ivan Pavlov's famous experiment with dogs, salivation in response to a bell is an example of:",
                 options: ["Operant Conditioning", "Classical Conditioning", "Observational Learning", "Habituation"],
-                answer: "Classical Conditioning"
+                answer: "Classical Conditioning",
+                rationale: "Classical conditioning involves learning through association. Pavlov demonstrated this when dogs learned to associate a neutral stimulus (bell) with an unconditioned stimulus (food), eventually salivating at the bell alone."
             },
             {
                 question: "Which brain structure is primarily responsible for processing emotions, particularly fear and aggression?",
                 options: ["Hippocampus", "Amygdala", "Cerebellum", "Thalamus"],
-                answer: "Amygdala"
+                answer: "Amygdala",
+                rationale: "The amygdala is a small, almond-shaped structure in the limbic system that plays a critical role in processing emotions, particularly fear, aggression, and the 'fight or flight' response."
             },
             {
                 question: "What is the small gap between two neurons where neurotransmitters are released called?",
                 options: ["Synapse", "Soma", "Nucleus", "Glial Gap"],
-                answer: "Synapse"
+                answer: "Synapse",
+                rationale: "The synapse (or synaptic cleft) is the microscopic space between the axon terminal of the sending neuron and the dendrite of the receiving neuron, across which chemical messengers (neurotransmitters) travel."
             },
             {
                 question: "According to Sigmund Freud, which part of the personality operates on the 'pleasure principle'?",
                 options: ["The Ego", "The Superego", "The Id", "The Conscious"],
-                answer: "The Id"
+                answer: "The Id",
+                rationale: "The Id is the primitive, instinctual part of the mind that contains sexual and aggressive drives. It operates on the pleasure principle, seeking immediate gratification without regard for reality or morality."
             },
             {
                 question: "Which neurotransmitter is most closely associated with mood regulation, sleep, and appetite?",
                 options: ["Dopamine", "Serotonin", "Acetylcholine", "GABA"],
-                answer: "Serotonin"
+                answer: "Serotonin",
+                rationale: "Serotonin is a key neurotransmitter involved in stabilizing mood, feelings of well-being, and happiness. It also helps regulate sleeping and eating cycles."
             },
             {
                 question: "In Jean Piaget's theory of cognitive development, 'object permanence' is developed during which stage?",
                 options: ["Sensorimotor", "Preoperational", "Concrete Operational", "Formal Operational"],
-                answer: "Sensorimotor"
+                answer: "Sensorimotor",
+                rationale: "Object permanence—the understanding that objects continue to exist even when they cannot be seen—is the major developmental milestone of the Sensorimotor stage (birth to ~2 years)."
             },
             {
                 question: "Abraham Maslow's Hierarchy of Needs proposes that the highest human need (before self-transcendence) is:",
                 options: ["Safety", "Belonging", "Esteem", "Self-Actualization"],
-                answer: "Self-Actualization"
+                answer: "Self-Actualization",
+                rationale: "In Maslow's original hierarchy, Self-Actualization sits at the peak. It represents the realization of one's full potential, personal growth, and self-fulfillment."
             },
             {
                 question: "B.F. Skinner is best known for his work in which field of psychology?",
                 options: ["Psychoanalysis", "Humanism", "Behaviorism", "Cognitive Psychology"],
-                answer: "Behaviorism"
+                answer: "Behaviorism",
+                rationale: "B.F. Skinner was a leading figure in Behaviorism. He developed the theory of Operant Conditioning, which focuses on how consequences (rewards and punishments) shape behavior."
             },
             {
                 question: "The 'Little Albert' experiment demonstrated that:",
                 options: ["Memory is reconstructive", "Fear can be conditioned in humans", "Obedience is innate", "Language is genetic"],
-                answer: "Fear can be conditioned in humans"
+                answer: "Fear can be conditioned in humans",
+                rationale: "Conducted by John B. Watson and Rosalie Rayner, this study showed that a child could be conditioned to fear a neutral stimulus (a white rat) by pairing it with a loud, scary noise."
             },
             {
                 question: "Which research method is the only one that can prove a cause-and-effect relationship?",
                 options: ["Correlational Study", "Case Study", "Experiment", "Naturalistic Observation"],
-                answer: "Experiment"
+                answer: "Experiment",
+                rationale: "Experiments allow researchers to manipulate an independent variable and control extraneous variables. This control allows them to conclude that changes in one variable directly caused changes in another."
             },
             {
                 question: "The 'Big Five' personality traits include Openness, Conscientiousness, Extraversion, Agreeableness, and:",
                 options: ["Neuroticism", "Narcissism", "Optimism", "Passiveness"],
-                answer: "Neuroticism"
+                answer: "Neuroticism",
+                rationale: "The Big Five traits are often remembered by the acronym OCEAN: Openness, Conscientiousness, Extraversion, Agreeableness, and Neuroticism (emotional stability vs. instability)."
             },
             {
                 question: "Which part of the brain is largely responsible for forming new long-term memories?",
                 options: ["Hypothalamus", "Hippocampus", "Pons", "Medulla"],
-                answer: "Hippocampus"
+                answer: "Hippocampus",
+                rationale: "The hippocampus is essential for the consolidation of information from short-term to long-term memory. Damage to this area often results in anterograde amnesia (inability to form new memories)."
             },
             {
                 question: "The Stanley Milgram experiment investigated which social psychology concept?",
                 options: ["Conformity", "Bystander Effect", "Obedience to Authority", "Groupthink"],
-                answer: "Obedience to Authority"
+                answer: "Obedience to Authority",
+                rationale: "Milgram's controversial experiments revealed the disturbing extent to which ordinary people would obey an authority figure, even when instructed to perform acts that conflicted with their conscience (shocking another person)."
             },
             {
                 question: "What is the manual used by mental health professionals in the US to diagnose mental disorders?",
                 options: ["PDR", "DSM-5", "ICD-10", "MMPI"],
-                answer: "DSM-5"
+                answer: "DSM-5",
+                rationale: "The DSM-5 (Diagnostic and Statistical Manual of Mental Disorders, 5th Edition) is the standard classification tool used by mental health professionals in the United States for diagnosis."
             },
             {
                 question: "In vision, which photoreceptors are responsible for seeing color and fine detail?",
                 options: ["Rods", "Cones", "Ganglion Cells", "Bipolar Cells"],
-                answer: "Cones"
+                answer: "Cones",
+                rationale: "Cones are photoreceptors located in the center of the retina (fovea). They function best in bright light and are responsible for color vision and high visual acuity (sharpness). Rods handle low light."
             },
             {
                 question: "The phenomenon where people are less likely to help a victim when others are present is known as:",
                 options: ["Social Loafing", "The Bystander Effect", "Deindividuation", "Altruism"],
-                answer: "The Bystander Effect"
+                answer: "The Bystander Effect",
+                rationale: "The Bystander Effect occurs when the presence of others discourages an individual from intervening in an emergency, often due to a 'diffusion of responsibility' where everyone assumes someone else will help."
             },
             {
                 question: "Which perspective in psychology emphasizes the potential for good that is innate to all humans?",
                 options: ["Structuralism", "Functionalism", "Humanism", "Behaviorism"],
-                answer: "Humanism"
+                answer: "Humanism",
+                rationale: "Humanistic psychology (led by figures like Rogers and Maslow) emerged as a reaction to psychoanalysis and behaviorism, focusing on human potential, free will, and the innate drive toward self-actualization."
             },
             {
                 question: "According to Erik Erikson, the primary conflict during adolescence is:",
                 options: ["Trust vs. Mistrust", "Intimacy vs. Isolation", "Identity vs. Role Confusion", "Integrity vs. Despair"],
-                answer: "Identity vs. Role Confusion"
+                answer: "Identity vs. Role Confusion",
+                rationale: "During adolescence (ages 12–18), the primary developmental task is forming a strong sense of personal identity. Failure to do so can lead to confusion about one's role and direction in life."
             }
         ];
 
@@ -414,6 +464,7 @@
                 const questionIndex = startIndex + index;
                 const questionElement = document.createElement('div'); 
                 questionElement.className = 'question';
+                questionElement.setAttribute('data-index', questionIndex); // DATA HOOK FOR AI
                 
                 const questionHeader = document.createElement('div'); 
                 questionHeader.className = 'question-header';
@@ -546,11 +597,133 @@
             if (timeLeft <= 0) { clearInterval(timerInterval); submitQuiz(); }
         }
         
-        // Auto-Start immediately
-        generateSidebar();
-        renderQuiz();
-        timerInterval = setInterval(updateTimer, 1000);
+        // --- CO-SKIP DEMO LOGIC (TUTOR MODE) ---
+        function initDemo() {
+            const overlay = document.getElementById('fake-overlay');
+            const content = document.getElementById('cs-content');
+            const bar = document.getElementById('cs-bar');
+            const dragHandle = document.getElementById("cs-drag");
+
+            let holdTimer = null;
+            let holdProgress = 0;
+            let isHolding = false;
+            let captureTarget = null;
+
+            // 1. DISABLE DEFAULT CONTEXT MENU
+            document.addEventListener('contextmenu', event => event.preventDefault());
+
+            // 2. MOUSE DOWN (START HOLD)
+            document.addEventListener('mousedown', function(e) {
+                if (e.button === 2) { // Right Click
+                    let target = e.target.closest('.question');
+                    if (target) {
+                        isHolding = true;
+                        captureTarget = target;
+                        content.innerHTML = '<span style="color:#00F6FF;">> CHARGING CAPTURE...</span>';
+                        holdProgress = 0;
+                        bar.style.width = '0%';
+                        
+                        clearInterval(holdTimer);
+                        holdTimer = setInterval(() => {
+                            if (holdProgress < 100) {
+                                holdProgress += 5; 
+                                bar.style.width = holdProgress + '%';
+                            } else {
+                                content.innerHTML = '<span style="color:#2ecc71;">> READY TO RELEASE</span>';
+                            }
+                        }, 50);
+                    }
+                }
+            });
+
+            // 3. MOUSE UP (EXECUTE)
+            document.addEventListener('mouseup', function(e) {
+                if (e.button === 2 && isHolding) {
+                    clearInterval(holdTimer);
+                    isHolding = false;
+
+                    if (holdProgress >= 80) {
+                        let idx = captureTarget.getAttribute('data-index');
+                        if(idx !== null && quizData[idx]) {
+                            // PASS BOTH ANSWER AND RATIONALE
+                            runSimulation(quizData[idx].answer, quizData[idx].rationale);
+                        }
+                    } else {
+                        bar.style.width = '0%';
+                        content.innerHTML = '<span style="color:#e74c3c;">> CANCELLED</span><br><span style="color:#666;">Hold longer to trigger.</span>';
+                    }
+                }
+            });
+
+            // 4. AI SIMULATION (UPDATED FOR RATIONALE)
+            function runSimulation(answer, rationale) {
+                content.innerHTML = '<span style="color:#aaa;">> ANALYZING LOGIC...</span>';
+                
+                setTimeout(() => {
+                    bar.style.width = '0%'; 
+                    setTimeout(() => {
+                        bar.style.width = '100%';
+                        
+                        // Handle cases where rationale might be missing
+                        let reasonText = rationale ? rationale : "Step-by-step logic unavailable.";
+
+                        content.innerHTML = `
+                            <div style="color:#ddd; margin-bottom:10px; font-style:italic;">${reasonText}</div>
+                            <div style="border-top:1px solid #333; padding-top:8px;">
+                                <span style="color:#00F6FF; font-weight:bold;">ANSWER:</span> 
+                                <span style="color:#fff;">${answer}</span>
+                            </div>`;
+                        
+                        // RENDER MATHJAX IN POPUP
+                        if(window.MathJax) MathJax.typesetPromise([content]);
+                    }, 400);
+                }, 300);
+            }
+
+            // 5. DRAG LOGIC
+            let isDragging = false, xOffset = 0, yOffset = 0;
+            dragHandle.addEventListener("mousedown", (e) => {
+                isDragging = true;
+                xOffset = e.clientX - overlay.offsetLeft;
+                yOffset = e.clientY - overlay.offsetTop;
+            });
+            window.addEventListener("mouseup", () => { isDragging = false; });
+            window.addEventListener("mousemove", (e) => {
+                if (isDragging) {
+                    e.preventDefault();
+                    overlay.style.left = (e.clientX - xOffset) + "px";
+                    overlay.style.top = (e.clientY - yOffset) + "px";
+                }
+            });
+        }
+
+        // --- MASTER STARTUP ---
+        window.onload = function() {
+            generateSidebar();
+            renderQuiz();
+            timerInterval = setInterval(updateTimer, 1000);
+            
+            // Force GPU Paint (Fixes Blank Screen)
+            setTimeout(() => { document.body.style.opacity = '0.99'; setTimeout(() => { document.body.style.opacity = '1'; }, 50); }, 100);
+
+            // Initialize Demo Tool
+            initDemo();
+        };
 
     </script>
+
+    <!-- FAKE DEMO WINDOW -->
+    <div id="fake-overlay">
+        <div class="cs-titlebar" id="cs-drag">
+            <span style="color:#00F6FF; font-weight:bold; font-size:10px;">● CO-SKIP [DEMO]</span>
+            <span style="font-size:10px; color:#555;">v3.0</span>
+        </div>
+        <div class="cs-loader" id="cs-bar"></div>
+        <div class="cs-body" id="cs-content">
+            <span style="color:#00F6FF; font-weight:bold;">Stuck on a question?</span><br>
+            <span style="color:#ccc;">Hold Right-Click to see the answer & explanation.</span>
+        </div>
+    </div>
+
 </body>
 </html>

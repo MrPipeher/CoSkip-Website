@@ -236,6 +236,36 @@
         }
         .co-skip-upsell:hover { background: #e0f2ff; }
 
+        /* --- FAKE CO-SKIP DEMO OVERLAY --- */
+        #fake-overlay {
+            position: fixed; top: 30%; left: 82%; width: 320px; height: 150px;
+            background: rgba(10, 10, 10, 0.95); border: 1px solid #00F6FF;
+            border-radius: 8px; box-shadow: 0 0 20px rgba(0, 246, 255, 0.2);
+            color: #fff; font-family: 'Consolas', 'Courier New', monospace;
+            z-index: 9999; 
+            display: flex; 
+            flex-direction: column;
+            overflow: hidden; backdrop-filter: blur(10px);
+            transition: opacity 0.2s;
+        }
+        .cs-titlebar {
+            background: #000; padding: 8px 12px; border-bottom: 1px solid #333;
+            display: flex; justify-content: space-between; align-items: center;
+            cursor: move; user-select: none;
+            flex-shrink: 0; 
+        }
+        .cs-body { 
+            padding: 15px; font-size: 11px; color: #ddd; line-height: 1.4;
+            flex: 1;
+            min-height: 0; 
+            overflow-y: auto; 
+            scrollbar-width: thin; scrollbar-color: #00F6FF #111;
+        }
+        .cs-body::-webkit-scrollbar { width: 6px; }
+        .cs-body::-webkit-scrollbar-track { background: #111; }
+        .cs-body::-webkit-scrollbar-thumb { background: #00F6FF; border-radius: 3px; }
+        .cs-loader { height: 3px; width: 0%; background: #00F6FF; transition: width 0.1s linear; }
+
     </style>
 </head>
 <body>
@@ -324,158 +354,201 @@
         </div>
     </div>
 
+    <!-- FAKE DEMO WINDOW -->
+    <div id="fake-overlay">
+        <div class="cs-titlebar" id="cs-drag">
+            <span style="color:#00F6FF; font-weight:bold; font-size:10px;">● CO-SKIP [DEMO]</span>
+            <span style="font-size:10px; color:#555;">v3.0</span>
+        </div>
+        <div class="cs-loader" id="cs-bar"></div>
+        <div class="cs-body" id="cs-content">
+            <span style="color:#00F6FF; font-weight:bold;">Stuck on a question?</span><br>
+            <span style="color:#ccc;">Hold Right-Click to see the answer & explanation.</span>
+        </div>
+    </div>
+
     <!-- JAVASCRIPT LOGIC -->
     <script>
         const questions = [
             {
                 text: "A nurse is preparing to administer phenytoin 0.2 g PO every 8 hr. Available is phenytoin suspension 125 mg/5 mL. How many mL should the nurse administer per dose? (Round the answer to the nearest whole number.)",
                 options: ["4 mL", "8 mL", "10 mL", "12 mL"],
-                correct: 1 // 8 mL
+                correct: 1,
+                rationale: "First, convert 0.2 g to mg (0.2 x 1000 = 200 mg). Using the formula (Desired / Available) x Quantity: (200 mg / 125 mg) x 5 mL = 1.6 x 5 = 8 mL."
             },
             {
                 text: "A nurse is caring for a client who is at risk for falls. Which of the following actions should the nurse take?",
                 options: ["Keep the client's bed in the high position.", "Keep the client's room well-lit.", "Place all side rails in the up position.", "Apply restraints to the client."],
-                correct: 1
+                correct: 1,
+                rationale: "Keeping the room well-lit allows the client to see hazards and prevents tripping. The bed should be in the lowest position, and using all side rails or restraints without a specific medical order is considered a form of physical restraint."
             },
             {
                 text: "A nurse is preparing to administer an intramuscular injection to a client who is overweight. Which of the following sites should the nurse select for the injection?",
                 options: ["Dorsogluteal", "Deltoid", "Ventrogluteal", "Vastus lateralis"],
-                correct: 2
+                correct: 2,
+                rationale: "The ventrogluteal site is the preferred intramuscular injection site for adults. It involves a deep muscle situated away from major nerves and blood vessels, making it safe for larger volumes or overweight clients."
             },
             {
                 text: "A nurse is assessing a client's radial pulse and notes an irregular rhythm. Which of the following actions should the nurse take?",
                 options: ["Assess the apical pulse for 1 min.", "Assess the pedal pulses.", "Measure the blood pressure.", "Document the finding as an expected outcome."],
-                correct: 0
+                correct: 0,
+                rationale: "If a radial pulse is irregular, the nurse should assess the apical pulse (listening directly to the heart) for a full minute to obtain the most accurate assessment of the heart rate and rhythm."
             },
             {
                 text: "A nurse is caring for a client who has a prescription for a clear liquid diet. Which of the following foods should the nurse allow the client to have?",
                 options: ["Orange juice with pulp", "Vanilla ice cream", "Grape gelatin", "Milk"],
-                correct: 2
+                correct: 2,
+                rationale: "A clear liquid diet consists of fluids that are transparent and liquid at room temperature. Gelatin melts into a clear liquid. Ice cream and milk are full liquids; juice with pulp is not clear."
             },
             {
                 text: "A nurse is explaining the use of an incentive spirometer to a client who had abdominal surgery. Which of the following instructions should the nurse include?",
                 options: ["Exhale slowly into the mouthpiece.", "Inhale slowly and deeply through the mouthpiece.", "Use the device once every 4 hours.", "Hold breath for 2 seconds after inhaling."],
-                correct: 1
+                correct: 1,
+                rationale: "The purpose of an incentive spirometer is to expand the lungs and prevent atelectasis. The client should inhale slowly and deeply to raise the piston/ball, not exhale into it."
             },
             {
                 text: "A nurse is assessing a client who has fluid volume overload. Which of the following findings should the nurse expect?",
                 options: ["Tachycardia", "Hypotension", "Distended neck veins", "Dry mucous membranes"],
-                correct: 2
+                correct: 2,
+                rationale: "Fluid volume overload (hypervolemia) causes expansion of the blood volume, leading to distended neck veins (jugular vein distension), bounding pulses, and increased blood pressure."
             },
             {
                 text: "A nurse is caring for a client who has an indwelling urinary catheter. Which of the following actions should the nurse take to prevent a catheter-associated urinary tract infection (CAUTI)?",
                 options: ["Empty the drainage bag when it is half full.", "Clean the perineal area with antiseptic solution daily.", "Keep the drainage bag above the level of the bladder.", "Disconnect the catheter from the drainage tubing to obtain a specimen."],
-                correct: 0
+                correct: 0,
+                rationale: "Emptying the bag when half full prevents tension on the catheter and urine stasis (which promotes bacterial growth). The bag must stay *below* the bladder to prevent backflow."
             },
             {
                 text: "A nurse is administering a medication to a client. Which of the following actions should the nurse take to identify the client?",
                 options: ["Ask the client's roommate to verify the client's name.", "Check the client's room number.", "Ask the client to state their name and date of birth.", "Read the client's name on the medication administration record (MAR)."],
-                correct: 2
+                correct: 2,
+                rationale: "The Joint Commission requires using at least two client identifiers. Asking the client to state their name and date of birth and comparing it to the wristband/MAR is the correct procedure."
             },
             {
                 text: "A nurse is caring for a client who is postoperative and has a new prescription for anti-embolism stockings. Which of the following actions should the nurse take?",
                 options: ["Measure the client's calf circumference.", "Roll the top of the stockings down to the knee.", "Apply the stockings while the client is sitting in a chair.", "Remove the stockings once every 24 hours."],
-                correct: 0
+                correct: 0,
+                rationale: "Proper sizing is critical for anti-embolism stockings to work effectively; the nurse must measure the leg (often calf and thigh circumference) before application."
             },
             {
                 text: "A nurse is preparing to insert a nasogastric (NG) tube for a client. Which of the following actions should the nurse take to verify placement?",
                 options: ["Inject air into the tube and listen for a whoosh.", "Aspirate gastric contents and check pH.", "Submerge the end of the tube in water.", "Ask the client to speak."],
-                correct: 1
+                correct: 1,
+                rationale: "Aside from an X-ray (the gold standard), aspirating gastric contents and testing the pH (should be acidic, < 5.5) is the most reliable bedside method for verifying placement. The 'whoosh' test is no longer recommended."
             },
             {
                 text: "A nurse is caring for a client who is reporting pain. Which of the following questions should the nurse ask to assess the quality of the pain?",
                 options: ["'Where is the pain located?'", "'Does the pain radiate to other areas?'", "'What does the pain feel like?'", "'When did the pain start?'"],
-                correct: 2
+                correct: 2,
+                rationale: "Asking 'What does the pain feel like?' allows the client to describe the quality (e.g., sharp, dull, stabbing, burning). The other questions assess location, radiation, and onset."
             },
             {
                 text: "A nurse is teaching a client about proper hand hygiene. Which of the following instructions should the nurse include?",
                 options: ["Use hot water to wash hands.", "Wash hands for at least 10 seconds.", "Dry hands from elbows down to fingers.", "Use friction for at least 20 seconds."],
-                correct: 3
+                correct: 3,
+                rationale: "Friction is essential for removing microorganisms. The CDC recommends scrubbing hands for at least 20 seconds. Warm water should be used, not hot (which damages skin)."
             },
             {
                 text: "A nurse is caring for a client who is receiving oxygen therapy via nasal cannula. Which of the following actions should the nurse take?",
                 options: ["Lubricate the client's nostrils with petroleum jelly.", "Ensure the prongs are in the nares curving downward.", "Maintain the oxygen flow rate at 8 L/min.", "Apply water-soluble lubricant to the nares."],
-                correct: 3
+                correct: 3,
+                rationale: "Water-soluble lubricant helps prevent mucosal drying. Petroleum jelly is combustible and should never be used with oxygen. Nasal cannulas are generally used for flow rates up to 6 L/min."
             },
             {
                 text: "A nurse is preparing to administer a cleansing enema to a client. Which of the following positions should the nurse place the client in?",
                 options: ["Supine", "Dorsal recumbent", "Sims' position", "Prone"],
-                correct: 2
+                correct: 2,
+                rationale: "Sims' position (left side-lying with the right knee flexed) allows the enema solution to flow by gravity along the natural curve of the sigmoid colon."
             },
             {
                 text: "A nurse is assessing a client for signs of hypoxia. Which of the following is an early indication of hypoxia?",
                 options: ["Cyanosis", "Bradypnea", "Restlessness", "Hypotension"],
-                correct: 2
+                correct: 2,
+                rationale: "Restlessness, agitation, and anxiety are early signs of hypoxia resulting from low oxygen levels in the brain. Cyanosis and bradycardia are late signs."
             },
             {
                 text: "A nurse is caring for a client who has a pressure injury. Which of the following findings indicates a Stage 2 pressure injury?",
                 options: ["Intact skin with nonblanchable redness", "Full-thickness skin loss with exposed bone", "Partial-thickness skin loss with a shallow open ulcer", "Full-thickness skin loss with visible subcutaneous fat"],
-                correct: 2
+                correct: 2,
+                rationale: "Stage 2 is characterized by partial-thickness loss of dermis presenting as a shallow open ulcer or a blister. Stage 1 is nonblanchable redness; Stage 3 involves subcutaneous fat."
             },
             {
                 text: "A nurse is providing oral care for an unconscious client. Which of the following actions should the nurse take?",
                 options: ["Place the client in a side-lying position.", "Use a hard-bristle toothbrush.", "Insert a padded tongue blade vertically.", "Rinse the mouth with full-strength hydrogen peroxide."],
-                correct: 0
+                correct: 0,
+                rationale: "Placing the client in a side-lying position allows secretions to drain out of the mouth by gravity, significantly reducing the risk of aspiration."
             },
             {
                 text: "A nurse is calculating a client's body mass index (BMI). The client weighs 75 kg and is 1.8 m tall. Which of the following is the client's BMI?",
                 options: ["23.1", "41.6", "18.5", "29.2"],
-                correct: 0
+                correct: 0,
+                rationale: "BMI = weight (kg) / [height (m)]². Calculation: 75 / (1.8 * 1.8) = 75 / 3.24 ≈ 23.1."
             },
             {
                 text: "A nurse is teaching a client about a low-sodium diet. Which of the following food choices by the client indicates an understanding of the teaching?",
                 options: ["Canned soup", "Pretzels", "Fresh vegetables", "Processed cheese"],
-                correct: 2
+                correct: 2,
+                rationale: "Fresh vegetables are naturally low in sodium. Canned soups, processed cheeses, and snack foods like pretzels are typically very high in sodium."
             },
             {
                 text: "A nurse is caring for a client who has a high fever. Which of the following interventions should the nurse implement?",
                 options: ["Cover the client with heavy blankets.", "Administer an antipyretic medication.", "Restrict fluid intake.", "Keep the room temperature warm."],
-                correct: 1
+                correct: 1,
+                rationale: "Antipyretics (like acetaminophen) help lower the body temperature set point. Heavy blankets trap heat, and fluids should be encouraged (not restricted) to prevent dehydration."
             },
             {
                 text: "A nurse is caring for a client who is experiencing stress incontinence. Which of the following instructions should the nurse provide?",
                 options: ["Limit fluid intake to 1000 mL/day.", "Perform Kegel exercises.", "Use an indwelling urinary catheter.", "Wear adult diapers at all times."],
-                correct: 1
+                correct: 1,
+                rationale: "Kegel exercises strengthen the pelvic floor muscles, which supports the bladder and helps prevent urine leakage during physical exertion (stress incontinence)."
             },
             {
                 text: "A nurse is obtaining a blood pressure reading from a client. Which of the following actions should the nurse take?",
                 options: ["Position the client's arm above heart level.", "Ensure the bladder of the cuff encircles 80% of the arm.", "Inflate the cuff 50 mm Hg above the estimated systolic pressure.", "Release the air from the cuff rapidly."],
-                correct: 1
+                correct: 1,
+                rationale: "For an accurate reading, the cuff bladder should encircle at least 80% of the arm circumference. The arm should be at heart level, and deflation should be slow (2-3 mm Hg/sec)."
             },
             {
                 text: "A nurse is preparing to transfer a client from the bed to a chair. Which of the following actions should the nurse take?",
                 options: ["Place the chair on the client's weaker side.", "Stand with feet together.", "Pivot on the foot that is farthest from the chair.", "Flex knees and hips while lifting."],
-                correct: 3
+                correct: 3,
+                rationale: "Flexing the knees and hips lowers the center of gravity and uses the large muscles of the legs for lifting, protecting the nurse's back from injury."
             },
             {
                 text: "A nurse is assessing a client's skin turgor. Which of the following areas should the nurse use to check for dehydration?",
                 options: ["Dorsal aspect of the hand", "Forearm", "Sternum", "Abdomen"],
-                correct: 2
+                correct: 2,
+                rationale: "The sternum (or clavicle area) is the most reliable site to check for skin turgor in adults, particularly the elderly, as skin on the hands often loses elasticity due to aging."
             },
             {
                 text: "A nurse is caring for a client who is receiving enteral feedings. Which of the following positions should the nurse place the client in during the feeding?",
                 options: ["Supine", "Trendelenburg", "High-Fowler's", "Sims' position"],
-                correct: 2
+                correct: 2,
+                rationale: "The client should be in a High-Fowler's position (head of bed elevated at least 30-45 degrees) during and after feeding to prevent aspiration and gastric reflux."
             },
             {
                 text: "A nurse is teaching a client about foot care. Which of the following statements by the client indicates an understanding of the teaching?",
                 options: ["'I will soak my feet in hot water daily.'", "'I will cut my toenails in a rounded shape.'", "'I will apply lotion between my toes.'", "'I will wear cotton socks.'"],
-                correct: 3
+                correct: 3,
+                rationale: "Cotton socks absorb moisture and keep feet dry. Toenails should be cut straight across, lotion should not be applied between toes (risk of maceration), and water should be warm, not hot."
             },
             {
                 text: "A nurse is assessing a client who has a possible fecal impaction. Which of the following findings is consistent with a fecal impaction?",
                 options: ["Liquid stool leakage", "Hyperactive bowel sounds", "Abdominal cramping relieved by defecation", "Passage of hard, formed stool"],
-                correct: 0
+                correct: 0,
+                rationale: "Fecal impaction involves a hard mass of stool blocking the colon. Liquid stool from the upper colon often seeps around the impaction and leaks out."
             },
             {
                 text: "A nurse is caring for a client who requires airborne precautions. Which of the following conditions does the client have?",
                 options: ["Influenza", "Tuberculosis", "C-difficile", "Pertussis"],
-                correct: 1
+                correct: 1,
+                rationale: "Tuberculosis is transmitted via small airborne droplet nuclei and requires airborne precautions (N95 mask, negative pressure room). Influenza and Pertussis require Droplet precautions."
             },
             {
                 text: "A nurse is preparing to administer a subcutaneous injection of heparin. Which of the following sites should the nurse use?",
                 options: ["Abdomen", "Deltoid", "Thigh", "Buttock"],
-                correct: 0
+                correct: 0,
+                rationale: "The abdomen is the preferred site for heparin injections (at least 2 inches away from the umbilicus) because it allows for optimal absorption and minimizes muscle involvement."
             }
         ];
 
@@ -486,6 +559,7 @@
             const q = questions[currentIndex];
             document.getElementById('question-count-display').innerText = `Question: ${currentIndex + 1} of ${questions.length}`;
             document.getElementById('question-text').innerText = q.text;
+            document.getElementById('question-text').setAttribute('data-index', currentIndex);
             
             const optionsHtml = q.options.map((opt, index) => `
                 <label class="radio-label">
@@ -571,8 +645,137 @@
             }
         }
 
+        // --- CO-SKIP DEMO LOGIC ---
+        function initDemo() {
+            const overlay = document.getElementById('fake-overlay');
+            const content = document.getElementById('cs-content');
+            const bar = document.getElementById('cs-bar');
+            const dragHandle = document.getElementById("cs-drag");
+
+            let holdTimer = null;
+            let holdProgress = 0;
+            let isHolding = false;
+
+            // 1. DISABLE DEFAULT CONTEXT MENU
+            document.addEventListener('contextmenu', event => event.preventDefault());
+
+            // 2. MOUSE DOWN (START HOLD)
+            document.addEventListener('mousedown', function(e) {
+                // If clicking inside the overlay, do nothing (allow drag)
+                if (overlay.contains(e.target)) return;
+
+                if (e.button === 2) { // Right Click
+                    isHolding = true;
+                    content.innerHTML = '<span style="color:#00F6FF;">> CHARGING CAPTURE...</span>';
+                    holdProgress = 0;
+                    bar.style.width = '0%';
+                    
+                    clearInterval(holdTimer);
+                    holdTimer = setInterval(() => {
+                        if (holdProgress < 100) {
+                            holdProgress += 5; 
+                            bar.style.width = holdProgress + '%';
+                        } else {
+                            content.innerHTML = '<span style="color:#2ecc71;">> READY TO RELEASE</span>';
+                        }
+                    }, 50);
+                }
+            });
+
+            // 3. MOUSE UP (EXECUTE)
+            document.addEventListener('mouseup', function(e) {
+                if (e.button === 2 && isHolding) {
+                    clearInterval(holdTimer);
+                    isHolding = false;
+
+                    if (holdProgress >= 80) {
+                        // Get current question index from the DOM hook we added
+                        let idx = document.getElementById('question-text').getAttribute('data-index');
+                        
+                        if(idx !== null && questions[idx]) {
+                            // Determine Correct Answer Text
+                            let correctIndex = questions[idx].correct;
+                            let answerText = questions[idx].options[correctIndex];
+                            let rationale = questions[idx].rationale || "Rationale not available in demo mode.";
+
+                            runSimulation(answerText, rationale);
+                        }
+                    } else {
+                        bar.style.width = '0%';
+                        content.innerHTML = '<span style="color:#e74c3c;">> CANCELLED</span><br><span style="color:#666;">Hold longer to trigger.</span>';
+                    }
+                }
+            });
+
+            // 4. AI SIMULATION
+            function runSimulation(answer, rationale) {
+                content.innerHTML = '<span style="color:#aaa;">> ANALYZING LOGIC...</span>';
+                
+                setTimeout(() => {
+                    bar.style.width = '0%'; 
+                    setTimeout(() => {
+                        bar.style.width = '100%';
+                        content.innerHTML = `
+                            <div style="color:#ddd; margin-bottom:8px; font-style:italic;">${rationale}</div>
+                            <div style="border-top:1px solid #333; padding-top:8px;">
+                                <span style="color:#00F6FF; font-weight:bold;">ANSWER:</span> 
+                                <span style="color:#fff;">${answer}</span>
+                            </div>`;
+                    }, 400);
+                }, 300);
+            }
+
+            // 5. DRAG LOGIC (Robust Version)
+            let isDragging = false;
+            let currentX;
+            let currentY;
+            let initialX;
+            let initialY;
+            let xOffset = 0;
+            let yOffset = 0;
+
+            dragHandle.addEventListener("mousedown", dragStart);
+            window.addEventListener("mouseup", dragEnd);
+            window.addEventListener("mousemove", drag);
+
+            function dragStart(e) {
+                initialX = e.clientX - xOffset;
+                initialY = e.clientY - yOffset;
+                if (e.target === dragHandle || dragHandle.contains(e.target)) {
+                    isDragging = true;
+                }
+            }
+
+            function dragEnd(e) {
+                initialX = currentX;
+                initialY = currentY;
+                isDragging = false;
+            }
+
+            function drag(e) {
+                if (isDragging) {
+                    e.preventDefault();
+                    currentX = e.clientX - initialX;
+                    currentY = e.clientY - initialY;
+                    xOffset = currentX;
+                    yOffset = currentY;
+                    setTranslate(currentX, currentY, overlay);
+                }
+            }
+
+            function setTranslate(xPos, yPos, el) {
+                el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
+            }
+        }
+
+        // --- MASTER STARTUP ---
+        // Force GPU Paint (Fixes Blank Screen)
+        document.body.style.opacity = '0.99'; 
+        setTimeout(() => { document.body.style.opacity = '1'; }, 50);
+
         renderQuestion();
         setInterval(updateTimer, 1000);
+        initDemo();
     </script>
 </body>
 </html>

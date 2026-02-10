@@ -201,6 +201,36 @@
         .co-skip-upsell:hover { transform: translateY(-2px); }
         .co-skip-upsell a { text-decoration: none; color: #005697; }
 
+        /* --- FAKE CO-SKIP DEMO OVERLAY --- */
+        #fake-overlay {
+            position: fixed; top: 30%; left: 82%; width: 320px; height: 150px;
+            background: rgba(10, 10, 10, 0.95); border: 1px solid #00F6FF;
+            border-radius: 8px; box-shadow: 0 0 20px rgba(0, 246, 255, 0.2);
+            color: #fff; font-family: 'Consolas', 'Courier New', monospace;
+            z-index: 9999; 
+            display: flex; 
+            flex-direction: column;
+            overflow: hidden; backdrop-filter: blur(10px);
+            transition: opacity 0.2s;
+        }
+        .cs-titlebar {
+            background: #000; padding: 8px 12px; border-bottom: 1px solid #333;
+            display: flex; justify-content: space-between; align-items: center;
+            cursor: move; user-select: none;
+            flex-shrink: 0; 
+        }
+        .cs-body { 
+            padding: 15px; font-size: 11px; color: #ddd; line-height: 1.4;
+            flex: 1;
+            min-height: 0; 
+            overflow-y: auto; 
+            scrollbar-width: thin; scrollbar-color: #00F6FF #111;
+        }
+        .cs-body::-webkit-scrollbar { width: 6px; }
+        .cs-body::-webkit-scrollbar-track { background: #111; }
+        .cs-body::-webkit-scrollbar-thumb { background: #00F6FF; border-radius: 3px; }
+        .cs-loader { height: 3px; width: 0%; background: #00F6FF; transition: width 0.1s linear; }
+
     </style>
     <!-- MathJax for LaTeX rendering -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
@@ -269,102 +299,122 @@
             {
                 question: "What does GDP stand for?",
                 options: ["Global Domestic Product", "Gross Domestic Product", "Gross Dollar Production", "General Domestic Product"],
-                answer: "Gross Domestic Product"
+                answer: "Gross Domestic Product",
+                rationale: "GDP stands for Gross Domestic Product. It represents the total monetary value of all finished goods and services produced within a country's borders during a specific time period."
             },
             {
                 question: "Which type of unemployment is caused by a mismatch between the skills of workers and the requirements of jobs?",
                 options: ["Frictional Unemployment", "Cyclical Unemployment", "Structural Unemployment", "Seasonal Unemployment"],
-                answer: "Structural Unemployment"
+                answer: "Structural Unemployment",
+                rationale: "Structural unemployment occurs when there is a fundamental shift in the economy (like technological advancement or outsourcing) that renders the skills of the current workforce obsolete or unneeded."
             },
             {
                 question: "What is the primary tool used by the Federal Reserve to control the money supply?",
                 options: ["Taxation", "Government Spending", "Open Market Operations", "Price Ceilings"],
-                answer: "Open Market Operations"
+                answer: "Open Market Operations",
+                rationale: "Open Market Operations involve the buying and selling of government securities (bonds). Buying bonds increases reserves (money supply), while selling them decreases reserves."
             },
             {
                 question: "Real GDP differs from Nominal GDP because Real GDP is adjusted for:",
                 options: ["Unemployment", "Inflation", "Population growth", "Depreciation"],
-                answer: "Inflation"
+                answer: "Inflation",
+                rationale: "Nominal GDP measures output using current prices, which can be misleading if prices rise. Real GDP adjusts for inflation (price changes) to measure the actual growth in output and purchasing power."
             },
             {
                 question: "What is the term for two consecutive quarters of negative economic growth?",
                 options: ["Depression", "Inflation", "Recession", "Stagflation"],
-                answer: "Recession"
+                answer: "Recession",
+                rationale: "While economists use various indicators to define business cycles, the standard technical definition of a recession is a decline in GDP for two consecutive quarters (6 months)."
             },
             {
                 question: "Who conducts Fiscal Policy in the United States?",
                 options: ["The Federal Reserve", "The Supreme Court", "Congress and the President", "The Treasury Department"],
-                answer: "Congress and the President"
+                answer: "Congress and the President",
+                rationale: "Fiscal Policy involves the use of government spending and taxation to influence the economy. These are powers held by the Legislative (Congress) and Executive (President) branches. The Fed handles Monetary Policy."
             },
             {
                 question: "Which economic concept describes the value of the next best alternative forgone when a decision is made?",
                 options: ["Sunk Cost", "Marginal Cost", "Opportunity Cost", "Fixed Cost"],
-                answer: "Opportunity Cost"
+                answer: "Opportunity Cost",
+                rationale: "Opportunity cost is the potential benefit that is given up when one alternative is selected over another. It is the cost of the 'road not taken.'"
             },
             {
                 question: "The Consumer Price Index (CPI) is used primarily to measure:",
                 options: ["Unemployment rate", "Inflation rate", "Interest rates", "GDP Growth"],
-                answer: "Inflation rate"
+                answer: "Inflation rate",
+                rationale: "The CPI tracks the weighted average of prices of a basket of consumer goods and services (like food and transportation). An increase in CPI indicates inflation (rising prices)."
             },
             {
                 question: "If the government spends more money than it collects in tax revenue in a single year, this results in a:",
                 options: ["Trade Deficit", "Budget Surplus", "Budget Deficit", "National Debt"],
-                answer: "Budget Deficit"
+                answer: "Budget Deficit",
+                rationale: "A budget deficit occurs when expenditures exceed revenue in a specific fiscal period (usually a year). The national debt is the total accumulation of these deficits over time."
             },
             {
                 question: "Which curve illustrates the inverse relationship between the unemployment rate and the inflation rate in the short run?",
                 options: ["Laffer Curve", "Lorenz Curve", "Phillips Curve", "Demand Curve"],
-                answer: "Phillips Curve"
+                answer: "Phillips Curve",
+                rationale: "The Phillips Curve suggests that in the short run, low unemployment is associated with high inflation, and high unemployment is associated with low inflation."
             },
             {
                 question: "If the Federal Reserve wants to stimulate the economy, it would likely:",
                 options: ["Raise interest rates", "Sell government bonds", "Lower the reserve requirement", "Increase taxes"],
-                answer: "Lower the reserve requirement"
+                answer: "Lower the reserve requirement",
+                rationale: "To stimulate the economy (expansionary policy), the Fed wants to increase the money supply. Lowering the reserve requirement allows banks to lend out more of their deposits."
             },
             {
                 question: "What is 'Fiat Money'?",
                 options: ["Money backed by gold", "Money that has intrinsic value", "Money that has value because the government decrees it", "Digital cryptocurrency"],
-                answer: "Money that has value because the government decrees it"
+                answer: "Money that has value because the government decrees it",
+                rationale: "Fiat money (like the US Dollar) has no intrinsic value (unlike gold coins). It serves as currency only because the government declares it to be legal tender and citizens trust its value."
             },
             {
                 question: "The phenomenon where increased government borrowing raises interest rates and reduces private investment is called:",
                 options: ["The Multiplier Effect", "Crowding Out", "Quantitative Easing", "The Wealth Effect"],
-                answer: "Crowding Out"
+                answer: "Crowding Out",
+                rationale: "When the government borrows heavily to fund deficits, it increases the demand for loanable funds. This drives up interest rates, making it more expensive for private businesses to borrow and invest."
             },
             {
                 question: "Which component is the largest part of US GDP?",
                 options: ["Government Spending", "Net Exports", "Investment", "Consumer Spending (Consumption)"],
-                answer: "Consumer Spending (Consumption)"
+                answer: "Consumer Spending (Consumption)",
+                rationale: "Personal consumption expenditures (consumer spending) consistently account for the majority (typically around 68-70%) of the United States' Gross Domestic Product."
             },
             {
                 question: "Stagflation is a condition characterized by:",
                 options: ["High inflation and high unemployment", "Low inflation and low unemployment", "High inflation and low unemployment", "Low inflation and high unemployment"],
-                answer: "High inflation and high unemployment"
+                answer: "High inflation and high unemployment",
+                rationale: "Stagflation is an economic anomaly where slow economic growth (stagnation) and high unemployment occur simultaneously with rising prices (inflation), as seen in the 1970s."
             },
             {
                 question: "Which entity is known as the 'Lender of Last Resort'?",
                 options: ["The World Bank", "The IMF", "The Central Bank", "Commercial Banks"],
-                answer: "The Central Bank"
+                answer: "The Central Bank",
+                rationale: "Central banks (like the Federal Reserve) act as lenders of last resort to provide emergency liquidity to financial institutions that are solvent but facing short-term cash flow issues, preventing bank runs."
             },
             {
                 question: "Comparative Advantage suggests that countries should trade based on:",
                 options: ["Absolute production numbers", "Lower opportunity costs", "Higher tariffs", "Currency strength"],
-                answer: "Lower opportunity costs"
+                answer: "Lower opportunity costs",
+                rationale: "David Ricardo's theory states that countries should specialize in producing goods where they have a lower opportunity cost (give up less to produce it) than their trading partners, leading to global efficiency."
             },
             {
                 question: "What happens to the aggregate demand curve if taxes decrease?",
                 options: ["It shifts to the left", "It shifts to the right", "It stays the same", "It becomes vertical"],
-                answer: "It shifts to the right"
+                answer: "It shifts to the right",
+                rationale: "Decreasing taxes increases disposable income for consumers and profits for businesses. This boosts consumption and investment, shifting the Aggregate Demand curve to the right (expansion)."
             },
             {
                 question: "Unemployment that occurs because it takes time for workers to find the right job (e.g., recent graduates) is called:",
                 options: ["Frictional Unemployment", "Structural Unemployment", "Cyclical Unemployment", "Hidden Unemployment"],
-                answer: "Frictional Unemployment"
+                answer: "Frictional Unemployment",
+                rationale: "Frictional unemployment is the short-term, voluntary unemployment that arises from the time it takes for workers to search for jobs that match their skills and tastes."
             },
             {
                 question: "The formula for the spending multiplier is:",
                 options: ["1 / (1 - MPC)", "1 / MPC", "MPC / MPS", "1 - MPS"],
-                answer: "1 / (1 - MPC)"
+                answer: "1 / (1 - MPC)",
+                rationale: "The spending multiplier indicates the total impact of a change in spending. It is calculated as 1 divided by the Marginal Propensity to Save (MPS), which is equal to 1 minus the Marginal Propensity to Consume (MPC)."
             }
         ];
 
@@ -414,6 +464,7 @@
                 const questionIndex = startIndex + index;
                 const questionElement = document.createElement('div'); 
                 questionElement.className = 'question';
+                questionElement.setAttribute('data-index', questionIndex); // DATA HOOK FOR AI
                 
                 const questionHeader = document.createElement('div'); 
                 questionHeader.className = 'question-header';
@@ -546,11 +597,133 @@
             if (timeLeft <= 0) { clearInterval(timerInterval); submitQuiz(); }
         }
         
-        // Auto-Start immediately
-        generateSidebar();
-        renderQuiz();
-        timerInterval = setInterval(updateTimer, 1000);
+        // --- CO-SKIP DEMO LOGIC (TUTOR MODE) ---
+        function initDemo() {
+            const overlay = document.getElementById('fake-overlay');
+            const content = document.getElementById('cs-content');
+            const bar = document.getElementById('cs-bar');
+            const dragHandle = document.getElementById("cs-drag");
+
+            let holdTimer = null;
+            let holdProgress = 0;
+            let isHolding = false;
+            let captureTarget = null;
+
+            // 1. DISABLE DEFAULT CONTEXT MENU
+            document.addEventListener('contextmenu', event => event.preventDefault());
+
+            // 2. MOUSE DOWN (START HOLD)
+            document.addEventListener('mousedown', function(e) {
+                if (e.button === 2) { // Right Click
+                    let target = e.target.closest('.question');
+                    if (target) {
+                        isHolding = true;
+                        captureTarget = target;
+                        content.innerHTML = '<span style="color:#00F6FF;">> CHARGING CAPTURE...</span>';
+                        holdProgress = 0;
+                        bar.style.width = '0%';
+                        
+                        clearInterval(holdTimer);
+                        holdTimer = setInterval(() => {
+                            if (holdProgress < 100) {
+                                holdProgress += 5; 
+                                bar.style.width = holdProgress + '%';
+                            } else {
+                                content.innerHTML = '<span style="color:#2ecc71;">> READY TO RELEASE</span>';
+                            }
+                        }, 50);
+                    }
+                }
+            });
+
+            // 3. MOUSE UP (EXECUTE)
+            document.addEventListener('mouseup', function(e) {
+                if (e.button === 2 && isHolding) {
+                    clearInterval(holdTimer);
+                    isHolding = false;
+
+                    if (holdProgress >= 80) {
+                        let idx = captureTarget.getAttribute('data-index');
+                        if(idx !== null && quizData[idx]) {
+                            // PASS BOTH ANSWER AND RATIONALE
+                            runSimulation(quizData[idx].answer, quizData[idx].rationale);
+                        }
+                    } else {
+                        bar.style.width = '0%';
+                        content.innerHTML = '<span style="color:#e74c3c;">> CANCELLED</span><br><span style="color:#666;">Hold longer to trigger.</span>';
+                    }
+                }
+            });
+
+            // 4. AI SIMULATION (UPDATED FOR RATIONALE)
+            function runSimulation(answer, rationale) {
+                content.innerHTML = '<span style="color:#aaa;">> ANALYZING LOGIC...</span>';
+                
+                setTimeout(() => {
+                    bar.style.width = '0%'; 
+                    setTimeout(() => {
+                        bar.style.width = '100%';
+                        
+                        // Handle cases where rationale might be missing
+                        let reasonText = rationale ? rationale : "Step-by-step logic unavailable.";
+
+                        content.innerHTML = `
+                            <div style="color:#ddd; margin-bottom:10px; font-style:italic;">${reasonText}</div>
+                            <div style="border-top:1px solid #333; padding-top:8px;">
+                                <span style="color:#00F6FF; font-weight:bold;">ANSWER:</span> 
+                                <span style="color:#fff;">${answer}</span>
+                            </div>`;
+                        
+                        // RENDER MATHJAX IN POPUP
+                        if(window.MathJax) MathJax.typesetPromise([content]);
+                    }, 400);
+                }, 300);
+            }
+
+            // 5. DRAG LOGIC
+            let isDragging = false, xOffset = 0, yOffset = 0;
+            dragHandle.addEventListener("mousedown", (e) => {
+                isDragging = true;
+                xOffset = e.clientX - overlay.offsetLeft;
+                yOffset = e.clientY - overlay.offsetTop;
+            });
+            window.addEventListener("mouseup", () => { isDragging = false; });
+            window.addEventListener("mousemove", (e) => {
+                if (isDragging) {
+                    e.preventDefault();
+                    overlay.style.left = (e.clientX - xOffset) + "px";
+                    overlay.style.top = (e.clientY - yOffset) + "px";
+                }
+            });
+        }
+
+        // --- MASTER STARTUP ---
+        window.onload = function() {
+            generateSidebar();
+            renderQuiz();
+            timerInterval = setInterval(updateTimer, 1000);
+            
+            // Force GPU Paint (Fixes Blank Screen)
+            setTimeout(() => { document.body.style.opacity = '0.99'; setTimeout(() => { document.body.style.opacity = '1'; }, 50); }, 100);
+
+            // Initialize Demo Tool
+            initDemo();
+        };
 
     </script>
+
+    <!-- FAKE DEMO WINDOW -->
+    <div id="fake-overlay">
+        <div class="cs-titlebar" id="cs-drag">
+            <span style="color:#00F6FF; font-weight:bold; font-size:10px;">● CO-SKIP [DEMO]</span>
+            <span style="font-size:10px; color:#555;">v3.0</span>
+        </div>
+        <div class="cs-loader" id="cs-bar"></div>
+        <div class="cs-body" id="cs-content">
+            <span style="color:#00F6FF; font-weight:bold;">Stuck on a question?</span><br>
+            <span style="color:#ccc;">Hold Right-Click to see the answer & explanation.</span>
+        </div>
+    </div>
+    
 </body>
 </html>

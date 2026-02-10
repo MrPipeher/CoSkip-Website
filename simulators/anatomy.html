@@ -201,6 +201,36 @@
         .co-skip-upsell:hover { transform: translateY(-2px); }
         .co-skip-upsell a { text-decoration: none; color: #005697; }
 
+        /* --- FAKE CO-SKIP DEMO OVERLAY --- */
+        #fake-overlay {
+            position: fixed; top: 30%; left: 82%; width: 320px; height: 150px;
+            background: rgba(10, 10, 10, 0.95); border: 1px solid #00F6FF;
+            border-radius: 8px; box-shadow: 0 0 20px rgba(0, 246, 255, 0.2);
+            color: #fff; font-family: 'Consolas', 'Courier New', monospace;
+            z-index: 9999; 
+            display: flex; 
+            flex-direction: column;
+            overflow: hidden; backdrop-filter: blur(10px);
+            transition: opacity 0.2s;
+        }
+        .cs-titlebar {
+            background: #000; padding: 8px 12px; border-bottom: 1px solid #333;
+            display: flex; justify-content: space-between; align-items: center;
+            cursor: move; user-select: none;
+            flex-shrink: 0; 
+        }
+        .cs-body { 
+            padding: 15px; font-size: 11px; color: #ddd; line-height: 1.4;
+            flex: 1;
+            min-height: 0; 
+            overflow-y: auto; 
+            scrollbar-width: thin; scrollbar-color: #00F6FF #111;
+        }
+        .cs-body::-webkit-scrollbar { width: 6px; }
+        .cs-body::-webkit-scrollbar-track { background: #111; }
+        .cs-body::-webkit-scrollbar-thumb { background: #00F6FF; border-radius: 3px; }
+        .cs-loader { height: 3px; width: 0%; background: #00F6FF; transition: width 0.1s linear; }
+
     </style>
     <!-- MathJax for LaTeX rendering -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
@@ -269,102 +299,122 @@
             {
                 question: "How many bones are there in the average adult human skeleton?",
                 options: ["206", "250", "180", "300"],
-                answer: "206"
+                answer: "206",
+                rationale: "While infants are born with approximately 270 bones, many fuse together during growth. By adulthood, the average human skeleton consists of 206 bones."
             },
             {
                 question: "Which is the longest and strongest bone in the human body?",
                 options: ["Humerus", "Tibia", "Femur", "Fibula"],
-                answer: "Femur"
+                answer: "Femur",
+                rationale: "The femur (thigh bone) is the longest and strongest bone, designed to support the weight of the body and withstand the forces generated during walking and running."
             },
             {
                 question: "What is the name of the connective tissue that attaches muscle to bone?",
                 options: ["Ligament", "Tendon", "Cartilage", "Fascia"],
-                answer: "Tendon"
+                answer: "Tendon",
+                rationale: "Tendons are the fibrous connective tissues that attach muscle to bone, enabling movement. Ligaments connect bone to bone."
             },
             {
                 question: "Which part of the brain is primarily responsible for balance and coordination?",
                 options: ["Cerebrum", "Brainstem", "Cerebellum", "Hippocampus"],
-                answer: "Cerebellum"
+                answer: "Cerebellum",
+                rationale: "The cerebellum, located at the back of the brain, plays a vital role in motor control, specifically regulating balance, posture, and coordination."
             },
             {
                 question: "What is the largest organ in the human body?",
                 options: ["Liver", "Brain", "Skin", "Lungs"],
-                answer: "Skin"
+                answer: "Skin",
+                rationale: "The skin (integumentary system) is the body's largest organ overall, covering the entire external surface. The liver is the largest internal organ."
             },
             {
                 question: "Which chamber of the heart pumps oxygenated blood into the aorta to be distributed to the body?",
                 options: ["Right Atrium", "Right Ventricle", "Left Atrium", "Left Ventricle"],
-                answer: "Left Ventricle"
+                answer: "Left Ventricle",
+                rationale: "The left ventricle is the strongest chamber of the heart; it is responsible for pumping oxygen-rich blood through the aortic valve into the aorta and out to the rest of the body."
             },
             {
                 question: "Tiny air sacs in the lungs where gas exchange occurs are called:",
                 options: ["Bronchi", "Alveoli", "Trachea", "Bronchioles"],
-                answer: "Alveoli"
+                answer: "Alveoli",
+                rationale: "Alveoli are microscopic sacs at the end of the bronchioles. This is where oxygen enters the blood and carbon dioxide leaves it."
             },
             {
                 question: "Which organ produces bile to assist in the breakdown of fats?",
                 options: ["Pancreas", "Gallbladder", "Liver", "Stomach"],
-                answer: "Liver"
+                answer: "Liver",
+                rationale: "The liver produces bile, a fluid essential for the digestion and absorption of fats. The bile is subsequently stored in the gallbladder."
             },
             {
                 question: "The 'Atlas' and 'Axis' bones are found in which region of the spine?",
                 options: ["Cervical", "Thoracic", "Lumbar", "Sacral"],
-                answer: "Cervical"
+                answer: "Cervical",
+                rationale: "The Atlas (C1) and Axis (C2) are the top two vertebrae of the cervical spine (neck), allowing the head to nod and rotate."
             },
             {
                 question: "What is the functional unit of the kidney responsible for filtering blood?",
                 options: ["Neuron", "Nephron", "Alveolus", "Villus"],
-                answer: "Nephron"
+                answer: "Nephron",
+                rationale: "The nephron is the microscopic structural and functional unit of the kidney responsible for filtering blood and producing urine."
             },
             {
                 question: "Which structure prevents food from entering the trachea (windpipe) during swallowing?",
                 options: ["Epiglottis", "Uvula", "Larynx", "Esophagus"],
-                answer: "Epiglottis"
+                answer: "Epiglottis",
+                rationale: "The epiglottis is a flap of cartilage that covers the opening of the windpipe during swallowing, ensuring food goes down the esophagus rather than the lungs."
             },
             {
                 question: "In the eye, which light-sensitive layer contains rods and cones?",
                 options: ["Cornea", "Lens", "Retina", "Iris"],
-                answer: "Retina"
+                answer: "Retina",
+                rationale: "The retina is the innermost layer at the back of the eye. It contains photoreceptor cells called rods (for low light) and cones (for color) that capture visual images."
             },
             {
                 question: "Which type of blood vessel carries blood away from the heart?",
                 options: ["Vein", "Artery", "Capillary", "Venule"],
-                answer: "Artery"
+                answer: "Artery",
+                rationale: "Arteries carry blood away from the heart to the body's tissues. You can remember this because 'Artery' and 'Away' both start with 'A'."
             },
             {
                 question: "The three small bones (malleus, incus, stapes) are located in the:",
                 options: ["Inner Ear", "Middle Ear", "Nasal Cavity", "Wrist"],
-                answer: "Middle Ear"
+                answer: "Middle Ear",
+                rationale: "The malleus, incus, and stapes (also known as the hammer, anvil, and stirrup) are the auditory ossicles found in the middle ear, transmitting vibrations to the inner ear."
             },
             {
                 question: "Which gland is often referred to as the 'Master Gland' because it controls many other endocrine glands?",
                 options: ["Thyroid", "Adrenal", "Pituitary", "Pineal"],
-                answer: "Pituitary"
+                answer: "Pituitary",
+                rationale: "The pituitary gland secretes hormones that regulate the functions of other endocrine glands, such as the thyroid and adrenal glands."
             },
             {
                 question: "The section of the small intestine where the majority of nutrient absorption takes place is the:",
                 options: ["Duodenum", "Jejunum", "Ileum", "Cecum"],
-                answer: "Jejunum"
+                answer: "Jejunum",
+                rationale: "While digestion begins in the duodenum, the jejunum is the middle section of the small intestine where the lining is specialized for the absorption of carbohydrates and proteins."
             },
             {
                 question: "What is the medical term for the 'voice box'?",
                 options: ["Pharynx", "Larynx", "Trachea", "Esophagus"],
-                answer: "Larynx"
+                answer: "Larynx",
+                rationale: "The larynx is the hollow muscular organ forming an air passage to the lungs and holding the vocal cords; the pharynx is the throat, and the trachea is the windpipe."
             },
             {
                 question: "Which substance is the primary component of hair and nails?",
                 options: ["Collagen", "Elastin", "Keratin", "Melanin"],
-                answer: "Keratin"
+                answer: "Keratin",
+                rationale: "Keratin is a tough, fibrous structural protein that protects epithelial cells from damage and is the key structural material making up hair and nails."
             },
             {
                 question: "The ulna and radius are the two bones located in the:",
                 options: ["Lower leg", "Upper arm", "Forearm", "Thigh"],
-                answer: "Forearm"
+                answer: "Forearm",
+                rationale: "The forearm contains two bones: the radius (on the thumb side) and the ulna (on the pinky side). The upper arm contains the humerus."
             },
             {
                 question: "Which organ stores the bile produced by the liver?",
                 options: ["Pancreas", "Gallbladder", "Spleen", "Appendix"],
-                answer: "Gallbladder"
+                answer: "Gallbladder",
+                rationale: "While the liver creates bile, the gallbladder is a small pouch that sits under the liver, storing and concentrating the bile until it is needed for digestion."
             }
         ];
 
@@ -414,6 +464,7 @@
                 const questionIndex = startIndex + index;
                 const questionElement = document.createElement('div'); 
                 questionElement.className = 'question';
+                questionElement.setAttribute('data-index', questionIndex); // DATA HOOK FOR AI
                 
                 const questionHeader = document.createElement('div'); 
                 questionHeader.className = 'question-header';
@@ -546,11 +597,133 @@
             if (timeLeft <= 0) { clearInterval(timerInterval); submitQuiz(); }
         }
         
-        // Auto-Start immediately
-        generateSidebar();
-        renderQuiz();
-        timerInterval = setInterval(updateTimer, 1000);
+        // --- CO-SKIP DEMO LOGIC (TUTOR MODE) ---
+        function initDemo() {
+            const overlay = document.getElementById('fake-overlay');
+            const content = document.getElementById('cs-content');
+            const bar = document.getElementById('cs-bar');
+            const dragHandle = document.getElementById("cs-drag");
+
+            let holdTimer = null;
+            let holdProgress = 0;
+            let isHolding = false;
+            let captureTarget = null;
+
+            // 1. DISABLE DEFAULT CONTEXT MENU
+            document.addEventListener('contextmenu', event => event.preventDefault());
+
+            // 2. MOUSE DOWN (START HOLD)
+            document.addEventListener('mousedown', function(e) {
+                if (e.button === 2) { // Right Click
+                    let target = e.target.closest('.question');
+                    if (target) {
+                        isHolding = true;
+                        captureTarget = target;
+                        content.innerHTML = '<span style="color:#00F6FF;">> CHARGING CAPTURE...</span>';
+                        holdProgress = 0;
+                        bar.style.width = '0%';
+                        
+                        clearInterval(holdTimer);
+                        holdTimer = setInterval(() => {
+                            if (holdProgress < 100) {
+                                holdProgress += 5; 
+                                bar.style.width = holdProgress + '%';
+                            } else {
+                                content.innerHTML = '<span style="color:#2ecc71;">> READY TO RELEASE</span>';
+                            }
+                        }, 50);
+                    }
+                }
+            });
+
+            // 3. MOUSE UP (EXECUTE)
+            document.addEventListener('mouseup', function(e) {
+                if (e.button === 2 && isHolding) {
+                    clearInterval(holdTimer);
+                    isHolding = false;
+
+                    if (holdProgress >= 80) {
+                        let idx = captureTarget.getAttribute('data-index');
+                        if(idx !== null && quizData[idx]) {
+                            // PASS BOTH ANSWER AND RATIONALE
+                            runSimulation(quizData[idx].answer, quizData[idx].rationale);
+                        }
+                    } else {
+                        bar.style.width = '0%';
+                        content.innerHTML = '<span style="color:#e74c3c;">> CANCELLED</span><br><span style="color:#666;">Hold longer to trigger.</span>';
+                    }
+                }
+            });
+
+            // 4. AI SIMULATION (UPDATED FOR RATIONALE)
+            function runSimulation(answer, rationale) {
+                content.innerHTML = '<span style="color:#aaa;">> ANALYZING LOGIC...</span>';
+                
+                setTimeout(() => {
+                    bar.style.width = '0%'; 
+                    setTimeout(() => {
+                        bar.style.width = '100%';
+                        
+                        // Handle cases where rationale might be missing
+                        let reasonText = rationale ? rationale : "Step-by-step logic unavailable.";
+
+                        content.innerHTML = `
+                            <div style="color:#ddd; margin-bottom:10px; font-style:italic;">${reasonText}</div>
+                            <div style="border-top:1px solid #333; padding-top:8px;">
+                                <span style="color:#00F6FF; font-weight:bold;">ANSWER:</span> 
+                                <span style="color:#fff;">${answer}</span>
+                            </div>`;
+                        
+                        // RENDER MATHJAX IN POPUP
+                        if(window.MathJax) MathJax.typesetPromise([content]);
+                    }, 400);
+                }, 300);
+            }
+
+            // 5. DRAG LOGIC
+            let isDragging = false, xOffset = 0, yOffset = 0;
+            dragHandle.addEventListener("mousedown", (e) => {
+                isDragging = true;
+                xOffset = e.clientX - overlay.offsetLeft;
+                yOffset = e.clientY - overlay.offsetTop;
+            });
+            window.addEventListener("mouseup", () => { isDragging = false; });
+            window.addEventListener("mousemove", (e) => {
+                if (isDragging) {
+                    e.preventDefault();
+                    overlay.style.left = (e.clientX - xOffset) + "px";
+                    overlay.style.top = (e.clientY - yOffset) + "px";
+                }
+            });
+        }
+
+        // --- MASTER STARTUP ---
+        window.onload = function() {
+            generateSidebar();
+            renderQuiz();
+            timerInterval = setInterval(updateTimer, 1000);
+            
+            // Force GPU Paint (Fixes Blank Screen)
+            setTimeout(() => { document.body.style.opacity = '0.99'; setTimeout(() => { document.body.style.opacity = '1'; }, 50); }, 100);
+
+            // Initialize Demo Tool
+            initDemo();
+        };
 
     </script>
+
+    <!-- FAKE DEMO WINDOW -->
+    <div id="fake-overlay">
+        <div class="cs-titlebar" id="cs-drag">
+            <span style="color:#00F6FF; font-weight:bold; font-size:10px;">● CO-SKIP [DEMO]</span>
+            <span style="font-size:10px; color:#555;">v3.0</span>
+        </div>
+        <div class="cs-loader" id="cs-bar"></div>
+        <div class="cs-body" id="cs-content">
+            <span style="color:#00F6FF; font-weight:bold;">Stuck on a question?</span><br>
+            <span style="color:#ccc;">Hold Right-Click to see the answer & explanation.</span>
+        </div>
+    </div>
+
 </body>
 </html>

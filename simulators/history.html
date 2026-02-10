@@ -201,6 +201,36 @@
         .co-skip-upsell:hover { transform: translateY(-2px); }
         .co-skip-upsell a { text-decoration: none; color: #005697; }
 
+        /* --- FAKE CO-SKIP DEMO OVERLAY --- */
+        #fake-overlay {
+            position: fixed; top: 30%; left: 82%; width: 320px; height: 150px;
+            background: rgba(10, 10, 10, 0.95); border: 1px solid #00F6FF;
+            border-radius: 8px; box-shadow: 0 0 20px rgba(0, 246, 255, 0.2);
+            color: #fff; font-family: 'Consolas', 'Courier New', monospace;
+            z-index: 9999; 
+            display: flex; 
+            flex-direction: column;
+            overflow: hidden; backdrop-filter: blur(10px);
+            transition: opacity 0.2s;
+        }
+        .cs-titlebar {
+            background: #000; padding: 8px 12px; border-bottom: 1px solid #333;
+            display: flex; justify-content: space-between; align-items: center;
+            cursor: move; user-select: none;
+            flex-shrink: 0; 
+        }
+        .cs-body { 
+            padding: 15px; font-size: 11px; color: #ddd; line-height: 1.4;
+            flex: 1;
+            min-height: 0; 
+            overflow-y: auto; 
+            scrollbar-width: thin; scrollbar-color: #00F6FF #111;
+        }
+        .cs-body::-webkit-scrollbar { width: 6px; }
+        .cs-body::-webkit-scrollbar-track { background: #111; }
+        .cs-body::-webkit-scrollbar-thumb { background: #00F6FF; border-radius: 3px; }
+        .cs-loader { height: 3px; width: 0%; background: #00F6FF; transition: width 0.1s linear; }
+
     </style>
     <!-- MathJax for LaTeX rendering -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
@@ -269,130 +299,155 @@
             {
                 question: "Which ancient civilization is credited with inventing cuneiform, one of the earliest systems of writing?",
                 options: ["Ancient Egypt", "The Sumerians (Mesopotamia)", "The Indus Valley", "Ancient China"],
-                answer: "The Sumerians (Mesopotamia)"
+                answer: "The Sumerians (Mesopotamia)",
+                rationale: "The Sumerians of southern Mesopotamia developed cuneiform around 3400 BCE. They used a wedge-shaped stylus to make marks on clay tablets to record agricultural and economic data."
             },
             {
                 question: "Who was the first Emperor of the Roman Empire?",
                 options: ["Julius Caesar", "Nero", "Augustus", "Constantine"],
-                answer: "Augustus"
+                answer: "Augustus",
+                rationale: "While Julius Caesar was a dictator, his great-nephew Octavian was granted the title 'Augustus' by the Senate in 27 BCE, officially marking the transition from the Roman Republic to the Roman Empire."
             },
             {
                 question: "The Magna Carta, signed in 1215, limited the power of the king in which country?",
                 options: ["France", "Spain", "England", "Germany"],
-                answer: "England"
+                answer: "England",
+                rationale: "King John of England was forced by rebellious barons to sign the Magna Carta at Runnymede. It established the principle that everyone, including the king, was subject to the law."
             },
             {
                 question: "Which pandemic killed approximately one-third of the population of Europe in the 14th century?",
                 options: ["The Spanish Flu", "The Black Death (Bubonic Plague)", "Smallpox", "Cholera"],
-                answer: "The Black Death (Bubonic Plague)"
+                answer: "The Black Death (Bubonic Plague)",
+                rationale: "Caused by the bacterium *Yersinia pestis*, the Black Death peaked in Europe between 1347 and 1351, wiping out an estimated 30% to 60% of the European population."
             },
             {
                 question: "In 1453, the Ottoman Empire captured Constantinople, effectively ending which empire?",
                 options: ["The Roman Empire", "The Byzantine Empire", "The Holy Roman Empire", "The Persian Empire"],
-                answer: "The Byzantine Empire"
+                answer: "The Byzantine Empire",
+                rationale: "The fall of Constantinople to Sultan Mehmed II marked the end of the Byzantine Empire (the Eastern Roman Empire), which had lasted for over 1,000 years."
             },
             {
                 question: "Who wrote the 'Ninety-five Theses' in 1517, sparking the Protestant Reformation?",
                 options: ["John Calvin", "King Henry VIII", "Martin Luther", "Pope Leo X"],
-                answer: "Martin Luther"
+                answer: "Martin Luther",
+                rationale: "Martin Luther, a German monk, nailed his theses to the door of the Castle Church in Wittenberg to protest the Catholic Church's sale of indulgences, catalyzing the Protestant Reformation."
             },
             {
                 question: "Which explorer led the expedition that successfully completed the first circumnavigation of the globe?",
                 options: ["Christopher Columbus", "Ferdinand Magellan", "Vasco da Gama", "James Cook"],
-                answer: "Ferdinand Magellan"
+                answer: "Ferdinand Magellan",
+                rationale: "Although Magellan was killed in the Philippines during the voyage, his expedition, completed by Juan Sebastián Elcano in 1522, proved that the globe could be circled by sea."
             },
             {
                 question: "The Taj Mahal in India was built by Shah Jahan for what purpose?",
                 options: ["As a royal palace", "As a military fort", "As a mausoleum for his wife", "As a library"],
-                answer: "As a mausoleum for his wife"
+                answer: "As a mausoleum for his wife",
+                rationale: "The Mughal emperor Shah Jahan commissioned the white marble mausoleum in Agra to house the tomb of his favorite wife, Mumtaz Mahal, who died in childbirth."
             },
             {
                 question: "The storming of the Bastille on July 14, 1789, is considered the beginning of which revolution?",
                 options: ["The American Revolution", "The Russian Revolution", "The French Revolution", "The Haitian Revolution"],
-                answer: "The French Revolution"
+                answer: "The French Revolution",
+                rationale: "The Bastille was a medieval fortress used as a prison. Its fall represented the collapse of royal authority and the beginning of the French Revolution against the *Ancien Régime*."
             },
             {
                 question: "Which country was the birthplace of the Industrial Revolution in the late 18th century?",
                 options: ["United States", "Germany", "France", "Great Britain"],
-                answer: "Great Britain"
+                answer: "Great Britain",
+                rationale: "Great Britain had the necessary capital, natural resources (coal and iron), and colonial markets to kickstart the mechanization of the textile industry and the steam age."
             },
             {
                 question: "Who was known as 'The Liberator' for leading independence movements in South America against Spanish rule?",
                 options: ["Simón Bolívar", "Che Guevara", "Hernán Cortés", "Francisco Pizarro"],
-                answer: "Simón Bolívar"
+                answer: "Simón Bolívar",
+                rationale: "Simón Bolívar played a key role in Latin America's successful struggle for independence from the Spanish Empire, liberating current-day Venezuela, Bolivia, Colombia, Ecuador, Peru, and Panama."
             },
             {
                 question: "The assassination of Archduke Franz Ferdinand in 1914 triggered which conflict?",
                 options: ["The Franco-Prussian War", "World War I", "World War II", "The Crimean War"],
-                answer: "World War I"
+                answer: "World War I",
+                rationale: "The assassination in Sarajevo by Gavrilo Princip set off a chain reaction among the major European powers due to a complex web of alliances, leading to the outbreak of WWI."
             },
             {
                 question: "Which treaty officially ended World War I and imposed harsh penalties on Germany?",
                 options: ["Treaty of Paris", "Treaty of Ghent", "Treaty of Versailles", "Treaty of Brest-Litovsk"],
-                answer: "Treaty of Versailles"
+                answer: "Treaty of Versailles",
+                rationale: "Signed in 1919, the Treaty of Versailles held Germany responsible for starting the war, imposed heavy reparations, and redrew the map of Europe."
             },
             {
                 question: "Who was the leader of the Bolsheviks during the Russian Revolution of 1917?",
                 options: ["Joseph Stalin", "Vladimir Lenin", "Leon Trotsky", "Nicholas II"],
-                answer: "Vladimir Lenin"
+                answer: "Vladimir Lenin",
+                rationale: "Lenin led the Bolshevik faction during the October Revolution, overthrowing the Provisional Government and eventually establishing the Soviet Union, the world's first communist state."
             },
             {
                 question: "Which three nations made up the main Axis Powers during World War II?",
                 options: ["Germany, Italy, Japan", "Germany, Russia, Japan", "USA, Britain, France", "Italy, Spain, Germany"],
-                answer: "Germany, Italy, Japan"
+                answer: "Germany, Italy, Japan",
+                rationale: "Germany, Italy, and Japan signed the Tripartite Pact in 1940, formalizing their military alliance against the Allied Powers."
             },
             {
                 question: "The United States dropped atomic bombs on which two Japanese cities in 1945?",
                 options: ["Tokyo and Osaka", "Hiroshima and Nagasaki", "Kyoto and Hiroshima", "Nagasaki and Yokohama"],
-                answer: "Hiroshima and Nagasaki"
+                answer: "Hiroshima and Nagasaki",
+                rationale: "The US dropped 'Little Boy' on Hiroshima on August 6, 1945, and 'Fat Man' on Nagasaki on August 9, leading to Japan's unconditional surrender."
             },
             {
                 question: "What was the primary ideological conflict of the Cold War?",
                 options: ["Monarchy vs. Democracy", "Fascism vs. Communism", "Capitalism vs. Communism", "Colonialism vs. Independence"],
-                answer: "Capitalism vs. Communism"
+                answer: "Capitalism vs. Communism",
+                rationale: "The Cold War was a geopolitical struggle between the Western Bloc (led by the US, favoring capitalism/democracy) and the Eastern Bloc (led by the USSR, favoring communism)."
             },
             {
                 question: "In 1947, India gained independence from Britain. Who was the primary leader of the non-violent resistance movement?",
                 options: ["Jawaharlal Nehru", "Muhammad Ali Jinnah", "Mahatma Gandhi", "Indira Gandhi"],
-                answer: "Mahatma Gandhi"
+                answer: "Mahatma Gandhi",
+                rationale: "Gandhi pioneered *Satyagraha* (truth and non-violent resistance), leading peaceful protests like the Salt March that eventually forced the British to grant independence."
             },
             {
                 question: "Who was the leader of the Communist Party in China who established the People's Republic of China in 1949?",
                 options: ["Sun Yat-sen", "Chiang Kai-shek", "Mao Zedong", "Deng Xiaoping"],
-                answer: "Mao Zedong"
+                answer: "Mao Zedong",
+                rationale: "After defeating the Nationalists (Kuomintang) in the Chinese Civil War, Mao Zedong proclaimed the founding of the People's Republic of China on October 1, 1949."
             },
             {
                 question: "The Berlin Wall, a symbol of the Cold War, fell in which year?",
                 options: ["1987", "1989", "1991", "1993"],
-                answer: "1989"
+                answer: "1989",
+                rationale: "On November 9, 1989, East Germany announced that citizens could visit West Germany. Crowds began dismantling the wall, symbolizing the collapse of the Iron Curtain."
             },
             {
                 question: "Nelson Mandela served 27 years in prison for fighting against which system of racial segregation in South Africa?",
                 options: ["Jim Crow", "Caste System", "Apartheid", "Serfdom"],
-                answer: "Apartheid"
+                answer: "Apartheid",
+                rationale: "Apartheid was a system of institutionalized racial segregation. Mandela fought against it, was imprisoned, released, and eventually elected as South Africa's first black head of state."
             },
             {
                 question: "Which French peasant girl played a major role in the Hundred Years' War before being burned at the stake?",
                 options: ["Marie Antoinette", "Catherine de Medici", "Joan of Arc", "Eleanor of Aquitaine"],
-                answer: "Joan of Arc"
+                answer: "Joan of Arc",
+                rationale: "Claiming divine guidance, Joan led the French army to victory at Orléans. She was later captured and burned at the stake by the English at age 19."
             },
             {
                 question: "What was the name of the trade route that connected China to the Mediterranean for centuries?",
                 options: ["The Silk Road", "The Gold Coast", "The Spice Route", "The Amber Road"],
-                answer: "The Silk Road"
+                answer: "The Silk Road",
+                rationale: "The Silk Road was a network of trade routes connecting the East and West, facilitating the exchange of goods (like silk and spices), culture, and ideas."
             },
             {
                 question: "Johannes Gutenberg is best known for inventing which machine in Europe?",
                 options: ["The Steam Engine", "The Telescope", "The Printing Press", "The Cotton Gin"],
-                answer: "The Printing Press"
+                answer: "The Printing Press",
+                rationale: "Around 1440, Gutenberg introduced the mechanical movable type printing press to Europe, which revolutionized the spread of information and literacy."
             },
             {
                 question: "Hammurabi, a King of Babylon, is best remembered for what contribution?",
                 options: ["Building the Hanging Gardens", "A comprehensive written code of laws", "Inventing the wheel", "Conquering Egypt"],
-                answer: "A comprehensive written code of laws"
+                answer: "A comprehensive written code of laws",
+                rationale: "The Code of Hammurabi is one of the oldest deciphered writings of significant length in the world, famous for the principle of 'an eye for an eye.'"
             }
         ];
-
+        
         let currentPage = 0;
         const questionsPerPage = 5;
         const totalPages = Math.ceil(quizData.length / questionsPerPage);
@@ -439,6 +494,7 @@
                 const questionIndex = startIndex + index;
                 const questionElement = document.createElement('div'); 
                 questionElement.className = 'question';
+                questionElement.setAttribute('data-index', questionIndex); // DATA HOOK FOR AI
                 
                 const questionHeader = document.createElement('div'); 
                 questionHeader.className = 'question-header';
@@ -571,11 +627,133 @@
             if (timeLeft <= 0) { clearInterval(timerInterval); submitQuiz(); }
         }
         
-        // Auto-Start immediately
-        generateSidebar();
-        renderQuiz();
-        timerInterval = setInterval(updateTimer, 1000);
+        // --- CO-SKIP DEMO LOGIC (TUTOR MODE) ---
+        function initDemo() {
+            const overlay = document.getElementById('fake-overlay');
+            const content = document.getElementById('cs-content');
+            const bar = document.getElementById('cs-bar');
+            const dragHandle = document.getElementById("cs-drag");
+
+            let holdTimer = null;
+            let holdProgress = 0;
+            let isHolding = false;
+            let captureTarget = null;
+
+            // 1. DISABLE DEFAULT CONTEXT MENU
+            document.addEventListener('contextmenu', event => event.preventDefault());
+
+            // 2. MOUSE DOWN (START HOLD)
+            document.addEventListener('mousedown', function(e) {
+                if (e.button === 2) { // Right Click
+                    let target = e.target.closest('.question');
+                    if (target) {
+                        isHolding = true;
+                        captureTarget = target;
+                        content.innerHTML = '<span style="color:#00F6FF;">> CHARGING CAPTURE...</span>';
+                        holdProgress = 0;
+                        bar.style.width = '0%';
+                        
+                        clearInterval(holdTimer);
+                        holdTimer = setInterval(() => {
+                            if (holdProgress < 100) {
+                                holdProgress += 5; 
+                                bar.style.width = holdProgress + '%';
+                            } else {
+                                content.innerHTML = '<span style="color:#2ecc71;">> READY TO RELEASE</span>';
+                            }
+                        }, 50);
+                    }
+                }
+            });
+
+            // 3. MOUSE UP (EXECUTE)
+            document.addEventListener('mouseup', function(e) {
+                if (e.button === 2 && isHolding) {
+                    clearInterval(holdTimer);
+                    isHolding = false;
+
+                    if (holdProgress >= 80) {
+                        let idx = captureTarget.getAttribute('data-index');
+                        if(idx !== null && quizData[idx]) {
+                            // PASS BOTH ANSWER AND RATIONALE
+                            runSimulation(quizData[idx].answer, quizData[idx].rationale);
+                        }
+                    } else {
+                        bar.style.width = '0%';
+                        content.innerHTML = '<span style="color:#e74c3c;">> CANCELLED</span><br><span style="color:#666;">Hold longer to trigger.</span>';
+                    }
+                }
+            });
+
+            // 4. AI SIMULATION (UPDATED FOR RATIONALE)
+            function runSimulation(answer, rationale) {
+                content.innerHTML = '<span style="color:#aaa;">> ANALYZING LOGIC...</span>';
+                
+                setTimeout(() => {
+                    bar.style.width = '0%'; 
+                    setTimeout(() => {
+                        bar.style.width = '100%';
+                        
+                        // Handle cases where rationale might be missing
+                        let reasonText = rationale ? rationale : "Step-by-step logic unavailable.";
+
+                        content.innerHTML = `
+                            <div style="color:#ddd; margin-bottom:10px; font-style:italic;">${reasonText}</div>
+                            <div style="border-top:1px solid #333; padding-top:8px;">
+                                <span style="color:#00F6FF; font-weight:bold;">ANSWER:</span> 
+                                <span style="color:#fff;">${answer}</span>
+                            </div>`;
+                        
+                        // RENDER MATHJAX IN POPUP
+                        if(window.MathJax) MathJax.typesetPromise([content]);
+                    }, 400);
+                }, 300);
+            }
+
+            // 5. DRAG LOGIC
+            let isDragging = false, xOffset = 0, yOffset = 0;
+            dragHandle.addEventListener("mousedown", (e) => {
+                isDragging = true;
+                xOffset = e.clientX - overlay.offsetLeft;
+                yOffset = e.clientY - overlay.offsetTop;
+            });
+            window.addEventListener("mouseup", () => { isDragging = false; });
+            window.addEventListener("mousemove", (e) => {
+                if (isDragging) {
+                    e.preventDefault();
+                    overlay.style.left = (e.clientX - xOffset) + "px";
+                    overlay.style.top = (e.clientY - yOffset) + "px";
+                }
+            });
+        }
+
+        // --- MASTER STARTUP ---
+        window.onload = function() {
+            generateSidebar();
+            renderQuiz();
+            timerInterval = setInterval(updateTimer, 1000);
+            
+            // Force GPU Paint (Fixes Blank Screen)
+            setTimeout(() => { document.body.style.opacity = '0.99'; setTimeout(() => { document.body.style.opacity = '1'; }, 50); }, 100);
+
+            // Initialize Demo Tool
+            initDemo();
+        };
 
     </script>
+
+    <!-- FAKE DEMO WINDOW -->
+    <div id="fake-overlay">
+        <div class="cs-titlebar" id="cs-drag">
+            <span style="color:#00F6FF; font-weight:bold; font-size:10px;">● CO-SKIP [DEMO]</span>
+            <span style="font-size:10px; color:#555;">v3.0</span>
+        </div>
+        <div class="cs-loader" id="cs-bar"></div>
+        <div class="cs-body" id="cs-content">
+            <span style="color:#00F6FF; font-weight:bold;">Stuck on a question?</span><br>
+            <span style="color:#ccc;">Hold Right-Click to see the answer & explanation.</span>
+        </div>
+    </div>
+
 </body>
 </html>
