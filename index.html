@@ -172,6 +172,20 @@
             letter-spacing: 0.5px;
             text-shadow: 0 0 10px rgba(0, 242, 255, 0.3); /* Subtle glow */
         }
+        /* ================================== */
+        /* == CRYPTO NAV LINK HIGHLIGHT    == */
+        /* ================================== */
+        .nav-crypto-link {
+            color: #00F6FF !important;
+            font-weight: 700 !important;
+            text-shadow: 0 0 10px rgba(0, 246, 255, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .nav-crypto-link i {
+            color: #f7931a; /* Bitcoin Orange */
+        }
     </style>
 
 </head>
@@ -192,6 +206,9 @@
                     <a href="#showcase">Features</a>
                     <a href="practice.html">Practice</a>
                     <a href="#pricing">Pricing</a>
+                    <a href="#crypto-guide" class="nav-crypto-link">
+                        <i class="fab fa-bitcoin"></i> Get Discount
+                    </a>
                     <a href="https://billing.stripe.com/p/login/fZu4gz4wtaVk4rL74bd7q00" target="_blank" rel="noopener noreferrer">Manage Subscription</a>
                     <a href="https://discord.gg/vFdJmjjapa" target="_blank" rel="noopener noreferrer" class="nav-link-discord">
                         <i class="fab fa-discord"></i> Community
@@ -702,6 +719,69 @@
                         </div>
 
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================= -->
+        <!-- NEW SECTION: CRYPTO BUYING GUIDE              -->
+        <!-- ============================================= -->
+        <section id="crypto-guide" class="workflow-section" style="background-color: #0a0a0a; border-top: 1px solid #222; border-bottom: 1px solid #222;">
+            <div class="container">
+                <div style="text-align: center; max-width: 800px; margin: 0 auto 50px auto;">
+                    <h2 class="section-title">How to Pay with Crypto</h2>
+                    <p class="section-subtitle">Save 15% on Standard Keys and unlock Elite Tier access. We exclusively accept <strong>Bitcoin (BTC)</strong> and <strong>Ethereum (ETH)</strong>.</p>
+                </div>
+
+                <div class="workflow-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+                    
+                    <!-- Step 1 -->
+                    <div class="workflow-card" style="border-top: 3px solid #f7931a;">
+                        <div class="workflow-title">
+                            <i class="fas fa-wallet" style="color: #f7931a; font-size: 1.5rem;"></i>
+                            <h3>Step 1: Get BTC or ETH</h3>
+                        </div>
+                        <p style="margin-bottom: 15px;">If you don't already have crypto, it takes 2 minutes to buy some using your debit card or Apple Pay:</p>
+                        <ul class="feature-list">
+                            <li><strong>🇺🇸 US Users:</strong> Open <strong>Cash App</strong> on your phone, tap the ₿ icon at the bottom, and tap 'Buy'.</li>
+                            <li><strong>🌍 Global Users:</strong> Go to <strong>MoonPay.com</strong> or <strong>Paybis.com</strong> and purchase Bitcoin or Ethereum using your card.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="workflow-card" style="border-top: 3px solid #5865F2;">
+                        <div class="workflow-title">
+                            <i class="fab fa-discord" style="color: #5865F2; font-size: 1.5rem;"></i>
+                            <h3>Step 2: Open a Ticket</h3>
+                        </div>
+                        <p style="margin-bottom: 15px;">For maximum security, we do not post our wallet addresses publicly. You must request one securely.</p>
+                        <ul class="feature-list">
+                            <li>Join our private Discord server.</li>
+                            <li>Navigate to the <strong>#support</strong> channel and open a purchase ticket.</li>
+                            <li>Tell the admin which key you want (e.g., "30-Day Standard with BTC").</li>
+                        </ul>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="workflow-card" style="border-top: 3px solid #00F6FF;">
+                        <div class="workflow-title">
+                            <i class="fas fa-key" style="color: #00F6FF; font-size: 1.5rem;"></i>
+                            <h3>Step 3: Get Your Key</h3>
+                        </div>
+                        <p style="margin-bottom: 15px;">Once in the ticket, our team will provide the exact wallet address to send the funds to.</p>
+                        <ul class="feature-list">
+                            <li>Send the crypto from your Cash App or Wallet.</li>
+                            <li>Drop a screenshot of the completed transfer in the ticket.</li>
+                            <li>We verify it instantly and hand you your license key!</li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <div style="text-align: center; margin-top: 50px;">
+                    <a href="https://discord.gg/vFdJmjjapa" target="_blank" class="btn btn-primary btn-large" style="background-color: #5865F2; border-color: #5865F2;">
+                        <i class="fab fa-discord" style="font-size: 1.2rem; margin-right: 8px;"></i> Join Discord to Start
+                    </a>
                 </div>
             </div>
         </section>
