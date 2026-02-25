@@ -46,61 +46,46 @@
                 <h1>Privacy Policy</h1>
                 <p><strong>Effective Date:</strong> April 21, 2025</p>
 
-                <p>Welcome to Co-Skip. Your privacy and anonymity are fundamental principles upon which Co-Skip is built. This Privacy Policy outlines our practices concerning information – specifically, what we deliberately *do not* collect and what limited, non-personal data might be involved when you interact with our website or service.</p>
+                <p>Welcome to Co-Skip. We are committed to a "Privacy-First" approach, ensuring that your data is handled with the highest level of discretion. This policy outlines how we handle limited technical data to provide our services and protect our intellectual property.</p>
 
-                <h2>Our Core Privacy Commitment: Zero User Data Collection</h2>
-                <p>Co-Skip is designed from the ground up to operate without collecting or storing personally identifiable information (PII) about its users. We believe strongly in user anonymity.</p>
+                <h2>1. Information We Collect for Security & Authentication</h2>
+                <p>While we aim to maintain user anonymity, we collect specific technical identifiers to fulfill our contract with you and ensure the security of our software:</p>
                 <ul>
-                    <li><i class="fas fa-user-secret"></i> <strong>No Personal Information Required:</strong> We do NOT require, request, collect, or store any personal details such as your name, email address, physical address, phone number, or any other direct identifiers to use Co-Skip.</li>
-                    <li><i class="fas fa-credit-card"></i> <strong>Anonymous Payments via Stripe:</strong> Purchases are processed through Stripe's secure checkout pages. We do not receive or store your credit card details, billing address, or any other sensitive payment information. Stripe handles this independently according to their privacy policy. From our perspective, the transaction is anonymous – we only receive confirmation that a payment for a specific key type was successful.</li>
-                    <li><i class="fas fa-key"></i> <strong>Key System Enhances Privacy:</strong> We utilize a license key system specifically to avoid user accounts, logins, and the associated data collection they entail. Your key is your proof of purchase and access.</li>
-                    <li><i class="fas fa-link-slash"></i> <strong>No Discord Linking:</strong> Your identity and activity within our Discord community server are entirely separate from your use of the Co-Skip software and your license key. We do not link Discord usernames to license keys.</li>
+                    <li><i class="fas fa-fingerprint"></i> <strong>Hardware Identifiers (HWID):</strong> Upon activation, our software generates a unique, non-reversible cryptographic hash of your hardware components. This is used strictly to link your license key to your device and prevent unauthorized account sharing.</li>
+                    <li><i class="fas fa-network-wired"></i> <strong>IP Addresses:</strong> We log IP addresses during authentication and service usage. This is used for geographic licensing compliance, fraud prevention, and to maintain the integrity of our server infrastructure.</li>
+                    <li><i class="fas fa-shield-virus"></i> <strong>Security Logs:</strong> Our proprietary security system monitors for the presence of unauthorized investigative tools, debuggers, or virtualized environments. If a security violation is detected, technical data (including HWID and IP) is logged to enforce a permanent service ban.</li>
                 </ul>
 
-                <h2>Information We Do *Not* Store or Access</h2>
+                <h2>2. Payment Processing</h2>
+                <p>Purchases are handled by secure third-party providers (Stripe, Coinbase). While we do not store your full financial details on our own servers, these providers share limited transaction data (such as name and email) with us for order fulfillment and fraud prevention purposes. <strong>Cryptocurrency transactions are processed as final and offer the highest level of user anonymity.</strong></p>
+
+                <h2>3. AI Feature Interaction & Data Processing</h2>
+                <p>When you utilize AI-powered features in Co-Skip, the captured data (text or screenshots) is transmitted securely to our processing infrastructure or third-party AI providers (such as Google Gemini or OpenAI). 
                 <ul>
-                    <li><i class="fas fa-database"></i> We do not maintain databases linking users to keys.</li>
-                    <li><i class="fas fa-receipt"></i> We do not store records of who purchased which specific key.</li>
-                    <li><i class="fas fa-share-alt"></i> We do not share any user information with third parties (because we don't collect it in the first place, beyond the unavoidable interactions described below).</li>
+                    <li><strong>No Permanent Storage:</strong> We do not log or store the content of your captures or the AI responses on our permanent databases. Data is processed in volatile memory and discarded once the response is delivered.</li>
+                    <li><strong>No PII Linking:</strong> Your capture data is never linked to your identity, hardware ID, or payment profile during the processing phase.</li>
+                </ul>
+                </p>
+
+                <h2>4. Information We Do *Not* Collect</h2>
+                <p>We remain committed to avoiding unnecessary data collection:</p>
+                <ul>
+                    <li>We do not collect or store your browsing history.</li>
+                    <li>We do not access or store your files, documents, or personal data outside of the explicit regions you choose to capture for AI analysis.</li>
+                    <li>We do not sell your technical data or usage patterns to any third parties.</li>
                 </ul>
 
-                <h2>Website Interaction & Tracking Technologies</h2>
-                <p>While the Co-Skip application itself operates anonymously, interacting with our website (co-skip.com) involves standard web technologies, including tracking pixels and cookies, used for website analytics and advertising purposes.</p>
-                <ul>
-                    <li><i class="fas fa-cookie-bite"></i> <strong>What are Pixels & Cookies?</strong> These are small pieces of code (pixels) or text files (cookies) placed on your device when you visit our website.</li>
-                    <li><i class="fas fa-chart-line"></i> <strong>Why We Use Them:</strong>
-                        <ul>
-                            <li>To understand how visitors use our website (e.g., which pages are popular).</li>
-                            <li>To measure the effectiveness of our advertising campaigns (e.g., counting clicks from ads).</li>
-                            <li>To track conversions (purchases) that originate from our ads.</li>
-                        </ul>
-                    </li>
-                     <li><i class="fas fa-users"></i> <strong>Who Provides Them & What They Collect:</strong> We use standard tracking technologies provided by Google, TikTok, and Meta. These services collect data like your IP address, browser type, and pages visited to help us analyze traffic and measure ad performance.
-                        <strong>Important:</strong> Co-Skip does not attempt to link this website browsing data to individual Co-Skip software users or license keys.
-                     </li>
-                </ul>
+                <h2>5. Website Interaction & Tracking</h2>
+                <p>Our website (co-skip.com) uses standard tracking technologies (Cookies and Pixels) from Google, TikTok, Meta, and Reddit. This helps us understand our marketing reach and website performance. This website data is aggregated and is never linked to individual software license keys or hardware IDs.</p>
 
-                <h2>AI Feature Interaction</h2>
-                <p>When you use features within Co-Skip that involve sending screenshots or text to an Artificial Intelligence (AI) model, that data is sent directly from your device to the AI service provider's servers. This interaction does *not* pass through Co-Skip's servers, and we do not log or store the content you send or the responses you receive.</p>
-                
-                <h2>Anonymous Usage & Key Management</h2>
-                <p>To operate our service, we track usage data in a strictly anonymous manner. For plans with a question limit, our system maintains a record of each key's usage count. For "Unlimited" plans, we anonymously monitor usage patterns to ensure compliance with our Fair Use Policy and prevent service abuse.</p>
-                <p><strong>This usage data is always anonymous and is never linked to any personal information.</strong></p>
+                <h2>6. Data Security</h2>
+                <p>We utilize industry-standard encryption and kernel-level security measures to protect the integrity of the data we handle. In the event of a security breach attempt on our software, we reserve the right to use collected technical identifiers to protect our Service.</p>
 
-                <h2>Data Security</h2>
-                <p>We implement reasonable technical and administrative measures to protect the integrity and security of the limited operational data we handle.</p>
+                <h2>7. Key Handling & Support</h2>
+                <p>Your license key is your primary identifier. Because we do not require user accounts, it is your sole responsibility to store your key. If you lose your key, our ability to recover it is limited and may require you to provide proof of transaction from your payment provider.</p>
 
-                <h2>Key Handling & Recovery</h2>
-                <p>Your unique license key is displayed on the Stripe confirmation page after payment. It is your sole responsibility to copy and securely store this key. As part of our commitment to anonymity, we do not store your personal purchase information linked to your license key. If you lose your key, you may contact support via Discord. By providing transaction details, we <strong>may</strong> be able to manually locate your key, but this is <strong>not guaranteed</strong>.</p>
-                
-                <h2>Children's Privacy</h2>
-                <p>Our service is not directed towards individuals under the age of 13. We do not knowingly collect any personal information from children.</p>
-
-                <h2>Changes to This Privacy Policy</h2>
-                <p>We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated effective date.</p>
-
-                <h2>Contact Us</h2>
-                <p>If you have any questions, please reach out to us via our official <a href="https://discord.gg/vFdJmjjapa" target="_blank" rel="noopener noreferrer">Discord server</a> support channels.</p>
+                <h2>8. Contact Us</h2>
+                <p>For any questions regarding your privacy, please contact our support team via our official <a href="https://discord.gg/vFdJmjjapa" target="_blank" rel="noopener noreferrer">Discord server</a>.</p>
             </div>
         </section>
     </main>
