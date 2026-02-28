@@ -228,9 +228,6 @@ document.addEventListener('DOMContentLoaded', () => {
             // Logic to determine Version based on Product Title
             // Ensure this matches your exact product naming convention
             let program = 'Co-Skip-v2';
-            if (productTitle.includes('Ghost') || productTitle.includes('Elite')) {
-                 program = 'Co-Skip-v3'; 
-            }
 
             // --- GET GLOBAL KEY ---
             const globalInput = document.getElementById('global-loyalty-key');
