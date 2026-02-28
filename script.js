@@ -249,21 +249,31 @@ document.addEventListener('DOMContentLoaded', () => {
                 const redditClickId = sessionStorage.getItem('rdt_cid') || null;
                 
                 const response = await fetch(`${serverURL}/common/checkout`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ 
-                        productTitle, 
-                        quantity: 1, 
-                        redditClickId, 
-                        program, 
-                        previousKey // Sending the global key
-                    })
-                });
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ 
+        productTitle, 
+        quantity: 1, 
+        redditClickId, 
+        program, 
+        previousKey 
+    })
+});
 
-                if (!response.ok) {
-                    const errorData = await response.json();
-                    throw new Error(errorData.error || `Server error: ${response.status}`);
-                }
+if (!response.ok) {
+    // 1. Read the raw text first instead of forcing JSON
+    const errorText = await response.text(); 
+    
+    // 2. Check if it's HTML (CloudFront/Server Crash)
+    if (errorText.startsWith('<')) {
+        console.error("RAW HTML ERROR RECEIVED:", errorText);
+        throw new Error(`Server Blocked Request: Status ${response.status}. Check console for details.`);
+    }
+
+    // 3. If it is JSON, parse it safely
+    const errorData = JSON.parse(errorText);
+    throw new Error(errorData.error || `Server error: ${response.status}`);
+}
                 
                 const session = await response.json();
                 if (session && session.url) window.location.href = session.url;
