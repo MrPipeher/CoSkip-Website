@@ -173,7 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- MODULE 8: STRIPE PAYMENT INTEGRATION ---
-    const serverURL = 'https://co-skip-server.onrender.com';
+    const serverURL = 'drod9qw3jd8on.cloudfront.net';
     //const serverURL = 'http://localhost:5000';
 
     // Handle Subscription Checkout
